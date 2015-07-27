@@ -516,6 +516,14 @@ namespace WordGenerator
                 new ChannelManager.ChannelManager();
             logicalChannelManager.ShowDialog();
         }
+
+        private void editRunLoggingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+                RunLogManager runLogManager = new RunLogManager(Storage.settingsData);
+                runLogManager.ShowDialog();
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -1562,11 +1570,15 @@ namespace WordGenerator
                 Storage.settingsData.AlwaysUseNetworkClock = useNetworkClockCheckBox.Checked;
         }
 
+<<<<<<< HEAD
         private void citationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CitationInfoForm cif = new CitationInfoForm(false);
             cif.ShowDialog();
         }
+=======
+       
+>>>>>>> df79eb225b294ee3c25001ec17ab602fba983a14
 
     }
 }

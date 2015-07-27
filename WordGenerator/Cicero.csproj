@@ -19,7 +19,7 @@
     <GenerateManifests>false</GenerateManifests>
     <SignManifests>false</SignManifests>
     <TargetZone>LocalIntranet</TargetZone>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -66,11 +66,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Controls\Dialogs\CitationInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\Dialogs\CitationInfoForm.Designer.cs">
       <DependentUpon>CitationInfoForm.cs</DependentUpon>
+=======
+    <Compile Include="Controls\Dialogs\RunLogManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Dialogs\RunLogManager.Designer.cs">
+      <DependentUpon>RunLogManager.cs</DependentUpon>
+>>>>>>> df79eb225b294ee3c25001ec17ab602fba983a14
     </Compile>
     <Compile Include="Controls\PulsesTab\AutoNameGlossaryDialog.cs">
       <SubType>Form</SubType>
@@ -369,6 +377,9 @@
     <EmbeddedResource Include="Controls\Dialogs\LogAnnotator.resx">
       <SubType>Designer</SubType>
       <DependentUpon>LogAnnotator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Dialogs\RunLogManager.resx">
+      <DependentUpon>RunLogManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Dialogs\VariablePreviewEditorForm.resx">
       <DependentUpon>VariablePreviewEditorForm.cs</DependentUpon>

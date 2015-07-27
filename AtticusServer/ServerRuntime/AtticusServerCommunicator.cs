@@ -301,7 +301,7 @@ namespace AtticusServer
                         if (deviceSettings.DeviceEnabled)
                         {
                             messageLog(this, new MessageEvent("Generating single output for " + dev));
-                            Task task = DaqMxTaskGenerator.createDaqMxTaskAndOutputNow(dev,
+                            Task task = DaqMxTaskGenerator.createDaqMxTaskAndOutputNow(this,dev,
                                 deviceSettings,
                                 output,
                                 settings,
@@ -1214,7 +1214,7 @@ namespace AtticusServer
                     long expectedGenerated = 0;
 
                     messageLog(this, new MessageEvent("Generating buffer for " + dev));
-                    Task task = DaqMxTaskGenerator.createDaqMxTask(dev,
+                    Task task = DaqMxTaskGenerator.createDaqMxTask(this,dev,
                         deviceSettings,
                         sequence,
                         settings,
@@ -2399,31 +2399,114 @@ namespace AtticusServer
                         niDaqDevicesExistThatAreNotNamedDevSomething = true;
                     }
 
-                    System.Console.WriteLine("Querying device " + i + "...");
+                    System.Console.WriteLine("Querying device " + i + "..." );
 
                     detectedDevices.Add(devices[i]);
 
                     Device device = daqSystem.LoadDevice(devices[i]);
 
+                    System.Console.WriteLine("Device type " + device.ProductType);
+                    //Attempts to weed out non-hardware timed channels.
+                    /*object thingy = device.DOPorts;
+                    object thingy2 = device.COSampleModes;
+
+                    string[] thingy3 = device.GetPhysicalChannels(PhysicalChannelTypes.CO, PhysicalChannelAccess.All); ;
+                    */
+                 
 
                     myDeviceDescriptions.Add(devices[i], device.ProductType);
                     string[] analogs = device.AOPhysicalChannels;
                     string[] digitalLines = device.DOLines;
 
+                    //analogHardWareStructure stores the number of analog outputs the card has. This is useful later when generating buffers
+                    int analogHardwareStructure = analogs.Length;
+
+
+                    //digitalHardwareStructure holds information about the port/line structure on the card. It is a variable length array. The length of the
+                    //array corresponds to all of the ports, while the value in each array index is the number of lines on that port (usualy 8 or 32).
+
+                    
+                    int [] digitalHardwareStructure;
+                    int num_DO_channels = digitalLines.Length;
+                    int array_length = -1;
+                    if (num_DO_channels != 0)
+                    {
+                        //NOTE: My assumptions is that the digitalLines string array is *ordered*, i.e. port0/line0, port0/line1...portN/lineM, such that N is the largest
+                        //port number in digitalLines. This way, I can extract the number of ports I need by simply looking at the last element of digitalLines. (If NI ever chooses
+                        //not return an un-ordered array, well, then it's a slight complication to fix.
+                        //I also assume we have 10 or less total ports, i.e. that the port number is a single digit.
+
+                        //Find index of the string "port" in the last element of digitalLines:
+                        int port_string_index = digitalLines[digitalLines.Length - 1].IndexOf("port") + 4;
+                        System.Console.WriteLine("Highest port index (number of ports-1) on this device:" + digitalLines[digitalLines.Length - 1][port_string_index]);
+                        System.Console.WriteLine("Number of available analog outputs on this device:" + analogHardwareStructure);
+                        //Use that number to determine the length digitalHardwareStrucrue array...
+
+                        
+                        Int32.TryParse(digitalLines[digitalLines.Length - 1][port_string_index].ToString(), out array_length);
+                        array_length += 1; //the total array length should actually be 1 longer than the index, because the index runs from 0..n-1
+                        digitalHardwareStructure = new int[array_length];
+
+                        if (array_length == 0)
+                            System.Console.WriteLine("Irregular port structure, or no digital outputs found on " + devices[i] + " of type " + device.ProductType);
+
+
+
+                        //now that the digitalHardWareStructure array has a defined length, wan count the number of lines per port:
+
+                        //initialize digitalHardwareStructure array
+                        //Possibl arrayOutOfBounds exception here
+                        for (int j = 0; j < array_length; j++)
+                        {
+                            digitalHardwareStructure[j] = 0;
+                        }
+
+                        //Note: the port_string_index used above should still be a good location to find the port numbers, so we use it here
+                        int port_num_holder = -1;
+                        for (int j = 0; j < digitalLines.Length; j++)
+                        {
+                            Int32.TryParse(digitalLines[j][port_string_index].ToString(), out port_num_holder);
+                            digitalHardwareStructure[port_num_holder] += 1;
+                        }
+                    }
+                    else
+                    {
+                        //Set array_length equal to zero if there are no DO founds--later this will force the digitalHardwareStructure for this
+                        //device to be null (see next if statement)
+                        array_length = 0;
+                        digitalHardwareStructure = null;
+                        System.Console.WriteLine("No digital outputs found on " + devices[i] + " of type " + device.ProductType);
+                    }
+                    //SOMEBULLSHIT
+
+                    //SETTINGS_LOAD_BUG: This adds a new device to the list if there isn't already a device in the settings with the same key (e.g. Dev1)
+                    //Note: the serverSettings are *loaded* from a file. If you have a settings file with Dev1, and then change
+                    //which card is labelled Dev1 in Automation Explorer, the change will *not* be updated here. This should perhaps be fixed at some point.
                     if (!serverSettings.myDevicesSettings.ContainsKey(devices[i]))
                     {
-                        serverSettings.myDevicesSettings.Add(devices[i], new DeviceSettings(devices[i], myDeviceDescriptions[devices[i]]));
+                        //If the digitalHardwareStructure will have a non-sensical value, then set it to null
+                        if (array_length<=0)
+                            serverSettings.myDevicesSettings.Add(devices[i], new DeviceSettings(devices[i], device.ProductType, analogHardwareStructure, null));
+                        else
+                            serverSettings.myDevicesSettings.Add(devices[i], new DeviceSettings(devices[i], device.ProductType, analogHardwareStructure, digitalHardwareStructure));
+                       // serverSettings.myDevicesSettings.Add(devices[i], new DeviceSettings(devices[i], device.ProductType, digitalHardwareStructure, analogHardwareStructure));
                     }
+                    
 
                     // Special case: 6259 cards use 32-bit wide ports instead of 16 bit wide.
+                  
+
+                    //Below is hardcoded support for the 6259 card, which is now commented out because the 32 or 8 lines per
+                    //port business should all be taken care of using the DigitalHardwareStructure object
+
+                    /*
                     if (myDeviceDescriptions[devices[i]].Contains("6259"))
                     {
                         serverSettings.myDevicesSettings[devices[i]].use32BitDigitalPorts = true;
                     }
-
+                    */
 
                     // Add all the analog channels, but only if the device settings say this card is enabled
-
                     if (serverSettings.myDevicesSettings.ContainsKey(devices[i]) && serverSettings.myDevicesSettings[devices[i]].DeviceEnabled)
                     {
 
@@ -2454,7 +2537,7 @@ namespace AtticusServer
                         }
                     }
 
-                    System.Console.WriteLine("...done.");
+                    System.Console.WriteLine("...done.\n");
 
                 }
 
@@ -2476,7 +2559,7 @@ namespace AtticusServer
 
                     if (!serverSettings.myDevicesSettings.ContainsKey(devName))
                     {
-                        DeviceSettings devSettings = new DeviceSettings(devName, "RFSG driver library signal generator");
+                        DeviceSettings devSettings = new DeviceSettings(devName, "RFSG driver library signal generator", 0, null);
                         serverSettings.myDevicesSettings.Add(devName, devSettings);
                     }
 
@@ -2680,7 +2763,7 @@ namespace AtticusServer
                     if (!myServerSettings.myDevicesSettings.ContainsKey(device))
                     {
                         myServerSettings.myDevicesSettings.Add(device,
-                            new DeviceSettings(device, myDeviceDescriptions[device]));
+                            new DeviceSettings(device, myDeviceDescriptions[device], 0, null));
                     }
                     else
                     {
@@ -2726,7 +2809,7 @@ namespace AtticusServer
 
                             if (!myServerSettings.myDevicesSettings.ContainsKey(name))
                             {
-                                DeviceSettings newSettings = new DeviceSettings(name, "Opal Kelly FPGA Device");
+                                DeviceSettings newSettings = new DeviceSettings(name, "Opal Kelly FPGA Device",0,null);
                                 newSettings.deviceConnected = true;
                                 newSettings.isFPGADevice = true;
                                 myServerSettings.myDevicesSettings.Add(name, newSettings);
