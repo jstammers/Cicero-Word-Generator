@@ -66,19 +66,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
+
     <Compile Include="Controls\Dialogs\CitationInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\Dialogs\CitationInfoForm.Designer.cs">
-      <DependentUpon>CitationInfoForm.cs</DependentUpon>
-=======
+    <DependentUpon>CitationInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Dialogs\RunLogManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\Dialogs\RunLogManager.Designer.cs">
       <DependentUpon>RunLogManager.cs</DependentUpon>
->>>>>>> df79eb225b294ee3c25001ec17ab602fba983a14
+
     </Compile>
     <Compile Include="Controls\PulsesTab\AutoNameGlossaryDialog.cs">
       <SubType>Form</SubType>
