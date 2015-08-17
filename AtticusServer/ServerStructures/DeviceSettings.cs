@@ -392,12 +392,12 @@ Category("Error Checking")]
 
         private int[] digitalHardwareStructure;
 
-        [Description("Array describing the digtal port/line configuration of the card. The index of the array corresponds to the port number, while the value in the array corresponds to the number of lines on that port. E.g. DigitalHardwareStructure[0]=8 means there are 8 lines on port 0. This value is null for non-digital output cards."),
+        [Description("Array describing the digital port/line configuration of the card. The index of the array corresponds to the port number, while the value in the array corresponds to the number of lines on that port. E.g. DigitalHardwareStructure[0]=8 means there are 8 lines on port 0. This value is null for non-digital output cards."),
         Category("Digital")]
         public int [] DigitalHardwareStructure
         {
             get { return digitalHardwareStructure; }
-            //set { digitalHardwareStructure = value; }
+            set { digitalHardwareStructure = value; }
         }
 
     }

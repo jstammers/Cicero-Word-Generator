@@ -486,7 +486,7 @@ namespace AtticusServer
 
             Task task = new Task(deviceName + " output task");
 
-            Task DOtask = new Task(deviceName + " output DO task");
+            //Task DOtask = new Task(deviceName + " output DO task");
 
             List<int> analogIDs;
             List<HardwareChannel> analogs;

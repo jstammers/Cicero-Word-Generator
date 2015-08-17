@@ -352,7 +352,7 @@ namespace AtticusServer
         /// <summary>
         /// This method should be run after setSettings and setSequence to ensure sane data.
         /// </summary>
-        /// <param name="listIterationNumber"></param>
+        /// <param name="listIteration"></param>
         /// <returns></returns>
         public override BufferGenerationStatus generateBuffers(int listIterationNumber)
         {
@@ -2485,11 +2485,14 @@ namespace AtticusServer
                     if (!serverSettings.myDevicesSettings.ContainsKey(devices[i]))
                     {
                         //If the digitalHardwareStructure will have a non-sensical value, then set it to null
-                        if (array_length<=0)
+                        if (array_length <= 0)
+                        {
                             serverSettings.myDevicesSettings.Add(devices[i], new DeviceSettings(devices[i], device.ProductType, analogHardwareStructure, null));
+                            System.Console.WriteLine("here is the error: " + digitalHardwareStructure);
+                        }
                         else
                             serverSettings.myDevicesSettings.Add(devices[i], new DeviceSettings(devices[i], device.ProductType, analogHardwareStructure, digitalHardwareStructure));
-                       // serverSettings.myDevicesSettings.Add(devices[i], new DeviceSettings(devices[i], device.ProductType, digitalHardwareStructure, analogHardwareStructure));
+                         // serverSettings.myDevicesSettings.Add(devices[i], new DeviceSettings(devices[i], device.ProductType, digitalHardwareStructure, analogHardwareStructure));
                     }
                     
 
