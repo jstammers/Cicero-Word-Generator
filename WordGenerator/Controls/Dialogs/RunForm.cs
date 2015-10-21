@@ -787,18 +787,6 @@ namespace WordGenerator
                 }
                 #endregion
 
-                if (Storage.settingsData.WriteVariableOutputTextFile)
-                {
-                    addMessageLogText(this, new MessageEvent("Variable-to-file output enabled. Writing variable file..."));
-                    
-                    bool write_success=sequence.writeVariableListToFile(Storage.settingsData.VariableOutputFilename, Storage.settingsData.VariableOutputFilenameDirectory);
-                    if (write_success)
-                        addMessageLogText(this, new MessageEvent("Variable-to-file output succeeded."));
-                    else
-                        addMessageLogText(this, new MessageEvent("Variable-to-file output failed. Check path and filename of output file."));
-
-                }
-
 
 
 
@@ -1074,6 +1062,18 @@ namespace WordGenerator
                 if (useLoops)
                     sequence.cleanupLoopCopies();
 
+
+                if (Storage.settingsData.WriteVariableOutputTextFile)
+                {
+                    addMessageLogText(this, new MessageEvent("Variable-to-file output enabled. Writing variable file..."));
+
+                    bool write_success = sequence.writeVariableListToFile(Storage.settingsData.VariableOutputFilename, Storage.settingsData.VariableOutputFilenameDirectory);
+                    if (write_success)
+                        addMessageLogText(this, new MessageEvent("Variable-to-file output succeeded."));
+                    else
+                        addMessageLogText(this, new MessageEvent("Variable-to-file output failed. Check path and filename of output file."));
+
+                }
 
                 addMessageLogText(this, new MessageEvent("Finished run. Writing log file..."));
                 RunLog runLog = new RunLog(runStartTime, formCreationTime, sequence, Storage.settingsData, WordGenerator.MainClientForm.instance.OpenSequenceFileName, WordGenerator.MainClientForm.instance.OpenSettingsFileName);
