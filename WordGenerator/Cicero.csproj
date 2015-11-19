@@ -58,6 +58,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'HSDIO|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\HSDIO\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -66,19 +75,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
     <Compile Include="Controls\Dialogs\CitationInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\Dialogs\CitationInfoForm.Designer.cs">
-    <DependentUpon>CitationInfoForm.cs</DependentUpon>
+      <DependentUpon>CitationInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Dialogs\RunLogManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\Dialogs\RunLogManager.Designer.cs">
       <DependentUpon>RunLogManager.cs</DependentUpon>
-
     </Compile>
     <Compile Include="Controls\PulsesTab\AutoNameGlossaryDialog.cs">
       <SubType>Form</SubType>

@@ -69,11 +69,11 @@ namespace AtticusServer
                 
 
                 Console.WriteLine("Creating AtticusServerRuntime object...");
-
+                Application.SetCompatibleTextRenderingDefault(false);
                 server = new AtticusServerCommunicator(serverSettings);
 
                 Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
+               
 
                 MainServerForm form = new MainServerForm();
 

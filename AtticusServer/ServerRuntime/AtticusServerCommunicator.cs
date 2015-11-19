@@ -8,6 +8,7 @@ using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Windows.Forms;
 using NationalInstruments.DAQmx;
+using NationalInstruments.ModularInstruments.Interop;
 using System.ComponentModel;
 using System.IO.Ports;
 using System.Data;
@@ -2672,6 +2673,42 @@ namespace AtticusServer
                 board.FindListeners(
                 */
 
+                #endregion
+
+                #region detect NI-HSDIO cards
+                //Initiliases the HSDIO card for generating Digital signals. Currently, it assumes that the card is named Dev3. The niHSDIO wrapper has no equivalent method to DAQSystem.local.
+                //We have reserved the first 4 channels to be used for clock signals to define a variable timebase.
+                System.Console.WriteLine("Accessing NI-HSDIO Cards");
+                string hsDigitalChannels = "4-31";
+                niHSDIO hsdioDevice = niHSDIO.InitGenerationSession("Dev3", true, false, "");
+                hsdioDevice.AssignStaticChannels(hsDigitalChannels);
+                string my_hsdio = "Dev3";
+                detectedDevices.Add(my_hsdio);
+                if (!myServerSettings.myDevicesSettings.ContainsKey(my_hsdio))
+                {
+ 
+                    myDeviceDescriptions.Add(my_hsdio,hsdioDevice.ToString());
+                    myServerSettings.myDevicesSettings.Add(my_hsdio, new DeviceSettings(my_hsdio, myDeviceDescriptions[my_hsdio], 0, null));
+                    System.Console.WriteLine("Added");
+                }
+                else
+                {
+                    myServerSettings.myDevicesSettings[my_hsdio].deviceConnected = true;
+                }
+                //Configure the Server to add the digital channels if the device is enabled
+                if(serverSettings.myDevicesSettings[my_hsdio].DigitalChannelsEnabled)
+                {
+                    for (int j = 4; j < 32; j++)
+                    {
+                        string channelName = "hs" + j;
+                        HardwareChannel hc = new HardwareChannel(this.myServerSettings.ServerName, "Dev3", channelName, HardwareChannel.HardwareConstants.ChannelTypes.digital);
+
+                        if (!serverSettings.ExcludedChannels.Contains(hc))
+                        {
+                            myHardwareChannels.Add(hc);
+                        }
+                    }
+                }
                 #endregion
 
                 #region Detect NI RS232 ports
