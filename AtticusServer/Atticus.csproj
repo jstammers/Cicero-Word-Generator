@@ -131,7 +131,7 @@
       <DependentUpon>HardwareChannelsBrowser.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServerRuntime\Class2.cs" />
+    <Compile Include="ServerRuntime\HSDIOOutputGenerator.cs" />
     <Compile Include="ServerStructures\HSDIOStaticChannelController.cs" />
     <Compile Include="Wrappers\niHSDIO.cs" />
     <Compile Include="Wrappers\NiSync.cs" />

@@ -2679,7 +2679,7 @@ namespace AtticusServer
                 //Initiliases the HSDIO card for generating Digital signals. Currently, it assumes that the card is named Dev3. The niHSDIO wrapper has no equivalent method to DAQSystem.local.
                 //We have reserved the first 4 channels to be used for clock signals to define a variable timebase.
                 System.Console.WriteLine("Accessing NI-HSDIO Cards");
-                string hsDigitalChannels = "4-31";
+                string hsDigitalChannels = "0-31";
                 niHSDIO hsdioDevice = niHSDIO.InitGenerationSession("Dev3", true, false, "");
                 hsdioDevice.AssignStaticChannels(hsDigitalChannels);
                 string my_hsdio = "Dev3";
@@ -2698,7 +2698,7 @@ namespace AtticusServer
                 //Configure the Server to add the digital channels if the device is enabled
                 if(serverSettings.myDevicesSettings[my_hsdio].DigitalChannelsEnabled)
                 {
-                    for (int j = 4; j < 32; j++)
+                    for (int j = 0; j < 32; j++)
                     {
                         string channelName = "hs" + j;
                         HardwareChannel hc = new HardwareChannel(this.myServerSettings.ServerName, "Dev3", channelName, HardwareChannel.HardwareConstants.ChannelTypes.digital);
