@@ -161,7 +161,10 @@ namespace AtticusServer
         /// </summary>
         private Dictionary<HardwareChannel, RS232Task> rs232Tasks;
 
-
+        ///<summary>
+        /// A dictionary mapping from string device names to NI HSDIO waveforms. Populated in generateBuffers
+        /// </summary>
+        private Dictionary<HardwareChannel, HSDIOTask> hsdioTasks;
         /// <summary>
         /// Contains one entry for each logical ID - HardwareChannel pair which was found in settings data and which
         /// resides on this server. Populated in findMyChannels.
@@ -179,6 +182,11 @@ namespace AtticusServer
         /// </summary>
         private List<string> usedDaqMxDevices;
 
+        ///<summary>
+        /// List of the strings for HSDIO devices. Populated in findMyChannels
+        /// </summary>
+        private List<string> usedHSDIODevices;
+
         /// <summary>
         /// Contains one entry for each logical ID - HardwareChannel pair which was found in settings data and which
         /// resides on this server. Populated in findMyChannels.
@@ -191,6 +199,7 @@ namespace AtticusServer
         /// </summary>
         private Dictionary<int, HardwareChannel> usedRS232Channels;
 
+        /// <param name="settings"></param>
         #region Constructors
         public AtticusServerCommunicator(ServerSettings settings)
         {
@@ -585,6 +594,11 @@ namespace AtticusServer
                             }
 
                             generateDaqMxTaskOnDevice(dev);
+                        }
+                        //generate the buffers for the devices
+                        foreach (string dev in usedHSDIODevices)
+                        {
+                            generateHSDIOWaveformOnDevice(dev);
                         }
                     }
                     else
@@ -1244,6 +1258,34 @@ namespace AtticusServer
                 messageLog(this, new MessageEvent("Skipped buffer generation for disabled device " + dev));
             }
 
+        }
+
+        private void generateHSDIOWaveformOnDevice(string dev)
+        {
+            this.generateHSDIOWaveformOnDevice((object)dev);
+        }
+
+        private void generateHSDIOWaveformOnDevice(object devObj)
+        {
+            string dev = devObj.ToString();
+            DeviceSettings deviceSettings = myServerSettings.myDevicesSettings[dev];
+
+            if (deviceSettings.DeviceEnabled)
+            {
+                if (deviceHasUsedChannels(dev))
+                {
+                    long expectedGenerated = 0;
+
+                    messageLog(this, new MessageEvent("Generating buffer for HSDIO " + dev));
+                    HSDIOTask.createHSDIOWaveForm(this, dev,
+                        deviceSettings,
+                        sequence,
+                        settings,
+                        usedDigitalChannels,
+                        serverSettings,
+                        out expectedGenerated);
+                }
+            }
         }
 
         private void makeTerminalConnections()
@@ -2234,6 +2276,7 @@ namespace AtticusServer
 
             // populate the list of used daqmx devices
             this.usedDaqMxDevices = new List<string>();
+            this.usedHSDIODevices = new List<string>();
             foreach (int analogID in usedAnalogChannels.Keys)
             {
                 HardwareChannel hc = settings.logicalChannelManager.ChannelCollections[HardwareChannel.HardwareConstants.ChannelTypes.analog].Channels[analogID].HardwareChannel;
@@ -2245,7 +2288,15 @@ namespace AtticusServer
             {
                 HardwareChannel hc = settings.logicalChannelManager.ChannelCollections[HardwareChannel.HardwareConstants.ChannelTypes.digital].Channels[digitalID].HardwareChannel;
                 if (!usedDaqMxDevices.Contains(hc.DeviceName))
-                    usedDaqMxDevices.Add(hc.DeviceName);
+                {
+                    //Hardcoded adding the HSDIO card to the correct list.
+                 
+                    if (hc.DeviceName.Contains("Dev3") && myServerSettings.myDevicesSettings["Dev3"].DeviceDescription == "PXI-6541")
+                        usedHSDIODevices.Add(hc.DeviceName);
+                    else
+                        usedDaqMxDevices.Add(hc.DeviceName);
+                }
+                    
             }
         }
 
@@ -2677,19 +2728,20 @@ namespace AtticusServer
 
                 #region detect NI-HSDIO cards
                 //Initiliases the HSDIO card for generating Digital signals. Currently, it assumes that the card is named Dev3. The niHSDIO wrapper has no equivalent method to DAQSystem.local.
-                //We have reserved the first 4 channels to be used for clock signals to define a variable timebase.
                 System.Console.WriteLine("Accessing NI-HSDIO Cards");
                 string hsDigitalChannels = "0-31";
                 niHSDIO hsdioDevice = niHSDIO.InitGenerationSession("Dev3", true, false, "");
-                hsdioDevice.AssignStaticChannels(hsDigitalChannels);
+                hsdioDevice.AssignDynamicChannels(hsDigitalChannels);
                 string my_hsdio = "Dev3";
                 detectedDevices.Add(my_hsdio);
                 if (!myServerSettings.myDevicesSettings.ContainsKey(my_hsdio))
                 {
- 
-                    myDeviceDescriptions.Add(my_hsdio,hsdioDevice.ToString());
-                    myServerSettings.myDevicesSettings.Add(my_hsdio, new DeviceSettings(my_hsdio, myDeviceDescriptions[my_hsdio], 0, null));
-                    System.Console.WriteLine("Added");
+                    //There is no easy way to get the device name using the hsdio library. For now, it is hardcoded with our model
+                    int[] hsdioDigital = new int[1];
+                    hsdioDigital[0] = 32;
+                    myDeviceDescriptions.Add(my_hsdio,"PXI-6541");
+                    myServerSettings.myDevicesSettings.Add(my_hsdio, new DeviceSettings(my_hsdio, myDeviceDescriptions[my_hsdio], 0, hsdioDigital));
+                    System.Console.WriteLine("Added HSDIO card");
                 }
                 else
                 {
@@ -2698,6 +2750,7 @@ namespace AtticusServer
                 //Configure the Server to add the digital channels if the device is enabled
                 if(serverSettings.myDevicesSettings[my_hsdio].DigitalChannelsEnabled)
                 {
+              
                     for (int j = 0; j < 32; j++)
                     {
                         string channelName = "hs" + j;
