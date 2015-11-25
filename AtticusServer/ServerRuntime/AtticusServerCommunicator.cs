@@ -1277,6 +1277,7 @@ namespace AtticusServer
                     long expectedGenerated = 0;
 
                     messageLog(this, new MessageEvent("Generating buffer for HSDIO " + dev));
+                    HSDIOTask hsdioTask = new HSDIOTask();
                     HSDIOTask.createHSDIOWaveForm(this, dev,
                         deviceSettings,
                         sequence,
@@ -2730,8 +2731,8 @@ namespace AtticusServer
                 //Initiliases the HSDIO card for generating Digital signals. Currently, it assumes that the card is named Dev3. The niHSDIO wrapper has no equivalent method to DAQSystem.local.
                 System.Console.WriteLine("Accessing NI-HSDIO Cards");
                 string hsDigitalChannels = "0-31";
-                niHSDIO hsdioDevice = niHSDIO.InitGenerationSession("Dev3", true, false, "");
-                hsdioDevice.AssignDynamicChannels(hsDigitalChannels);
+                //niHSDIO hsdioDevice = niHSDIO.InitGenerationSession("Dev3", true, false, "");
+               // hsdioDevice.AssignDynamicChannels(hsDigitalChannels);
                 string my_hsdio = "Dev3";
                 detectedDevices.Add(my_hsdio);
                 if (!myServerSettings.myDevicesSettings.ContainsKey(my_hsdio))
