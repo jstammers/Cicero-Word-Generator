@@ -1517,7 +1517,9 @@ namespace DataStructures
             ///  - one additional clock pulse should be placed after the end of the last pulse, to trigger the return to the dwell word. This is not included
             /// in the list of variable timebase segments. 
             /// </summary>
-            AnalogGroupControlledVariableFrequencyClock
+            AnalogGroupControlledVariableFrequencyClock,
+                HSDIOGroupControlledVariableFrequencyClock
+
         }
 
         /// <summary>

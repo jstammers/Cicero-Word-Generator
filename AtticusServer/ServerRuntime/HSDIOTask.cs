@@ -55,7 +55,7 @@ namespace AtticusServer
                 }
                 hsdio.ExportSignal(niHSDIOConstants.SampleClock, "", niHSDIOConstants.ClkOutStr);
                 hsdio.ExportSignal(niHSDIOConstants.SampleClock, "", niHSDIOConstants.DdcClkOutStr);
-                hsdio.ExportSignal(niHSDIOConstants.SampleClock, "", niHSDIOConstants.PxiTrig0Str);
+
                 Dictionary<int, string> hsChannels = countHSChannels(usedDigitalChannels);
                 if (hsChannels.Count != 0)
                 {
