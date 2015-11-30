@@ -44,8 +44,10 @@ namespace AtticusServer
                 }
                 if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.DerivedFromMaster)
                 {
-                    //Uses the onboard clock
+                    //Uses the onboard clock and exports the start trigger to the PXI back plane.
                     hsdio.ConfigureSampleClock(niHSDIOConstants.OnBoardClockStr, deviceSettings.SampleClockRate);
+                    hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig0Str);
+                    //hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig1Str);
                     
                 }
                 else if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.External && deviceSettings.SampleClockExternalSource == "ClkIn")
@@ -53,8 +55,18 @@ namespace AtticusServer
                     //If set to ClkIn, the clock is configured to use the ClkIn input on the HSDIO card
                     hsdio.ConfigureSampleClock(niHSDIOConstants.ClkInStr, deviceSettings.SampleClockRate);
                 }
+                if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.SoftwareTrigger)
+                {
+                    hsdio.ConfigureSoftwareStartTrigger();
+                }
+                else if(deviceSettings.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
+                {
+                    string trigger = deviceSettings.TriggerInPort;
+                    hsdio.ConfigureDigitalEdgeStartTrigger(trigger, niHSDIOConstants.RisingEdge);
+                }
                 hsdio.ExportSignal(niHSDIOConstants.SampleClock, "", niHSDIOConstants.ClkOutStr);
                 hsdio.ExportSignal(niHSDIOConstants.SampleClock, "", niHSDIOConstants.DdcClkOutStr);
+                hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig0Str);
 
                 Dictionary<int, string> hsChannels = countHSChannels(usedDigitalChannels);
                 if (hsChannels.Count != 0)
@@ -154,5 +166,11 @@ namespace AtticusServer
             int initiate = hsdio.Initiate();
             return initiate;
         }
+
+        public void ExportSignal(int signal, string signal_identifier,string output_terminal)
+        {
+            hsdio.ExportSignal(signal, signal_identifier, output_terminal);
+        }
+    
     }
 }

@@ -85,7 +85,8 @@ namespace AtticusServer
 
 
 
-             Application.Run(form);
+
+              Application.Run(form);
 
                 
 

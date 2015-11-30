@@ -1074,7 +1074,20 @@ namespace AtticusServer
                         messageLog(this, new MessageEvent("Unable to give buffer status of task " + str + ": " + e.Message));
                     }
                 }
+                foreach (string str in hsdioTasks.Keys)
+                {
+                    HSDIOTask hsdio = hsdioTasks[str];
 
+                    try
+                    {
+                        long samplesGenerated = hsdio.TotalSamplesGeneratedPerChannel;
+                        messageLog(this, new MessageEvent(str + " " + samplesGenerated + "/" + "Cannot Calculate Buffer Size"));
+                    }
+                    catch(Exception e)
+                    {
+                        messageLog(this, new MessageEvent("Unable to give buffer status of task " + str + ": " + e.Message));
+                    }
+                }
                 bool earlyFinishDetected = false;
 
                 lock (taskFinishTimeClicks)
@@ -1642,16 +1655,6 @@ namespace AtticusServer
                                         return false;
                                     }
                                 }
-                               int init = hsdio.Initiate();
-                                if (init == 0)
-                                {
-                                    messageLog(this, new MessageEvent("Successfully started the HSDIO Sequence"));
-                                }
-                                else
-                                {
-                                    messageLog(this, new MessageEvent("Error starting the HSDIO sequence. Error Code:" + init));
-                                }
-
                                 if (dev == serverSettings.DeviceToSyncSoftwareTimedTasksTo)
                                 {
                                     if (serverSettings.SoftwareTaskTriggerMethod == ServerSettings.SoftwareTaskTriggerType.PollBufferPosition)
@@ -1816,6 +1819,8 @@ namespace AtticusServer
                     List<GpibTask> gpibTasksToTrigger = new List<GpibTask>();
                     List<RS232Task> rs232TasksToTrigger = new List<RS232Task>();
                     List<RfsgTask> rfsgTasksToTrigger = new List<RfsgTask>();
+                    List<HSDIOTask> hsdioToSoftTrigger = new List<HSDIOTask>();
+                    List<HSDIOTask> hsdioToSoftTriggerLast = new List<HSDIOTask>();
 
                     // This loop adds the NIDAQ analog and digital tasks that require soft trigger to the appropriate list.
                     // These are software triggered tasks which do NOT use an external sample clock (those that do are started in armTasks)
@@ -1841,6 +1846,21 @@ namespace AtticusServer
                                     }
                                 }
                             }
+                            else if (hsdioTasks.ContainsKey(dev))
+                            {
+                                if (hsdioTasks[dev] != null)
+                                {
+                                    if (devicesSettings[dev].SoftTriggerLast)
+                                    {
+                                        hsdioToSoftTriggerLast.Add(hsdioTasks[dev]);
+                                    }
+                                    else
+                                    {
+                                        hsdioToSoftTrigger.Add(hsdioTasks[dev]);
+                                    }
+                                }
+                            }
+                            
                         }
 
                     }
@@ -1951,7 +1971,10 @@ namespace AtticusServer
                     {
                         task.Start();
                     }
-
+                    foreach( HSDIOTask hsdio in hsdioToSoftTrigger)
+                    {
+                        hsdio.Initiate();
+                    }
 
 
                     if (!myServerSettings.TriggerSoftwareTasksAfterTimebaseTask)
@@ -1966,9 +1989,6 @@ namespace AtticusServer
                                 computerClockProvider.StartClockProvider();
                                 messageLog(this, new MessageEvent("Triggered computer-software-clock (without sync to a hardware timed task)."));
                             }
-                            
-
-                           
                         }
                     }
 
@@ -1977,7 +1997,10 @@ namespace AtticusServer
                     {
                         task.Start();
                     }
-
+                    foreach(HSDIOTask hsdio in hsdioToSoftTriggerLast)
+                    {
+                        hsdio.Initiate();
+                    }
 
                     // finally, if there is a variable timebase output task, we start it.
 
