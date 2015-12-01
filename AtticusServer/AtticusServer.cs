@@ -73,7 +73,7 @@ namespace AtticusServer
                 server = new AtticusServerCommunicator(serverSettings);
 
                 Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
+                //Application.SetCompatibleTextRenderingDefault(false);
 
                 MainServerForm form = new MainServerForm();
 
