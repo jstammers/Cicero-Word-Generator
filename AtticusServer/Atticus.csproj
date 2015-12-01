@@ -70,6 +70,15 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'HSDIO|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\HSDIO\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="libFrontPanel-csharp, Version=1.0.4414.30471, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -124,6 +133,8 @@
       <DependentUpon>HardwareChannelsBrowser.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerRuntime\HSDIOTask.cs" />
+    <Compile Include="Wrappers\niHSDIO.cs" />
     <Compile Include="Wrappers\NiSync.cs" />
     <EmbeddedResource Include="AtticusSplashForm.resx">
       <SubType>Designer</SubType>

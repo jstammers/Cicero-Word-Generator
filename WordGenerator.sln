@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CEEFAE9A-6E13-4ADF-9C16-F36806A136BC}"
 	ProjectSection(SolutionItems) = preProject
 		Code Overview.htm = Code Overview.htm
@@ -27,9 +29,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiceroSuiteUnitTests", "CiceroSuiteUnitTests\CiceroSuiteUnitTests.csproj", "{2C5EAE42-1165-4350-A549-A13F5F50C874}"
 EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = WordGenerator.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Atticus-Release-x64|Any CPU = Atticus-Release-x64|Any CPU
 		Atticus-Release-x64|Mixed Platforms = Atticus-Release-x64|Mixed Platforms
@@ -40,6 +39,9 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|Win32 = Debug|Win32
+		HSDIO|Any CPU = HSDIO|Any CPU
+		HSDIO|Mixed Platforms = HSDIO|Mixed Platforms
+		HSDIO|Win32 = HSDIO|Win32
 		Release|Any CPU = Release|Any CPU
 		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|Win32 = Release|Win32
@@ -58,6 +60,12 @@ Global
 		{AA55BBAF-9C99-4CC8-9FE3-D8F6A8B7EBA8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{AA55BBAF-9C99-4CC8-9FE3-D8F6A8B7EBA8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{AA55BBAF-9C99-4CC8-9FE3-D8F6A8B7EBA8}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{AA55BBAF-9C99-4CC8-9FE3-D8F6A8B7EBA8}.HSDIO|Any CPU.ActiveCfg = HSDIO|Any CPU
+		{AA55BBAF-9C99-4CC8-9FE3-D8F6A8B7EBA8}.HSDIO|Any CPU.Build.0 = HSDIO|Any CPU
+		{AA55BBAF-9C99-4CC8-9FE3-D8F6A8B7EBA8}.HSDIO|Mixed Platforms.ActiveCfg = HSDIO|Any CPU
+		{AA55BBAF-9C99-4CC8-9FE3-D8F6A8B7EBA8}.HSDIO|Mixed Platforms.Build.0 = HSDIO|Any CPU
+		{AA55BBAF-9C99-4CC8-9FE3-D8F6A8B7EBA8}.HSDIO|Win32.ActiveCfg = HSDIO|Any CPU
+		{AA55BBAF-9C99-4CC8-9FE3-D8F6A8B7EBA8}.HSDIO|Win32.Build.0 = HSDIO|Any CPU
 		{AA55BBAF-9C99-4CC8-9FE3-D8F6A8B7EBA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA55BBAF-9C99-4CC8-9FE3-D8F6A8B7EBA8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{AA55BBAF-9C99-4CC8-9FE3-D8F6A8B7EBA8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
@@ -75,6 +83,12 @@ Global
 		{07B67011-62AB-43E3-80F6-E00BCBFF8558}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{07B67011-62AB-43E3-80F6-E00BCBFF8558}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{07B67011-62AB-43E3-80F6-E00BCBFF8558}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{07B67011-62AB-43E3-80F6-E00BCBFF8558}.HSDIO|Any CPU.ActiveCfg = HSDIO|Any CPU
+		{07B67011-62AB-43E3-80F6-E00BCBFF8558}.HSDIO|Any CPU.Build.0 = HSDIO|Any CPU
+		{07B67011-62AB-43E3-80F6-E00BCBFF8558}.HSDIO|Mixed Platforms.ActiveCfg = HSDIO|Any CPU
+		{07B67011-62AB-43E3-80F6-E00BCBFF8558}.HSDIO|Mixed Platforms.Build.0 = HSDIO|Any CPU
+		{07B67011-62AB-43E3-80F6-E00BCBFF8558}.HSDIO|Win32.ActiveCfg = HSDIO|Any CPU
+		{07B67011-62AB-43E3-80F6-E00BCBFF8558}.HSDIO|Win32.Build.0 = HSDIO|Any CPU
 		{07B67011-62AB-43E3-80F6-E00BCBFF8558}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07B67011-62AB-43E3-80F6-E00BCBFF8558}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{07B67011-62AB-43E3-80F6-E00BCBFF8558}.Release|Mixed Platforms.Build.0 = Release|Any CPU
@@ -94,6 +108,12 @@ Global
 		{88DA2EF3-B748-43AB-8279-F22293844E29}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{88DA2EF3-B748-43AB-8279-F22293844E29}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{88DA2EF3-B748-43AB-8279-F22293844E29}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{88DA2EF3-B748-43AB-8279-F22293844E29}.HSDIO|Any CPU.ActiveCfg = HSDIO|Any CPU
+		{88DA2EF3-B748-43AB-8279-F22293844E29}.HSDIO|Any CPU.Build.0 = HSDIO|Any CPU
+		{88DA2EF3-B748-43AB-8279-F22293844E29}.HSDIO|Mixed Platforms.ActiveCfg = HSDIO|Any CPU
+		{88DA2EF3-B748-43AB-8279-F22293844E29}.HSDIO|Mixed Platforms.Build.0 = HSDIO|Any CPU
+		{88DA2EF3-B748-43AB-8279-F22293844E29}.HSDIO|Win32.ActiveCfg = HSDIO|Any CPU
+		{88DA2EF3-B748-43AB-8279-F22293844E29}.HSDIO|Win32.Build.0 = HSDIO|Any CPU
 		{88DA2EF3-B748-43AB-8279-F22293844E29}.Release|Any CPU.ActiveCfg = Release-x64|Any CPU
 		{88DA2EF3-B748-43AB-8279-F22293844E29}.Release|Any CPU.Build.0 = Release-x64|Any CPU
 		{88DA2EF3-B748-43AB-8279-F22293844E29}.Release|Mixed Platforms.ActiveCfg = Release-x64|Any CPU
@@ -111,6 +131,12 @@ Global
 		{5F033A41-24F6-4B51-9602-03301DA111CD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{5F033A41-24F6-4B51-9602-03301DA111CD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{5F033A41-24F6-4B51-9602-03301DA111CD}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{5F033A41-24F6-4B51-9602-03301DA111CD}.HSDIO|Any CPU.ActiveCfg = HSDIO|Any CPU
+		{5F033A41-24F6-4B51-9602-03301DA111CD}.HSDIO|Any CPU.Build.0 = HSDIO|Any CPU
+		{5F033A41-24F6-4B51-9602-03301DA111CD}.HSDIO|Mixed Platforms.ActiveCfg = HSDIO|Any CPU
+		{5F033A41-24F6-4B51-9602-03301DA111CD}.HSDIO|Mixed Platforms.Build.0 = HSDIO|Any CPU
+		{5F033A41-24F6-4B51-9602-03301DA111CD}.HSDIO|Win32.ActiveCfg = HSDIO|Any CPU
+		{5F033A41-24F6-4B51-9602-03301DA111CD}.HSDIO|Win32.Build.0 = HSDIO|Any CPU
 		{5F033A41-24F6-4B51-9602-03301DA111CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F033A41-24F6-4B51-9602-03301DA111CD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5F033A41-24F6-4B51-9602-03301DA111CD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
@@ -128,6 +154,12 @@ Global
 		{B2EBEDE8-441A-4CC2-80FF-5F290D528919}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{B2EBEDE8-441A-4CC2-80FF-5F290D528919}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{B2EBEDE8-441A-4CC2-80FF-5F290D528919}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{B2EBEDE8-441A-4CC2-80FF-5F290D528919}.HSDIO|Any CPU.ActiveCfg = HSDIO|Any CPU
+		{B2EBEDE8-441A-4CC2-80FF-5F290D528919}.HSDIO|Any CPU.Build.0 = HSDIO|Any CPU
+		{B2EBEDE8-441A-4CC2-80FF-5F290D528919}.HSDIO|Mixed Platforms.ActiveCfg = HSDIO|Any CPU
+		{B2EBEDE8-441A-4CC2-80FF-5F290D528919}.HSDIO|Mixed Platforms.Build.0 = HSDIO|Any CPU
+		{B2EBEDE8-441A-4CC2-80FF-5F290D528919}.HSDIO|Win32.ActiveCfg = HSDIO|Any CPU
+		{B2EBEDE8-441A-4CC2-80FF-5F290D528919}.HSDIO|Win32.Build.0 = HSDIO|Any CPU
 		{B2EBEDE8-441A-4CC2-80FF-5F290D528919}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2EBEDE8-441A-4CC2-80FF-5F290D528919}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B2EBEDE8-441A-4CC2-80FF-5F290D528919}.Release|Mixed Platforms.Build.0 = Release|Any CPU
@@ -145,6 +177,12 @@ Global
 		{E87C4F05-BCED-47F5-8A02-637A5A669E38}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{E87C4F05-BCED-47F5-8A02-637A5A669E38}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{E87C4F05-BCED-47F5-8A02-637A5A669E38}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{E87C4F05-BCED-47F5-8A02-637A5A669E38}.HSDIO|Any CPU.ActiveCfg = HSDIO|Any CPU
+		{E87C4F05-BCED-47F5-8A02-637A5A669E38}.HSDIO|Any CPU.Build.0 = HSDIO|Any CPU
+		{E87C4F05-BCED-47F5-8A02-637A5A669E38}.HSDIO|Mixed Platforms.ActiveCfg = HSDIO|Any CPU
+		{E87C4F05-BCED-47F5-8A02-637A5A669E38}.HSDIO|Mixed Platforms.Build.0 = HSDIO|Any CPU
+		{E87C4F05-BCED-47F5-8A02-637A5A669E38}.HSDIO|Win32.ActiveCfg = HSDIO|Any CPU
+		{E87C4F05-BCED-47F5-8A02-637A5A669E38}.HSDIO|Win32.Build.0 = HSDIO|Any CPU
 		{E87C4F05-BCED-47F5-8A02-637A5A669E38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E87C4F05-BCED-47F5-8A02-637A5A669E38}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E87C4F05-BCED-47F5-8A02-637A5A669E38}.Release|Mixed Platforms.Build.0 = Release|Any CPU
@@ -164,6 +202,12 @@ Global
 		{2C5EAE42-1165-4350-A549-A13F5F50C874}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{2C5EAE42-1165-4350-A549-A13F5F50C874}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{2C5EAE42-1165-4350-A549-A13F5F50C874}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{2C5EAE42-1165-4350-A549-A13F5F50C874}.HSDIO|Any CPU.ActiveCfg = HSDIO|Any CPU
+		{2C5EAE42-1165-4350-A549-A13F5F50C874}.HSDIO|Any CPU.Build.0 = HSDIO|Any CPU
+		{2C5EAE42-1165-4350-A549-A13F5F50C874}.HSDIO|Mixed Platforms.ActiveCfg = HSDIO|Any CPU
+		{2C5EAE42-1165-4350-A549-A13F5F50C874}.HSDIO|Mixed Platforms.Build.0 = HSDIO|Any CPU
+		{2C5EAE42-1165-4350-A549-A13F5F50C874}.HSDIO|Win32.ActiveCfg = HSDIO|Any CPU
+		{2C5EAE42-1165-4350-A549-A13F5F50C874}.HSDIO|Win32.Build.0 = HSDIO|Any CPU
 		{2C5EAE42-1165-4350-A549-A13F5F50C874}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C5EAE42-1165-4350-A549-A13F5F50C874}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2C5EAE42-1165-4350-A549-A13F5F50C874}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
@@ -174,6 +218,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = 
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = WordGenerator.vsmdi
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

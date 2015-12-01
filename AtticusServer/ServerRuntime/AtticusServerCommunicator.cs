@@ -8,6 +8,7 @@ using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Windows.Forms;
 using NationalInstruments.DAQmx;
+using NationalInstruments.ModularInstruments.Interop;
 using System.ComponentModel;
 using System.IO.Ports;
 using System.Data;
@@ -160,7 +161,10 @@ namespace AtticusServer
         /// </summary>
         private Dictionary<HardwareChannel, RS232Task> rs232Tasks;
 
-
+        ///<summary>
+        /// A dictionary mapping from string device names to NI HSDIO waveforms. Populated in generateBuffers
+        /// </summary>
+        private Dictionary<string, HSDIOTask> hsdioTasks;
         /// <summary>
         /// Contains one entry for each logical ID - HardwareChannel pair which was found in settings data and which
         /// resides on this server. Populated in findMyChannels.
@@ -178,6 +182,11 @@ namespace AtticusServer
         /// </summary>
         private List<string> usedDaqMxDevices;
 
+        ///<summary>
+        /// List of the strings for HSDIO devices. Populated in findMyChannels
+        /// </summary>
+        private List<string> usedHSDIODevices;
+
         /// <summary>
         /// Contains one entry for each logical ID - HardwareChannel pair which was found in settings data and which
         /// resides on this server. Populated in findMyChannels.
@@ -190,6 +199,7 @@ namespace AtticusServer
         /// </summary>
         private Dictionary<int, HardwareChannel> usedRS232Channels;
 
+        /// <param name="settings"></param>
         #region Constructors
         public AtticusServerCommunicator(ServerSettings settings)
         {
@@ -584,6 +594,11 @@ namespace AtticusServer
                             }
 
                             generateDaqMxTaskOnDevice(dev);
+                        }
+                        //generate the buffers for the devices
+                        foreach (string dev in usedHSDIODevices)
+                        {
+                            generateHSDIOWaveformOnDevice(dev);
                         }
                     }
                     else
@@ -1245,6 +1260,38 @@ namespace AtticusServer
 
         }
 
+        private void generateHSDIOWaveformOnDevice(string dev)
+        {
+            this.generateHSDIOWaveformOnDevice((object)dev);
+        }
+
+        private void generateHSDIOWaveformOnDevice(object devObj)
+        {
+            string dev = devObj.ToString();
+            DeviceSettings deviceSettings = myServerSettings.myDevicesSettings[dev];
+
+            if (deviceSettings.DeviceEnabled)
+            {
+                if (deviceHasUsedChannels(dev))
+                {
+                    long expectedGenerated = 0;
+
+                    messageLog(this, new MessageEvent("Generating buffer for HSDIO " + dev));
+                    //For now, assume that all the channels are enabled for dynamic generation
+                    HSDIOTask hsdio = new HSDIOTask(dev, "0-31");
+                        hsdio.createHSDIOWaveForm(this, dev,
+                        deviceSettings,
+                        sequence,
+                        settings,
+                        usedDigitalChannels,
+                        serverSettings,
+                        out expectedGenerated);
+                    hsdioTasks.Add(dev, hsdio);
+                    messageLog(this, new MessageEvent("Buffer for " + dev + " generated." + niHSDIOProperties.TotalGenerationMemorySize + "samples per channel. Expected generated buffer size " + expectedGenerated));
+                }
+            }
+        }
+
         private void makeTerminalConnections()
         {
 
@@ -1579,8 +1626,65 @@ namespace AtticusServer
 
                             }
                         }
-                    }
+                        if (hsdioTasks.ContainsKey(dev))
+                        {
+                            //Arms the HSDIO "tasks"
+                            DeviceSettings ds = myServerSettings.myDevicesSettings[dev];
+                            if ((ds.StartTriggerType == DeviceSettings.TriggerType.TriggerIn) || ((ds.StartTriggerType == DeviceSettings.TriggerType.SoftwareTrigger))) //&& (ds.MySampleClockSource == DeviceSettings.SampleClockSource.External)))
+                            {
+                                HSDIOTask hsdio = hsdioTasks[dev];
+                                if (dev == serverSettings.DeviceToSyncSoftwareTimedTasksTo)
+                                {
+                                    if (serverSettings.SoftwareTaskTriggerMethod == ServerSettings.SoftwareTaskTriggerType.SampleClockEvent)
+                                    {
+                                        messageLog(this, new MessageEvent("***** You are using SampleClockEvent as your SoftwareTaskTriggerMethod (in your ServerSettings). This is not recommended and no longer supported. Use PollBufferPosition instead. *****"));
+                                        displayError();
+                                        return false;
+                                    }
+                                }
+                               int init = hsdio.Initiate();
+                                if (init == 0)
+                                {
+                                    messageLog(this, new MessageEvent("Successfully started the HSDIO Sequence"));
+                                }
+                                else
+                                {
+                                    messageLog(this, new MessageEvent("Error starting the HSDIO sequence. Error Code:" + init));
+                                }
 
+                                if (dev == serverSettings.DeviceToSyncSoftwareTimedTasksTo)
+                                {
+                                    if (serverSettings.SoftwareTaskTriggerMethod == ServerSettings.SoftwareTaskTriggerType.PollBufferPosition)
+                                    {
+                                        if (softwareTaskTriggerPollingThread != null)
+                                        {
+                                            if (softwareTaskTriggerPollingThread.ThreadState == ThreadState.Running)
+                                            {
+                                                softwareTaskTriggerPollingThread.Abort();
+                                                if (softwareTaskTriggerPollingThread.ThreadState != ThreadState.Aborted)
+                                                {
+                                                    throw new Exception("Unable to abort an already-running software-task triggering polling thread");
+                                                }
+                                            }
+                                        }
+                                    }
+                                    lock (softwareTriggeringTaskLock)
+                                    {
+                                        //softwareTriggeringTask must be a Task object. It is only used to return the total number of samples generated. As long as this can be accessed using some other method, it shouldn't screw things up.
+                                        softwareTriggeringTask = new Task();
+                                        softwareTaskTriggerPollingFunctionInitialPosition = hsdio.TotalSamplesGeneratedPerChannel;
+                                        softwareTaskTriggerPollingThread = new Thread(new ThreadStart(softwareTaskTriggerPollingFunction));
+                                        softwareTaskTriggerPollingThread.Start();
+                                    }
+                                }
+                                armedTasks++;
+                            }
+                            else
+                            {
+                                messageLog(this, new MessageEvent("Could not arm the tasks on " + dev + ". Please check Trigger settings."));
+                            }
+                        }
+                    }
                     messageLog(this, new MessageEvent(armedTasks.ToString() + " tasks armed."));
 
                     if (variableTimebaseClockTask != null)
@@ -2109,6 +2213,43 @@ namespace AtticusServer
                     GC.Collect();
                 }
 
+                if (hsdioTasks == null)
+                {
+                    hsdioTasks = new Dictionary<string, HSDIOTask>();
+                }
+                else
+                {
+                    List<string> stopHSDIO = new List<string>(hsdioTasks.Keys);
+
+                    foreach (string dev in stopHSDIO)
+                    {
+                        try
+                        {
+                            hsdioTasks[dev].Abort();
+                        }
+                        catch (Exception e)
+                        {
+                            messageLog(this, new MessageEvent("Caught exception when trying to abort a task on HSDIO device " + dev + ". This may indicate that the previous run suffered from a buffer underrun. Exception follows: " + e.Message + e.StackTrace));
+                            displayError();
+                            ans = false;
+                        }
+                        try
+                        {
+                            hsdioTasks[dev].Dispose();
+                        }
+                        catch (Exception e)
+                        {
+                            messageLog(this, new MessageEvent("Caught exception when trying to abort a task on HSDIO device " + dev + ". This may indicate that the previous run suffered from a buffer underrun. Exception follows: " + e.Message + e.StackTrace));
+                            displayError();
+                            ans = false;
+                        }
+                        hsdioTasks.Remove(dev);
+                    }
+                    GC.Collect();
+                    GC.Collect();
+                }
+            
+
 
                 if (computerClockProvider != null)
                     if (computerClockProvider.ClockStatus== DataStructures.Timing.SoftwareClockProvider.Status.Running)
@@ -2233,6 +2374,7 @@ namespace AtticusServer
 
             // populate the list of used daqmx devices
             this.usedDaqMxDevices = new List<string>();
+            this.usedHSDIODevices = new List<string>();
             foreach (int analogID in usedAnalogChannels.Keys)
             {
                 HardwareChannel hc = settings.logicalChannelManager.ChannelCollections[HardwareChannel.HardwareConstants.ChannelTypes.analog].Channels[analogID].HardwareChannel;
@@ -2244,7 +2386,15 @@ namespace AtticusServer
             {
                 HardwareChannel hc = settings.logicalChannelManager.ChannelCollections[HardwareChannel.HardwareConstants.ChannelTypes.digital].Channels[digitalID].HardwareChannel;
                 if (!usedDaqMxDevices.Contains(hc.DeviceName))
-                    usedDaqMxDevices.Add(hc.DeviceName);
+                {
+                    //Hardcoded adding the HSDIO card to the correct list.
+                 
+                    if (hc.DeviceName.Contains("Dev3") && myServerSettings.myDevicesSettings["Dev3"].DeviceDescription == "PXI-6541")
+                        usedHSDIODevices.Add(hc.DeviceName);
+                    else
+                        usedDaqMxDevices.Add(hc.DeviceName);
+                }
+                    
             }
         }
 
@@ -2672,6 +2822,44 @@ namespace AtticusServer
                 board.FindListeners(
                 */
 
+                #endregion
+
+                #region detect NI-HSDIO cards
+                //Initiliases the HSDIO card for generating Digital signals. Currently, it assumes that the card is named Dev3. The niHSDIO wrapper has no equivalent method to DAQSystem.local.
+                System.Console.WriteLine("Accessing NI-HSDIO Cards");
+                string hsDigitalChannels = "0-31";
+                niHSDIO hsdioDevice = niHSDIO.InitGenerationSession("Dev3", true, false, "");
+                hsdioDevice.AssignDynamicChannels(hsDigitalChannels);
+                string my_hsdio = "Dev3";
+                detectedDevices.Add(my_hsdio);
+                if (!myServerSettings.myDevicesSettings.ContainsKey(my_hsdio))
+                {
+                    //There is no easy way to get the device name using the hsdio library. For now, it is hardcoded with our model
+                    int[] hsdioDigital = new int[1];
+                    hsdioDigital[0] = 32;
+                    myDeviceDescriptions.Add(my_hsdio,"PXI-6541");
+                    myServerSettings.myDevicesSettings.Add(my_hsdio, new DeviceSettings(my_hsdio, myDeviceDescriptions[my_hsdio], 0, hsdioDigital));
+                    System.Console.WriteLine("Added HSDIO card");
+                }
+                else
+                {
+                    myServerSettings.myDevicesSettings[my_hsdio].deviceConnected = true;
+                }
+                //Configure the Server to add the digital channels if the device is enabled
+                if(serverSettings.myDevicesSettings[my_hsdio].DigitalChannelsEnabled)
+                {
+              
+                    for (int j = 0; j < 32; j++)
+                    {
+                        string channelName = "hs" + j;
+                        HardwareChannel hc = new HardwareChannel(this.myServerSettings.ServerName, "Dev3", channelName, HardwareChannel.HardwareConstants.ChannelTypes.digital);
+
+                        if (!serverSettings.ExcludedChannels.Contains(hc))
+                        {
+                            myHardwareChannels.Add(hc);
+                        }
+                    }
+                }
                 #endregion
 
                 #region Detect NI RS232 ports
