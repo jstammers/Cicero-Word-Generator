@@ -1974,6 +1974,7 @@ namespace AtticusServer
                     foreach( HSDIOTask hsdio in hsdioToSoftTrigger)
                     {
                         hsdio.Initiate();
+                        hsdio.SendStartTrigger();
                     }
 
 
@@ -2000,6 +2001,7 @@ namespace AtticusServer
                     foreach(HSDIOTask hsdio in hsdioToSoftTriggerLast)
                     {
                         hsdio.Initiate();
+                        hsdio.SendStartTrigger();
                     }
 
                     // finally, if there is a variable timebase output task, we start it.

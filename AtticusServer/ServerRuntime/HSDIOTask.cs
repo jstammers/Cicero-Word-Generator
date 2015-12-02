@@ -22,6 +22,8 @@ namespace AtticusServer
             this.deviceName = deviceName;
             this.channelList = channelList;
             this.TotalSamplesGeneratedPerChannel = 0;
+            hsdio.ConfigureDataVoltageLogicFamily("", niHSDIOConstants._50vLogic);
+            hsdio.ConfigureTriggerVoltageLogicFamily(niHSDIOConstants._50vLogic);
             hsdio.AssignDynamicChannels(channelList);
         }
         /// <summary>
@@ -46,7 +48,8 @@ namespace AtticusServer
                 {
                     //Uses the onboard clock and exports the start trigger to the PXI back plane.
                     hsdio.ConfigureSampleClock(niHSDIOConstants.OnBoardClockStr, deviceSettings.SampleClockRate);
-                    hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig0Str);
+                    hsdio.ConfigureRefClock(niHSDIOConstants.PxiClk10Str, 10000000);
+                    //hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig1Str);
                     //hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig1Str);
                     
                 }
@@ -54,6 +57,10 @@ namespace AtticusServer
                 {
                     //If set to ClkIn, the clock is configured to use the ClkIn input on the HSDIO card
                     hsdio.ConfigureSampleClock(niHSDIOConstants.ClkInStr, deviceSettings.SampleClockRate);
+                }
+                else if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.External && deviceSettings.SampleClockExternalSource == "PXI_CLK10")
+                {
+                    hsdio.ConfigureSampleClock(niHSDIOConstants.PxiClk10Str, deviceSettings.SampleClockRate);
                 }
                 if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.SoftwareTrigger)
                 {
@@ -66,13 +73,14 @@ namespace AtticusServer
                 }
                 hsdio.ExportSignal(niHSDIOConstants.SampleClock, "", niHSDIOConstants.ClkOutStr);
                 hsdio.ExportSignal(niHSDIOConstants.SampleClock, "", niHSDIOConstants.DdcClkOutStr);
-                hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig0Str);
+                hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi1Str);
+
 
                 Dictionary<int, string> hsChannels = countHSChannels(usedDigitalChannels);
                 if (hsChannels.Count != 0)
                 {
                     //HSDIO cards typically have 32 channels, but we may want to reserve some for defining clock signals (in which case it may be slightly trickier to generate a digital sequence)
-                    //This code goes through every enabled channel and parses the sequence data into a list of booleans for each value
+                    ////This code goes through every enabled channel and parses the sequence data into a list of booleans for each value
                     if (deviceSettings.DigitalHardwareStructure[0] == 32)
                     {
                         bool[] singleChannelBuffer;
@@ -163,10 +171,16 @@ namespace AtticusServer
 
         public int Initiate()
         {
+            
+            //hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig1Str);
             int initiate = hsdio.Initiate();
             return initiate;
         }
+        public void SendStartTrigger()
+        {
 
+            hsdio.SendSoftwareEdgeTrigger(niHSDIOConstants.StartTrigger, "");
+        }
         public void ExportSignal(int signal, string signal_identifier,string output_terminal)
         {
             hsdio.ExportSignal(signal, signal_identifier, output_terminal);
