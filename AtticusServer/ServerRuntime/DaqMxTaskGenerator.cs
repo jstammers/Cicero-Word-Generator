@@ -546,7 +546,7 @@ namespace AtticusServer
                 }
                 else
                 {
-                    task.Timing.ConfigureSampleClock(deviceSettings.SampleClockExternalSource, deviceSettings.SampleClockRate, deviceSettings.ClockEdge, SampleQuantityMode.FiniteSamples, nSamples);
+                        task.Timing.ConfigureSampleClock(deviceSettings.SampleClockExternalSource, deviceSettings.SampleClockRate, deviceSettings.ClockEdge, SampleQuantityMode.FiniteSamples, nSamples);  
                 }
                 if (deviceSettings.MasterTimebaseSource != "" && deviceSettings.MasterTimebaseSource != null)
                 {

@@ -965,6 +965,7 @@ namespace WordGenerator
                 if (softwareClockProvider != null || networkClockProvider!=null)
                 {
                     addMessageLogText(this, new MessageEvent("A software clock provider already exists, unexpectedly. Aborting."));
+                    softwareClockProvider = null;
                     return false;
                 }
 

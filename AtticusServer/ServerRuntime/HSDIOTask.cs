@@ -22,7 +22,7 @@ namespace AtticusServer
             this.deviceName = deviceName;
             this.channelList = channelList;
             this.TotalSamplesGeneratedPerChannel = 0;
-            hsdio.ConfigureDataVoltageLogicFamily("", niHSDIOConstants._50vLogic);
+            hsdio.ConfigureDataVoltageLogicFamily("0-31", niHSDIOConstants._50vLogic);
             hsdio.ConfigureTriggerVoltageLogicFamily(niHSDIOConstants._50vLogic);
             hsdio.AssignDynamicChannels(channelList);
         }
@@ -53,14 +53,10 @@ namespace AtticusServer
                     //hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig1Str);
                     
                 }
-                else if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.External && deviceSettings.SampleClockExternalSource == "ClkIn")
+                else if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.External)
                 {
                     //If set to ClkIn, the clock is configured to use the ClkIn input on the HSDIO card
-                    hsdio.ConfigureSampleClock(niHSDIOConstants.ClkInStr, deviceSettings.SampleClockRate);
-                }
-                else if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.External && deviceSettings.SampleClockExternalSource == "PXI_CLK10")
-                {
-                    hsdio.ConfigureSampleClock(niHSDIOConstants.PxiClk10Str, deviceSettings.SampleClockRate);
+                    hsdio.ConfigureSampleClock(deviceSettings.SampleClockExternalSource, deviceSettings.SampleClockRate);
                 }
                 if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.SoftwareTrigger)
                 {
@@ -69,11 +65,11 @@ namespace AtticusServer
                 else if(deviceSettings.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
                 {
                     string trigger = deviceSettings.TriggerInPort;
-                    hsdio.ConfigureDigitalEdgeStartTrigger(trigger, niHSDIOConstants.RisingEdge);
+                    hsdio.ConfigureDigitalEdgeStartTrigger(niHSDIOConstants.PxiTrig0Str, niHSDIOConstants.RisingEdge);
                 }
                 hsdio.ExportSignal(niHSDIOConstants.SampleClock, "", niHSDIOConstants.ClkOutStr);
                 hsdio.ExportSignal(niHSDIOConstants.SampleClock, "", niHSDIOConstants.DdcClkOutStr);
-                hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi1Str);
+                //hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi1Str);
 
 
                 Dictionary<int, string> hsChannels = countHSChannels(usedDigitalChannels);
@@ -114,6 +110,8 @@ namespace AtticusServer
                         {
                             hsdio.AllocateNamedWaveform("waveform", nSamples);
                             hsdio.WriteNamedWaveformU32("waveform", nSamples, hsdioBuffer);
+                       
+                            hsdio.CommitDynamic();
                         }
                         catch (System.AccessViolationException e)
                         {
@@ -125,11 +123,36 @@ namespace AtticusServer
                     }
                 }
             }
-            if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
-            {
-                hsdio.ConfigureDigitalEdgeStartTrigger(deviceSettings.TriggerInPort, niHSDIOConstants.RisingEdge);
-            }
+            //if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
+            //{
+            //    hsdio.ConfigureDigitalEdgeStartTrigger(deviceSettings.TriggerInPort, niHSDIOConstants.RisingEdge);
+            //}
             #endregion
+            
+            else //cariable timebase buffer creation
+            {
+                double timeStepSize = Common.getPeriodFromFrequency(deviceSettings.SampleClockRate);
+                TimestepTimebaseSegmentCollection timebaseSegments = sequence.generateVariableTimebaseSegments(serverSettings.VariableTimebaseType, timeStepSize);
+
+                int nBaseSamples = timebaseSegments.nSegmentSamples();
+                //The HSDIO cards require samples to be written in bytes
+                int nFillerSamples = 8 - nBaseSamples % 4;
+                if (nFillerSamples == 8)
+                {
+                    nFillerSamples = 0;
+                }
+                int nSamples = nBaseSamples + nFillerSamples;
+
+                if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.DerivedFromMaster)
+                {
+                    throw new Exception("Attempt to use a uniform sample clock with a variable timebase enabled device. This will not work. To use a variable timebase for this device, you must specify an external sample clock source.");
+                }
+                else
+                {
+                    hsdio.ConfigureSampleClock(deviceSettings.SampleClockExternalSource, deviceSettings.SampleClockRate);
+                }
+                for
+            }
         }
 
         private static Dictionary<int, string> countHSChannels(Dictionary<int, HardwareChannel> digitalChannels)
@@ -167,18 +190,20 @@ namespace AtticusServer
         public void Abort()
         {
             hsdio.Abort();
+            hsdio.reset();
         }
 
         public int Initiate()
         {
             
-            //hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig1Str);
+            hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi1Str);
+            hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi2Str); hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi3Str);
             int initiate = hsdio.Initiate();
             return initiate;
         }
         public void SendStartTrigger()
         {
-
+       
             hsdio.SendSoftwareEdgeTrigger(niHSDIOConstants.StartTrigger, "");
         }
         public void ExportSignal(int signal, string signal_identifier,string output_terminal)
