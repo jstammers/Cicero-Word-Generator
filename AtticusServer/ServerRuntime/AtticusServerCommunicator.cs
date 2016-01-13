@@ -2344,6 +2344,14 @@ namespace AtticusServer
                 device.Reset();
                 messageLog(this, new MessageEvent("Reset of " + dev + " finished."));
             }
+            foreach (string dev in usedHSDIODevices)
+            {
+                messageLog(this, new MessageEvent("Resetting " + dev));
+                HSDIOTask hsdio = hsdioTasks[dev];
+                hsdio.Abort();
+                messageLog(this, new MessageEvent("Reset of " + dev + " finished"));
+
+            }
             if (this.madeConnections != null)
                 this.madeConnections.Clear();
 

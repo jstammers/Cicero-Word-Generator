@@ -32,6 +32,7 @@ namespace AtticusServer
         /// 
         public void createHSDIOWaveForm(AtticusServerCommunicator sender, string deviceName, DeviceSettings deviceSettings, SequenceData sequence, SettingsData settings, Dictionary<int, HardwareChannel> usedDigitalChannels, ServerSettings serverSettings, out long expectedSamplesGenerated)
         {
+            bool softTrigger = false;
             expectedSamplesGenerated = 0;
             #region NON variable timebase buffer
             if (deviceSettings.UsingVariableTimebase == false)
@@ -60,10 +61,12 @@ namespace AtticusServer
                 }
                 if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.SoftwareTrigger)
                 {
+                    softTrigger = true;
                     hsdio.ConfigureSoftwareStartTrigger();
                 }
                 else if(deviceSettings.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
                 {
+                    softTrigger = false;
                     string trigger = deviceSettings.TriggerInPort;
                     hsdio.ConfigureDigitalEdgeStartTrigger(niHSDIOConstants.PxiTrig0Str, niHSDIOConstants.RisingEdge);
                 }
@@ -103,7 +106,7 @@ namespace AtticusServer
                             {
                                 int digitalID = hsChannels.FirstOrDefault(x => x.Value == hsChannel).Key;
                                 sequence.computeDigitalBuffer(digitalID, timeStepSize, singleChannelBuffer);
-                               hsdioBuffer = addBooltoUint(hsdioBuffer,singleChannelBuffer,channel);
+                                hsdioBuffer = addBooltoUint(hsdioBuffer,singleChannelBuffer,channel,softTrigger);
                             }
                         }
                         try
@@ -151,7 +154,6 @@ namespace AtticusServer
                 {
                     hsdio.ConfigureSampleClock(deviceSettings.SampleClockExternalSource, deviceSettings.SampleClockRate);
                 }
-                for
             }
         }
 
@@ -167,20 +169,25 @@ namespace AtticusServer
             }
             return hcIDs;
         }
-        private static uint[] addBooltoUint(uint[]uintList,bool[] boolList,int Channel)
+        private static uint[] addBooltoUint(uint[]uintList,bool[] boolList,int Channel, bool softTrigger)
         {
             //Adds each element of a bool list to the corresponding element in a 32-bit integer list
+            //The HSDIO card starts outputting it's sequence 32 samples after the start trigger is sent. The simplest work-around is to remove the first 32 samples if Atticus is configured to trigger using the HSDIO card.
             int boolLength = boolList.Length;
             int uintLength = uintList.Length;
+            int sampleShift = 0;
             if (boolLength != uintLength)
                 throw new Exception("Number of samples across channels is not equal to the number of samples on hs" + Channel.ToString());
-            int uintIndex = 0;
-            for (int i = 0; i < uintLength; i++)
+            if (softTrigger)
             {
-                if (boolList[i])
+                sampleShift = 32;
+            }
+            for (int i = 0; i < uintLength-sampleShift; i++)
+            {
+                if (boolList[i+sampleShift])
                    uintList[i] |= (uint)(((uint)1) << Channel);
             }
-            uintIndex++;
+
             return uintList;
         }
         public void Dispose()
@@ -197,7 +204,8 @@ namespace AtticusServer
         {
             
             hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi1Str);
-            hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi2Str); hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi3Str);
+            hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi2Str);
+            hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi3Str);
             int initiate = hsdio.Initiate();
             return initiate;
         }
