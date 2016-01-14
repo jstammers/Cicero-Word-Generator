@@ -1082,6 +1082,7 @@ namespace AtticusServer
                     {
                         long samplesGenerated = hsdio.TotalSamplesGeneratedPerChannel;
                         messageLog(this, new MessageEvent(str + " " + samplesGenerated + "/" + "Cannot Calculate Buffer Size"));
+                        hsdio.Abort();
                     }
                     catch(Exception e)
                     {
@@ -1282,7 +1283,6 @@ namespace AtticusServer
         {
             string dev = devObj.ToString();
             DeviceSettings deviceSettings = myServerSettings.myDevicesSettings[dev];
-
             if (deviceSettings.DeviceEnabled)
             {
                 if (deviceHasUsedChannels(dev))
@@ -1291,18 +1291,19 @@ namespace AtticusServer
 
                     messageLog(this, new MessageEvent("Generating buffer for HSDIO " + dev));
                     //For now, assume that all the channels are enabled for dynamic generation
-                    HSDIOTask hsdio = new HSDIOTask(dev, "0-31");
-                        hsdio.createHSDIOWaveForm(this, dev,
-                        deviceSettings,
-                        sequence,
-                        settings,
-                        usedDigitalChannels,
-                        serverSettings,
-                        out expectedGenerated);
+                    HSDIOTask hsdio = new HSDIOTask(dev, "0-31",deviceSettings);
+                    hsdio.createHSDIOWaveForm(this, dev,
+                    deviceSettings,
+                    sequence,
+                    settings,
+                    usedDigitalChannels,
+                    serverSettings,
+                    out expectedGenerated);
                     hsdioTasks.Add(dev, hsdio);
                     messageLog(this, new MessageEvent("Buffer for " + dev + " generated." + niHSDIOProperties.TotalGenerationMemorySize + "samples per channel. Expected generated buffer size " + expectedGenerated));
                 }
             }
+            
         }
 
         private void makeTerminalConnections()
@@ -1655,7 +1656,11 @@ namespace AtticusServer
                                         return false;
                                     }
                                 }
-                                hsdio.Initiate();
+                                if (ds.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
+                                {
+                                    //Initiates the card if it is hardware triggered. If software triggered, it is initiated later
+                                    hsdio.Initiate();
+                                }
                                 if (dev == serverSettings.DeviceToSyncSoftwareTimedTasksTo)
                                 {
                                     if (serverSettings.SoftwareTaskTriggerMethod == ServerSettings.SoftwareTaskTriggerType.PollBufferPosition)
@@ -1973,7 +1978,7 @@ namespace AtticusServer
                         task.Start();
                     }
                     foreach( HSDIOTask hsdio in hsdioToSoftTrigger)
-                    {
+                    {                       
                         hsdio.Initiate();
                         hsdio.SendStartTrigger();
                     }
@@ -2002,7 +2007,7 @@ namespace AtticusServer
                     foreach(HSDIOTask hsdio in hsdioToSoftTriggerLast)
                     {
                         hsdio.Initiate();
-                        hsdio.SendStartTrigger();
+                        hsdio.SendStartTrigger();                       
                     }
 
                     // finally, if there is a variable timebase output task, we start it.
@@ -2344,8 +2349,9 @@ namespace AtticusServer
                 device.Reset();
                 messageLog(this, new MessageEvent("Reset of " + dev + " finished."));
             }
-            foreach (string dev in usedHSDIODevices)
+            if (detectedDevices.Contains("Dev3") && myServerSettings.myDevicesSettings["Dev3"].DeviceDescription == "PXI-6541" && hsdioTasks.ContainsKey("Dev3"))
             {
+                string dev = "Dev3";
                 messageLog(this, new MessageEvent("Resetting " + dev));
                 HSDIOTask hsdio = hsdioTasks[dev];
                 hsdio.Abort();
@@ -2880,7 +2886,7 @@ namespace AtticusServer
                     myServerSettings.myDevicesSettings[my_hsdio].deviceConnected = true;
                 }
                 //Configure the Server to add the digital channels if the device is enabled
-                if(serverSettings.myDevicesSettings[my_hsdio].DigitalChannelsEnabled)
+                if(serverSettings.myDevicesSettings[my_hsdio].DigitalChannelsEnabled && serverSettings.myDevicesSettings[my_hsdio].DeviceEnabled)
                 {
               
                     for (int j = 0; j < 32; j++)

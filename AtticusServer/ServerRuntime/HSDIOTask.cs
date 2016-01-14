@@ -15,15 +15,14 @@ namespace AtticusServer
         public long TotalSamplesGeneratedPerChannel;
 
 
-        public HSDIOTask (string deviceName, string channelList)
+        public HSDIOTask (string deviceName, string channelList, DeviceSettings deviceSettings)
         {
             //initialises an instance of HSDIOTask
             hsdio = niHSDIO.InitGenerationSession(deviceName, true, false, "");
             this.deviceName = deviceName;
             this.channelList = channelList;
             this.TotalSamplesGeneratedPerChannel = 0;
-            hsdio.ConfigureDataVoltageLogicFamily("0-31", niHSDIOConstants._50vLogic);
-            hsdio.ConfigureTriggerVoltageLogicFamily(niHSDIOConstants._50vLogic);
+            ConfigureVoltageLevels(deviceSettings);
             hsdio.AssignDynamicChannels(channelList);
         }
         /// <summary>
@@ -32,6 +31,7 @@ namespace AtticusServer
         /// 
         public void createHSDIOWaveForm(AtticusServerCommunicator sender, string deviceName, DeviceSettings deviceSettings, SequenceData sequence, SettingsData settings, Dictionary<int, HardwareChannel> usedDigitalChannels, ServerSettings serverSettings, out long expectedSamplesGenerated)
         {
+
             bool softTrigger = false;
             expectedSamplesGenerated = 0;
             #region NON variable timebase buffer
@@ -50,7 +50,7 @@ namespace AtticusServer
                     //Uses the onboard clock and exports the start trigger to the PXI back plane.
                     hsdio.ConfigureSampleClock(niHSDIOConstants.OnBoardClockStr, deviceSettings.SampleClockRate);
                     hsdio.ConfigureRefClock(niHSDIOConstants.PxiClk10Str, 10000000);
-                    //hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig1Str);
+                    hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig1Str);
                     //hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig1Str);
                     
                 }
@@ -180,7 +180,7 @@ namespace AtticusServer
                 throw new Exception("Number of samples across channels is not equal to the number of samples on hs" + Channel.ToString());
             if (softTrigger)
             {
-                sampleShift = 32;
+                sampleShift = 29;
             }
             for (int i = 0; i < uintLength-sampleShift; i++)
             {
@@ -189,6 +189,28 @@ namespace AtticusServer
             }
 
             return uintList;
+        }
+        private void ConfigureVoltageLevels(DeviceSettings deviceSettings)
+        {
+            int voltageLevel = new int();
+            //A bit messy, and would probably be better with a dictionary, but this does the job
+           DeviceSettings.VoltageLevel voltageFamily = deviceSettings.DigitalVoltage;
+            if (voltageFamily == DeviceSettings.VoltageLevel._5V)
+            {
+                voltageLevel = niHSDIOConstants._50vLogic;
+            }
+            else if (voltageFamily == DeviceSettings.VoltageLevel._33V)
+            {
+                voltageLevel = niHSDIOConstants._33vLogic;
+
+            }
+            else if (voltageFamily == DeviceSettings.VoltageLevel._18V)
+            {
+                voltageLevel = niHSDIOConstants._18vLogic;
+            }
+            hsdio.ConfigureEventVoltageLogicFamily(voltageLevel);
+            hsdio.ConfigureDataVoltageLogicFamily("0-31",voltageLevel);
+            hsdio.ConfigureTriggerVoltageLogicFamily(voltageLevel);
         }
         public void Dispose()
         {
@@ -202,22 +224,17 @@ namespace AtticusServer
 
         public int Initiate()
         {
-            
-            hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi1Str);
-            hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi2Str);
-            hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi3Str);
             int initiate = hsdio.Initiate();
             return initiate;
         }
         public void SendStartTrigger()
         {
-       
             hsdio.SendSoftwareEdgeTrigger(niHSDIOConstants.StartTrigger, "");
         }
         public void ExportSignal(int signal, string signal_identifier,string output_terminal)
         {
             hsdio.ExportSignal(signal, signal_identifier, output_terminal);
         }
-    
+
     }
 }
