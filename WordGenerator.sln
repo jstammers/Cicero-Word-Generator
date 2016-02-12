@@ -29,6 +29,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiceroSuiteUnitTests", "CiceroSuiteUnitTests\CiceroSuiteUnitTests.csproj", "{2C5EAE42-1165-4350-A549-A13F5F50C874}"
 EndProject
 Global
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Atticus-Release-x64|Any CPU = Atticus-Release-x64|Any CPU
 		Atticus-Release-x64|Mixed Platforms = Atticus-Release-x64|Mixed Platforms

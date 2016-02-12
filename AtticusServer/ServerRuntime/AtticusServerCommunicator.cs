@@ -19,6 +19,7 @@ using DataStructures.UtilityClasses;
 
 
 
+
 namespace AtticusServer
 {
 
@@ -1082,7 +1083,7 @@ namespace AtticusServer
                     {
                         long samplesGenerated = hsdio.TotalSamplesGeneratedPerChannel;
                         messageLog(this, new MessageEvent(str + " " + samplesGenerated + "/" + "Cannot Calculate Buffer Size"));
-                        hsdio.Abort();
+                     
                     }
                     catch(Exception e)
                     {
@@ -1251,7 +1252,6 @@ namespace AtticusServer
                         usedAnalogChannels,
                         serverSettings,
                         out expectedGenerated);
-
                     task.Done += new TaskDoneEventHandler(aTaskFinished);
 
                     daqMxTasks.Add(dev, task);
@@ -1300,7 +1300,13 @@ namespace AtticusServer
                     serverSettings,
                     out expectedGenerated);
                     hsdioTasks.Add(dev, hsdio);
-                    messageLog(this, new MessageEvent("Buffer for " + dev + " generated." + niHSDIOProperties.TotalGenerationMemorySize + "samples per channel. Expected generated buffer size " + expectedGenerated));
+               
+                    messageLog(this, new MessageEvent("Buffer for " + dev + " generated. Expected generated buffer size " + expectedGenerated + "samples."));
+                    if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
+                    {
+                        //Initiates the card here.
+                        hsdio.Initiate();
+                    }
                 }
             }
             
@@ -1506,13 +1512,14 @@ namespace AtticusServer
         {
             lock (remoteLockObj)
             {
+                DataStructures.Timing.SoftwareClockProvider softwareClockProvider;
                 try
                 {
                     messageLog(this, new MessageEvent("Arming tasks"));
                     int armedTasks = 0;
 
 
-                    DataStructures.Timing.SoftwareClockProvider softwareClockProvider;
+                   
                     
                     // chose local software clock provider...
                     if (serverSettings.ReceiveNetworkClock)
@@ -1659,7 +1666,7 @@ namespace AtticusServer
                                 if (ds.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
                                 {
                                     //Initiates the card if it is hardware triggered. If software triggered, it is initiated later
-                                    hsdio.Initiate();
+                                    //hsdio.Initiate();
                                 }
                                 if (dev == serverSettings.DeviceToSyncSoftwareTimedTasksTo)
                                 {
@@ -1711,6 +1718,8 @@ namespace AtticusServer
                 {
                     messageLog(this, new MessageEvent("Unable to arm tasks due to exception: " + e.Message + e.StackTrace));
                     displayError();
+                    softwareClockProvider = null;
+                    softwareTaskTriggerPollingThread = null;
                     return false;
                 }
             }
@@ -2256,17 +2265,8 @@ namespace AtticusServer
                     {
                         try
                         {
-                            hsdioTasks[dev].Abort();
-                        }
-                        catch (Exception e)
-                        {
-                            messageLog(this, new MessageEvent("Caught exception when trying to abort a task on HSDIO device " + dev + ". This may indicate that the previous run suffered from a buffer underrun. Exception follows: " + e.Message + e.StackTrace));
-                            displayError();
-                            ans = false;
-                        }
-                        try
-                        {
-                            hsdioTasks[dev].Dispose();
+
+                            hsdioTasks[dev].Reset();
                         }
                         catch (Exception e)
                         {
