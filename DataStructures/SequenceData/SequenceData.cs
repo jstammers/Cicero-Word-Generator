@@ -25,10 +25,11 @@ using System.Collections.ObjectModel;
 using System.Text;
 using DataStructures;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace DataStructures
 {
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class SequenceData
     {
         #region Members and Properties
@@ -101,7 +102,7 @@ namespace DataStructures
             set { sequenceDescription = value; }
         }
 
-        [Serializable, TypeConverter(typeof(ExpandableStructConverter))]
+        [Serializable, TypeConverter(typeof(ExpandableStructConverter)),JsonObject]
         public struct CalibrationShots
         {
             private bool calibrationShotsEnabled;

@@ -8,10 +8,10 @@ using System.IO;
 using System.Globalization;
 using System.Threading;
 using DataStructures.UtilityClasses;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class RunLog
     {
 

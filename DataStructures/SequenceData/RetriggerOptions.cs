@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-
+using Newtonsoft.Json;
 
 namespace DataStructures
 {
     [TypeConverter(typeof(ExpandableObjectConverter)),
-    Serializable]
+    Serializable,JsonObject]
     public class RetriggerOptions
     {
     

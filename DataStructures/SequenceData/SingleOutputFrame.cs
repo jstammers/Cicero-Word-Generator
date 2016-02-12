@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
     /// <summary>
@@ -9,7 +9,7 @@ namespace DataStructures
     /// provides a mapping from logical channel IDs to channel values. This in general
     /// represents the channel values at, say, the end of a given timestep. 
     /// </summary>
-    [Serializable]
+    [Serializable,JsonObject]
     public class SingleOutputFrame
     {
         /// <summary>

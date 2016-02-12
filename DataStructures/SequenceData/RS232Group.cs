@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class RS232Group : Group<RS232GroupChannelData>
     {
         public override Dictionary<Variable, string> usedVariables()
@@ -49,7 +49,7 @@ namespace DataStructures
         }
     }
 
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class RS232GroupChannelData {
         public enum RS232DataType { 
         /// <summary>

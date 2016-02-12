@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace DataStructures
 {
@@ -9,7 +10,7 @@ namespace DataStructures
     /// This class represents the units applied to a number. It keeps track of both the dimension (ie unity, s, volts, Hz) and a
     /// multiplier (ie M, u, k, etc).
     /// </summary>
-    [Serializable, TypeConverter(typeof(ExpandableStructConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableStructConverter)),JsonObject]
 	public struct Units
 	{
         public static bool Equivalent(Units a, Units b)
@@ -22,7 +23,7 @@ namespace DataStructures
             return true;
         }
 
-        [Serializable, TypeConverter(typeof (Dimension.DimensionTypeConverter))]
+        [Serializable, TypeConverter(typeof (Dimension.DimensionTypeConverter)),JsonObject]
 		public struct Dimension {
 
             public static bool operator!=(Dimension a, Dimension b) {
@@ -109,7 +110,7 @@ namespace DataStructures
 			}
 		}
 
-        [Serializable, TypeConverter(typeof (Multiplier.MultiplierTypeConverter))]
+        [Serializable, TypeConverter(typeof (Multiplier.MultiplierTypeConverter)),JsonObject]
         public struct Multiplier
         {
 

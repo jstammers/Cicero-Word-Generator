@@ -1,0 +1,6171 @@
+{
+  "stepHidingEnabled": false,
+  "calibrationShotsInfo": {
+    "CalibrationShotsEnabled": false,
+    "RunCalibrationShotFirst": false,
+    "RunCalibrationShotLast": false,
+    "RunCalibrationShotEveryN": false,
+    "RunCalibrationShotN": 0,
+    "CalibrationShotSequence": null
+  },
+  "CurrentMode": null,
+  "TimestepGroups": [
+    {
+      "TimestepGroupName": "New timestep group",
+      "GroupHidden": true,
+      "GroupEnabled": false,
+      "LoopTimestepGroup": false,
+      "LoopCount": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "1 ",
+        "ParameterValue": 1.0
+      },
+      "LoopCountInt": 1
+    }
+  ],
+  "SequenceModes": [],
+  "CalibrationShot": false,
+  "SequenceDescription": "",
+  "CalibrationShotsInfo": {
+    "CalibrationShotsEnabled": false,
+    "RunCalibrationShotFirst": false,
+    "RunCalibrationShotLast": false,
+    "RunCalibrationShotEveryN": false,
+    "RunCalibrationShotN": 0,
+    "CalibrationShotSequence": null
+  },
+  "ListIterationNumber": 0,
+  "SequenceName": "",
+  "SequenceDuration": 3.1671499999999995,
+  "AISaved": true,
+  "Variables": [
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "",
+      "ListDriven": false,
+      "ListNumber": 0,
+      "VariableValue": 0.0,
+      "VariableName": "IterationNum",
+      "DerivedVariable": false,
+      "IsSpecialVariable": true,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "",
+      "ListDriven": false,
+      "ListNumber": 0,
+      "VariableValue": 50.0,
+      "VariableName": "IterationCount",
+      "DerivedVariable": false,
+      "IsSpecialVariable": true,
+      "MySpecialVariableType": 1
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "",
+      "ListDriven": false,
+      "ListNumber": 0,
+      "VariableValue": 5.0,
+      "VariableName": "exp",
+      "DerivedVariable": false,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "",
+      "ListDriven": false,
+      "ListNumber": 1,
+      "VariableValue": 1.5,
+      "VariableName": "MOT_V",
+      "DerivedVariable": false,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "",
+      "ListDriven": false,
+      "ListNumber": 1,
+      "VariableValue": 0.24,
+      "VariableName": "MPhi_V",
+      "DerivedVariable": false,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "",
+      "ListDriven": true,
+      "ListNumber": 2,
+      "VariableValue": 1.0,
+      "VariableName": "TempTime",
+      "DerivedVariable": false,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "",
+      "ListDriven": false,
+      "ListNumber": 1,
+      "VariableValue": -12.0,
+      "VariableName": "MOT_freq",
+      "DerivedVariable": false,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "",
+      "ListDriven": false,
+      "ListNumber": 4,
+      "VariableValue": 0.0,
+      "VariableName": "Img_freq",
+      "DerivedVariable": false,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "",
+      "ListDriven": false,
+      "ListNumber": 1,
+      "VariableValue": -150.0,
+      "VariableName": "Mol_freq",
+      "DerivedVariable": false,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "-0.0625 *(-1286 +MOT_freq)",
+      "ListDriven": false,
+      "ListNumber": 0,
+      "VariableValue": 81.125,
+      "VariableName": "MOT_dds",
+      "DerivedVariable": true,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "-0.0625`*(-1286.` + Img_freq)",
+      "ListDriven": false,
+      "ListNumber": 0,
+      "VariableValue": 80.375,
+      "VariableName": "Img_dds",
+      "DerivedVariable": true,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "-0.0625`*(-1286.` + Mol_freq)",
+      "ListDriven": false,
+      "ListNumber": 0,
+      "VariableValue": 89.75,
+      "VariableName": "Mol_dds",
+      "DerivedVariable": true,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "429.475 - 4*MOT_dds",
+      "ListDriven": false,
+      "ListNumber": 0,
+      "VariableValue": 104.97500000000002,
+      "VariableName": "MPhi_mot",
+      "DerivedVariable": true,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "429.475 - 4*Img_dds",
+      "ListDriven": false,
+      "ListNumber": 0,
+      "VariableValue": 107.97500000000002,
+      "VariableName": "MPhi_Img",
+      "DerivedVariable": true,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "429.475 - 4*Mol_dds",
+      "ListDriven": false,
+      "ListNumber": 0,
+      "VariableValue": 70.475000000000023,
+      "VariableName": "MPhi_mol",
+      "DerivedVariable": true,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    },
+    {
+      "passThroughVariable": null,
+      "Relevant": false,
+      "Description": "",
+      "PermanentVariable": false,
+      "PermanentValue": 0.0,
+      "VariableFormula": "",
+      "ListDriven": false,
+      "ListNumber": 0,
+      "VariableValue": 0.0,
+      "VariableName": "Molasses_ramp",
+      "DerivedVariable": false,
+      "IsSpecialVariable": false,
+      "MySpecialVariableType": 0
+    }
+  ],
+  "RS232Groups": [
+    {
+      "GroupName": "Image",
+      "GroupDescription": "",
+      "ChannelDatas": {
+        "0": {
+          "DataType": 1,
+          "RawString": "",
+          "Enabled": true,
+          "StringParameterStrings": [
+            {
+              "Prefix": "set_freq mphi ",
+              "Postfix": "e6; ext_update\\n",
+              "Parameter": {
+                "parameter": {
+                  "var": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "429.475 - 4*Img_dds",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 107.97500000000002,
+                    "VariableName": "MPhi_Img",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "variable": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "429.475 - 4*Img_dds",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 107.97500000000002,
+                    "VariableName": "MPhi_Img",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "ManualValue": 108.0,
+                  "Value": 107.97500000000002
+                },
+                "units": {
+                  "dimension": {
+                    "commonlyUsedMultipliers": [
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  },
+                  "multiplier": {}
+                },
+                "myParameter": {
+                  "var": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "429.475 - 4*Img_dds",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 107.97500000000002,
+                    "VariableName": "MPhi_Img",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "variable": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "429.475 - 4*Img_dds",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 107.97500000000002,
+                    "VariableName": "MPhi_Img",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "ManualValue": 108.0,
+                  "Value": 107.97500000000002
+                },
+                "ParameterUnits": {
+                  "dimension": {
+                    "commonlyUsedMultipliers": [
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  },
+                  "multiplier": {}
+                },
+                "ParameterString": "107.975 ",
+                "ParameterValue": 107.97500000000002
+              }
+            }
+          ]
+        },
+        "1": {
+          "DataType": 1,
+          "RawString": "",
+          "Enabled": true,
+          "StringParameterStrings": [
+            {
+              "Prefix": "set_dds ddsq; set_freq slave0 ",
+              "Postfix": "e6;ext_update\\n",
+              "Parameter": {
+                "parameter": {
+                  "var": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "-0.0625`*(-1286.` + Img_freq)",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 80.375,
+                    "VariableName": "Img_dds",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "variable": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "-0.0625`*(-1286.` + Img_freq)",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 80.375,
+                    "VariableName": "Img_dds",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "ManualValue": 1.0,
+                  "Value": 80.375
+                },
+                "units": {
+                  "dimension": {
+                    "commonlyUsedMultipliers": [
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  },
+                  "multiplier": {}
+                },
+                "myParameter": {
+                  "var": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "-0.0625`*(-1286.` + Img_freq)",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 80.375,
+                    "VariableName": "Img_dds",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "variable": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "-0.0625`*(-1286.` + Img_freq)",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 80.375,
+                    "VariableName": "Img_dds",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "ManualValue": 1.0,
+                  "Value": 80.375
+                },
+                "ParameterUnits": {
+                  "dimension": {
+                    "commonlyUsedMultipliers": [
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  },
+                  "multiplier": {}
+                },
+                "ParameterString": "80.375 ",
+                "ParameterValue": 80.375
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "GroupName": "Molasses Ramp",
+      "GroupDescription": "This is a molasses ramp. Because we can only use one variable per line, we have to fix the ramp time.",
+      "ChannelDatas": {
+        "0": {
+          "DataType": 1,
+          "RawString": "",
+          "Enabled": true,
+          "StringParameterStrings": [
+            {
+              "Prefix": "sweep_to mphi ",
+              "Postfix": "e6 5e-3;ext_update\\n",
+              "Parameter": {
+                "parameter": {
+                  "var": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "429.475 - 4*Mol_dds",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 70.475000000000023,
+                    "VariableName": "MPhi_mol",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "variable": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "429.475 - 4*Mol_dds",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 70.475000000000023,
+                    "VariableName": "MPhi_mol",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "ManualValue": 70.475,
+                  "Value": 70.475000000000023
+                },
+                "units": {
+                  "dimension": {
+                    "commonlyUsedMultipliers": [
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  },
+                  "multiplier": {}
+                },
+                "myParameter": {
+                  "var": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "429.475 - 4*Mol_dds",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 70.475000000000023,
+                    "VariableName": "MPhi_mol",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "variable": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "429.475 - 4*Mol_dds",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 70.475000000000023,
+                    "VariableName": "MPhi_mol",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "ManualValue": 70.475,
+                  "Value": 70.475000000000023
+                },
+                "ParameterUnits": {
+                  "dimension": {
+                    "commonlyUsedMultipliers": [
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  },
+                  "multiplier": {}
+                },
+                "ParameterString": "70.475 ",
+                "ParameterValue": 70.475000000000023
+              }
+            }
+          ]
+        },
+        "1": {
+          "DataType": 1,
+          "RawString": "",
+          "Enabled": true,
+          "StringParameterStrings": [
+            {
+              "Prefix": "set_dds ddsq;sweep_to slave0 ",
+              "Postfix": "e6 5e-3;ext_update\\n",
+              "Parameter": {
+                "parameter": {
+                  "var": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "-0.0625`*(-1286.` + Mol_freq)",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 89.75,
+                    "VariableName": "Mol_dds",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "variable": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "-0.0625`*(-1286.` + Mol_freq)",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 89.75,
+                    "VariableName": "Mol_dds",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "ManualValue": 1.0,
+                  "Value": 89.75
+                },
+                "units": {
+                  "dimension": {
+                    "commonlyUsedMultipliers": [
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  },
+                  "multiplier": {}
+                },
+                "myParameter": {
+                  "var": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "-0.0625`*(-1286.` + Mol_freq)",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 89.75,
+                    "VariableName": "Mol_dds",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "variable": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "-0.0625`*(-1286.` + Mol_freq)",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 89.75,
+                    "VariableName": "Mol_dds",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "ManualValue": 1.0,
+                  "Value": 89.75
+                },
+                "ParameterUnits": {
+                  "dimension": {
+                    "commonlyUsedMultipliers": [
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  },
+                  "multiplier": {}
+                },
+                "ParameterString": "89.75 ",
+                "ParameterValue": 89.75
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "GroupName": "MOT",
+      "GroupDescription": "",
+      "ChannelDatas": {
+        "0": {
+          "DataType": 1,
+          "RawString": "",
+          "Enabled": true,
+          "StringParameterStrings": [
+            {
+              "Prefix": "set_freq mphi ",
+              "Postfix": "e6; ext_update\\n",
+              "Parameter": {
+                "parameter": {
+                  "var": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "429.475 - 4*MOT_dds",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 104.97500000000002,
+                    "VariableName": "MPhi_mot",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "variable": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "429.475 - 4*MOT_dds",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 104.97500000000002,
+                    "VariableName": "MPhi_mot",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "ManualValue": 1.0,
+                  "Value": 104.97500000000002
+                },
+                "units": {
+                  "dimension": {
+                    "commonlyUsedMultipliers": [
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  },
+                  "multiplier": {}
+                },
+                "myParameter": {
+                  "var": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "429.475 - 4*MOT_dds",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 104.97500000000002,
+                    "VariableName": "MPhi_mot",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "variable": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "429.475 - 4*MOT_dds",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 104.97500000000002,
+                    "VariableName": "MPhi_mot",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "ManualValue": 1.0,
+                  "Value": 104.97500000000002
+                },
+                "ParameterUnits": {
+                  "dimension": {
+                    "commonlyUsedMultipliers": [
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  },
+                  "multiplier": {}
+                },
+                "ParameterString": "104.975 ",
+                "ParameterValue": 104.97500000000002
+              }
+            }
+          ]
+        },
+        "1": {
+          "DataType": 1,
+          "RawString": "",
+          "Enabled": true,
+          "StringParameterStrings": [
+            {
+              "Prefix": "set_dds ddsq; set_freq slave0 ",
+              "Postfix": "e6;ext_update\\n",
+              "Parameter": {
+                "parameter": {
+                  "var": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "-0.0625 *(-1286 +MOT_freq)",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 81.125,
+                    "VariableName": "MOT_dds",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "variable": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "-0.0625 *(-1286 +MOT_freq)",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 81.125,
+                    "VariableName": "MOT_dds",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "ManualValue": 1.0,
+                  "Value": 81.125
+                },
+                "units": {
+                  "dimension": {
+                    "commonlyUsedMultipliers": [
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  },
+                  "multiplier": {}
+                },
+                "myParameter": {
+                  "var": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "-0.0625 *(-1286 +MOT_freq)",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 81.125,
+                    "VariableName": "MOT_dds",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "variable": {
+                    "passThroughVariable": null,
+                    "Relevant": false,
+                    "Description": "",
+                    "PermanentVariable": false,
+                    "PermanentValue": 0.0,
+                    "VariableFormula": "-0.0625 *(-1286 +MOT_freq)",
+                    "ListDriven": false,
+                    "ListNumber": 0,
+                    "VariableValue": 81.125,
+                    "VariableName": "MOT_dds",
+                    "DerivedVariable": true,
+                    "IsSpecialVariable": false,
+                    "MySpecialVariableType": 0
+                  },
+                  "ManualValue": 1.0,
+                  "Value": 81.125
+                },
+                "ParameterUnits": {
+                  "dimension": {
+                    "commonlyUsedMultipliers": [
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {},
+                      {}
+                    ]
+                  },
+                  "multiplier": {}
+                },
+                "ParameterString": "81.125 ",
+                "ParameterValue": 81.125
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "AnalogGroups": [
+    {
+      "TimeResolution": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "1 ms",
+        "ParameterValue": 0.001
+      },
+      "GroupName": "MOT",
+      "GroupDescription": "",
+      "ChannelDatas": {
+        "0": "DataStructures.AnalogGroupChannelData",
+        "1": "DataStructures.AnalogGroupChannelData",
+        "2": "DataStructures.AnalogGroupChannelData",
+        "3": "DataStructures.AnalogGroupChannelData",
+        "4": "DataStructures.AnalogGroupChannelData",
+        "5": "DataStructures.AnalogGroupChannelData",
+        "6": "DataStructures.AnalogGroupChannelData",
+        "7": "DataStructures.AnalogGroupChannelData",
+        "8": "DataStructures.AnalogGroupChannelData",
+        "9": "DataStructures.AnalogGroupChannelData"
+      }
+    },
+    {
+      "TimeResolution": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "1 ms",
+        "ParameterValue": 0.001
+      },
+      "GroupName": "Stop",
+      "GroupDescription": "This Group is used to set everything to 0.",
+      "ChannelDatas": {
+        "0": "DataStructures.AnalogGroupChannelData",
+        "1": "DataStructures.AnalogGroupChannelData",
+        "2": "DataStructures.AnalogGroupChannelData",
+        "3": "DataStructures.AnalogGroupChannelData",
+        "4": "DataStructures.AnalogGroupChannelData",
+        "5": "DataStructures.AnalogGroupChannelData",
+        "6": "DataStructures.AnalogGroupChannelData",
+        "7": "DataStructures.AnalogGroupChannelData",
+        "8": "DataStructures.AnalogGroupChannelData",
+        "9": "DataStructures.AnalogGroupChannelData"
+      }
+    },
+    {
+      "TimeResolution": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "1 us",
+        "ParameterValue": 1E-06
+      },
+      "GroupName": "Imaging",
+      "GroupDescription": "",
+      "ChannelDatas": {
+        "0": "DataStructures.AnalogGroupChannelData",
+        "1": "DataStructures.AnalogGroupChannelData",
+        "2": "DataStructures.AnalogGroupChannelData",
+        "3": "DataStructures.AnalogGroupChannelData",
+        "4": "DataStructures.AnalogGroupChannelData",
+        "5": "DataStructures.AnalogGroupChannelData",
+        "6": "DataStructures.AnalogGroupChannelData",
+        "7": "DataStructures.AnalogGroupChannelData",
+        "8": "DataStructures.AnalogGroupChannelData",
+        "9": "DataStructures.AnalogGroupChannelData"
+      }
+    },
+    {
+      "TimeResolution": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "1 ms",
+        "ParameterValue": 0.001
+      },
+      "GroupName": "Coil Off",
+      "GroupDescription": "",
+      "ChannelDatas": {
+        "1": "DataStructures.AnalogGroupChannelData",
+        "2": "DataStructures.AnalogGroupChannelData",
+        "3": "DataStructures.AnalogGroupChannelData",
+        "4": "DataStructures.AnalogGroupChannelData",
+        "5": "DataStructures.AnalogGroupChannelData",
+        "6": "DataStructures.AnalogGroupChannelData",
+        "7": "DataStructures.AnalogGroupChannelData",
+        "8": "DataStructures.AnalogGroupChannelData",
+        "9": "DataStructures.AnalogGroupChannelData"
+      }
+    },
+    {
+      "TimeResolution": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "1 ms",
+        "ParameterValue": 0.001
+      },
+      "GroupName": "Molasses Ramp",
+      "GroupDescription": "",
+      "ChannelDatas": {
+        "1": "DataStructures.AnalogGroupChannelData",
+        "2": "DataStructures.AnalogGroupChannelData",
+        "3": "DataStructures.AnalogGroupChannelData",
+        "4": "DataStructures.AnalogGroupChannelData",
+        "5": "DataStructures.AnalogGroupChannelData",
+        "6": "DataStructures.AnalogGroupChannelData",
+        "7": "DataStructures.AnalogGroupChannelData",
+        "8": "DataStructures.AnalogGroupChannelData",
+        "9": "DataStructures.AnalogGroupChannelData"
+      }
+    },
+    {
+      "TimeResolution": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "1 ms",
+        "ParameterValue": 0.001
+      },
+      "GroupName": "Coil Ramp",
+      "GroupDescription": "",
+      "ChannelDatas": {
+        "1": "DataStructures.AnalogGroupChannelData",
+        "2": "DataStructures.AnalogGroupChannelData",
+        "3": "DataStructures.AnalogGroupChannelData",
+        "4": "DataStructures.AnalogGroupChannelData",
+        "5": "DataStructures.AnalogGroupChannelData",
+        "6": "DataStructures.AnalogGroupChannelData",
+        "7": "DataStructures.AnalogGroupChannelData",
+        "8": "DataStructures.AnalogGroupChannelData",
+        "9": "DataStructures.AnalogGroupChannelData"
+      }
+    },
+    {
+      "TimeResolution": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "1 ms",
+        "ParameterValue": 0.001
+      },
+      "GroupName": "Analog Group 7",
+      "GroupDescription": "",
+      "ChannelDatas": {
+        "1": "DataStructures.AnalogGroupChannelData",
+        "2": "DataStructures.AnalogGroupChannelData",
+        "3": "DataStructures.AnalogGroupChannelData",
+        "4": "DataStructures.AnalogGroupChannelData",
+        "5": "DataStructures.AnalogGroupChannelData",
+        "6": "DataStructures.AnalogGroupChannelData",
+        "7": "DataStructures.AnalogGroupChannelData",
+        "8": "DataStructures.AnalogGroupChannelData",
+        "9": "DataStructures.AnalogGroupChannelData"
+      }
+    }
+  ],
+  "GpibGroups": [
+    {
+      "GroupName": "Unnamed",
+      "GroupDescription": "",
+      "ChannelDatas": {}
+    }
+  ],
+  "DigitalPulses": [
+    {
+      "startCondition": 0,
+      "endCondition": 2,
+      "startDelayed": false,
+      "startDelayEnabled": false,
+      "startDelay": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 0.0,
+          "Value": 0.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 0.0,
+          "Value": 0.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "0 s",
+        "ParameterValue": 0.0
+      },
+      "endDelayed": false,
+      "endDelay": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 0.0,
+          "Value": 0.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 0.0,
+          "Value": 0.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "0 s",
+        "ParameterValue": 0.0
+      },
+      "endDelayEnabled": false,
+      "pulseDuration": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 0.1,
+          "Value": 0.1
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 0.1,
+          "Value": 0.1
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "0.1 ms",
+        "ParameterValue": 0.0001
+      },
+      "AutoName": false,
+      "ValueFromVariable": false,
+      "ValueVariable": null,
+      "PulseName": "DDS",
+      "PulseDescription": "",
+      "PulseValue": true
+    }
+  ],
+  "TimeSteps": [
+    {
+      "loopOriginalCopy": null,
+      "StepName": "Start",
+      "Description": "",
+      "MyTimestepGroup": null,
+      "UsesTimestepGroup": false,
+      "LoopCopy": false,
+      "HotKeyCharacter": "\u0000",
+      "StepEnabled": true,
+      "StepHidden": false,
+      "RetriggerOptions": {
+        "WaitForRetrigger": false,
+        "RetriggerTimeout": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        "RetriggerOnEdge": false,
+        "RetriggerOnNegativeValueOrEdge": false
+      },
+      "AnalogGroup": null,
+      "GpibGroup": null,
+      "rs232Group": {
+        "GroupName": "MOT",
+        "GroupDescription": "",
+        "ChannelDatas": {
+          "0": {
+            "DataType": 1,
+            "RawString": "",
+            "Enabled": true,
+            "StringParameterStrings": [
+              {
+                "Prefix": "set_freq mphi ",
+                "Postfix": "e6; ext_update\\n",
+                "Parameter": {
+                  "parameter": {
+                    "var": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "429.475 - 4*MOT_dds",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 104.97500000000002,
+                      "VariableName": "MPhi_mot",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "variable": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "429.475 - 4*MOT_dds",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 104.97500000000002,
+                      "VariableName": "MPhi_mot",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "ManualValue": 1.0,
+                    "Value": 104.97500000000002
+                  },
+                  "units": {
+                    "dimension": {
+                      "commonlyUsedMultipliers": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                      ]
+                    },
+                    "multiplier": {}
+                  },
+                  "myParameter": {
+                    "var": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "429.475 - 4*MOT_dds",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 104.97500000000002,
+                      "VariableName": "MPhi_mot",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "variable": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "429.475 - 4*MOT_dds",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 104.97500000000002,
+                      "VariableName": "MPhi_mot",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "ManualValue": 1.0,
+                    "Value": 104.97500000000002
+                  },
+                  "ParameterUnits": {
+                    "dimension": {
+                      "commonlyUsedMultipliers": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                      ]
+                    },
+                    "multiplier": {}
+                  },
+                  "ParameterString": "104.975 ",
+                  "ParameterValue": 104.97500000000002
+                }
+              }
+            ]
+          },
+          "1": {
+            "DataType": 1,
+            "RawString": "",
+            "Enabled": true,
+            "StringParameterStrings": [
+              {
+                "Prefix": "set_dds ddsq; set_freq slave0 ",
+                "Postfix": "e6;ext_update\\n",
+                "Parameter": {
+                  "parameter": {
+                    "var": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "-0.0625 *(-1286 +MOT_freq)",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 81.125,
+                      "VariableName": "MOT_dds",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "variable": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "-0.0625 *(-1286 +MOT_freq)",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 81.125,
+                      "VariableName": "MOT_dds",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "ManualValue": 1.0,
+                    "Value": 81.125
+                  },
+                  "units": {
+                    "dimension": {
+                      "commonlyUsedMultipliers": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                      ]
+                    },
+                    "multiplier": {}
+                  },
+                  "myParameter": {
+                    "var": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "-0.0625 *(-1286 +MOT_freq)",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 81.125,
+                      "VariableName": "MOT_dds",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "variable": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "-0.0625 *(-1286 +MOT_freq)",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 81.125,
+                      "VariableName": "MOT_dds",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "ManualValue": 1.0,
+                    "Value": 81.125
+                  },
+                  "ParameterUnits": {
+                    "dimension": {
+                      "commonlyUsedMultipliers": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                      ]
+                    },
+                    "multiplier": {}
+                  },
+                  "ParameterString": "81.125 ",
+                  "ParameterValue": 81.125
+                }
+              }
+            ]
+          }
+        }
+      },
+      "StepDuration": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 50.0,
+          "Value": 50.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 50.0,
+          "Value": 50.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "50 us",
+        "ParameterValue": 4.9999999999999996E-05
+      },
+      "DigitalData": {
+        "3": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "4": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "5": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "6": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "7": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "8": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "9": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "10": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "11": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        }
+      }
+    },
+    {
+      "loopOriginalCopy": null,
+      "StepName": "MOT",
+      "Description": "",
+      "MyTimestepGroup": null,
+      "UsesTimestepGroup": false,
+      "LoopCopy": false,
+      "HotKeyCharacter": "\u0000",
+      "StepEnabled": true,
+      "StepHidden": false,
+      "RetriggerOptions": {
+        "WaitForRetrigger": false,
+        "RetriggerTimeout": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        "RetriggerOnEdge": false,
+        "RetriggerOnNegativeValueOrEdge": false
+      },
+      "AnalogGroup": {
+        "TimeResolution": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "1 ms",
+          "ParameterValue": 0.001
+        },
+        "GroupName": "MOT",
+        "GroupDescription": "",
+        "ChannelDatas": {
+          "0": "DataStructures.AnalogGroupChannelData",
+          "1": "DataStructures.AnalogGroupChannelData",
+          "2": "DataStructures.AnalogGroupChannelData",
+          "3": "DataStructures.AnalogGroupChannelData",
+          "4": "DataStructures.AnalogGroupChannelData",
+          "5": "DataStructures.AnalogGroupChannelData",
+          "6": "DataStructures.AnalogGroupChannelData",
+          "7": "DataStructures.AnalogGroupChannelData",
+          "8": "DataStructures.AnalogGroupChannelData",
+          "9": "DataStructures.AnalogGroupChannelData"
+        }
+      },
+      "GpibGroup": null,
+      "rs232Group": null,
+      "StepDuration": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 3.0,
+          "Value": 3.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 3.0,
+          "Value": 3.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "3 s",
+        "ParameterValue": 3.0
+      },
+      "DigitalData": {
+        "0": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "1": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "2": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "3": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "4": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "5": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "6": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "7": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "8": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "9": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "10": {
+          "DigitalPulse": {
+            "startCondition": 0,
+            "endCondition": 2,
+            "startDelayed": false,
+            "startDelayEnabled": false,
+            "startDelay": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0 s",
+              "ParameterValue": 0.0
+            },
+            "endDelayed": false,
+            "endDelay": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0 s",
+              "ParameterValue": 0.0
+            },
+            "endDelayEnabled": false,
+            "pulseDuration": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.1,
+                "Value": 0.1
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.1,
+                "Value": 0.1
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0.1 ms",
+              "ParameterValue": 0.0001
+            },
+            "AutoName": false,
+            "ValueFromVariable": false,
+            "ValueVariable": null,
+            "PulseName": "DDS",
+            "PulseDescription": "",
+            "PulseValue": true
+          },
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "11": {
+          "DigitalPulse": {
+            "startCondition": 0,
+            "endCondition": 2,
+            "startDelayed": false,
+            "startDelayEnabled": false,
+            "startDelay": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0 s",
+              "ParameterValue": 0.0
+            },
+            "endDelayed": false,
+            "endDelay": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0 s",
+              "ParameterValue": 0.0
+            },
+            "endDelayEnabled": false,
+            "pulseDuration": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.1,
+                "Value": 0.1
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.1,
+                "Value": 0.1
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0.1 ms",
+              "ParameterValue": 0.0001
+            },
+            "AutoName": false,
+            "ValueFromVariable": false,
+            "ValueVariable": null,
+            "PulseName": "DDS",
+            "PulseDescription": "",
+            "PulseValue": true
+          },
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        }
+      }
+    },
+    {
+      "loopOriginalCopy": null,
+      "StepName": "New timestep.",
+      "Description": "",
+      "MyTimestepGroup": null,
+      "UsesTimestepGroup": false,
+      "LoopCopy": false,
+      "HotKeyCharacter": "\u0000",
+      "StepEnabled": true,
+      "StepHidden": false,
+      "RetriggerOptions": {
+        "WaitForRetrigger": false,
+        "RetriggerTimeout": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        "RetriggerOnEdge": false,
+        "RetriggerOnNegativeValueOrEdge": false
+      },
+      "AnalogGroup": null,
+      "GpibGroup": null,
+      "rs232Group": null,
+      "StepDuration": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 100.0,
+          "Value": 100.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 100.0,
+          "Value": 100.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "100 us",
+        "ParameterValue": 9.9999999999999991E-05
+      },
+      "DigitalData": {
+        "3": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "4": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "5": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "6": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "7": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "8": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "9": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "10": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "11": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        }
+      }
+    },
+    {
+      "loopOriginalCopy": null,
+      "StepName": "Coil off",
+      "Description": "",
+      "MyTimestepGroup": null,
+      "UsesTimestepGroup": false,
+      "LoopCopy": false,
+      "HotKeyCharacter": "\u0000",
+      "StepEnabled": true,
+      "StepHidden": false,
+      "RetriggerOptions": {
+        "WaitForRetrigger": false,
+        "RetriggerTimeout": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        "RetriggerOnEdge": false,
+        "RetriggerOnNegativeValueOrEdge": false
+      },
+      "AnalogGroup": {
+        "TimeResolution": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "1 ms",
+          "ParameterValue": 0.001
+        },
+        "GroupName": "Coil Off",
+        "GroupDescription": "",
+        "ChannelDatas": {
+          "1": "DataStructures.AnalogGroupChannelData",
+          "2": "DataStructures.AnalogGroupChannelData",
+          "3": "DataStructures.AnalogGroupChannelData",
+          "4": "DataStructures.AnalogGroupChannelData",
+          "5": "DataStructures.AnalogGroupChannelData",
+          "6": "DataStructures.AnalogGroupChannelData",
+          "7": "DataStructures.AnalogGroupChannelData",
+          "8": "DataStructures.AnalogGroupChannelData",
+          "9": "DataStructures.AnalogGroupChannelData"
+        }
+      },
+      "GpibGroup": null,
+      "rs232Group": {
+        "GroupName": "Molasses Ramp",
+        "GroupDescription": "This is a molasses ramp. Because we can only use one variable per line, we have to fix the ramp time.",
+        "ChannelDatas": {
+          "0": {
+            "DataType": 1,
+            "RawString": "",
+            "Enabled": true,
+            "StringParameterStrings": [
+              {
+                "Prefix": "sweep_to mphi ",
+                "Postfix": "e6 5e-3;ext_update\\n",
+                "Parameter": {
+                  "parameter": {
+                    "var": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "429.475 - 4*Mol_dds",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 70.475000000000023,
+                      "VariableName": "MPhi_mol",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "variable": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "429.475 - 4*Mol_dds",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 70.475000000000023,
+                      "VariableName": "MPhi_mol",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "ManualValue": 70.475,
+                    "Value": 70.475000000000023
+                  },
+                  "units": {
+                    "dimension": {
+                      "commonlyUsedMultipliers": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                      ]
+                    },
+                    "multiplier": {}
+                  },
+                  "myParameter": {
+                    "var": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "429.475 - 4*Mol_dds",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 70.475000000000023,
+                      "VariableName": "MPhi_mol",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "variable": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "429.475 - 4*Mol_dds",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 70.475000000000023,
+                      "VariableName": "MPhi_mol",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "ManualValue": 70.475,
+                    "Value": 70.475000000000023
+                  },
+                  "ParameterUnits": {
+                    "dimension": {
+                      "commonlyUsedMultipliers": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                      ]
+                    },
+                    "multiplier": {}
+                  },
+                  "ParameterString": "70.475 ",
+                  "ParameterValue": 70.475000000000023
+                }
+              }
+            ]
+          },
+          "1": {
+            "DataType": 1,
+            "RawString": "",
+            "Enabled": true,
+            "StringParameterStrings": [
+              {
+                "Prefix": "set_dds ddsq;sweep_to slave0 ",
+                "Postfix": "e6 5e-3;ext_update\\n",
+                "Parameter": {
+                  "parameter": {
+                    "var": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "-0.0625`*(-1286.` + Mol_freq)",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 89.75,
+                      "VariableName": "Mol_dds",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "variable": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "-0.0625`*(-1286.` + Mol_freq)",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 89.75,
+                      "VariableName": "Mol_dds",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "ManualValue": 1.0,
+                    "Value": 89.75
+                  },
+                  "units": {
+                    "dimension": {
+                      "commonlyUsedMultipliers": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                      ]
+                    },
+                    "multiplier": {}
+                  },
+                  "myParameter": {
+                    "var": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "-0.0625`*(-1286.` + Mol_freq)",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 89.75,
+                      "VariableName": "Mol_dds",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "variable": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "-0.0625`*(-1286.` + Mol_freq)",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 89.75,
+                      "VariableName": "Mol_dds",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "ManualValue": 1.0,
+                    "Value": 89.75
+                  },
+                  "ParameterUnits": {
+                    "dimension": {
+                      "commonlyUsedMultipliers": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                      ]
+                    },
+                    "multiplier": {}
+                  },
+                  "ParameterString": "89.75 ",
+                  "ParameterValue": 89.75
+                }
+              }
+            ]
+          }
+        }
+      },
+      "StepDuration": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 3.5,
+          "Value": 3.5
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 3.5,
+          "Value": 3.5
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "3.5 ms",
+        "ParameterValue": 0.0035
+      },
+      "DigitalData": {
+        "3": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "4": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "5": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "6": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "7": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "8": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "9": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "10": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "11": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        }
+      }
+    },
+    {
+      "loopOriginalCopy": null,
+      "StepName": "Molasses Freq Ramp",
+      "Description": "",
+      "MyTimestepGroup": null,
+      "UsesTimestepGroup": false,
+      "LoopCopy": false,
+      "HotKeyCharacter": "\u0000",
+      "StepEnabled": true,
+      "StepHidden": false,
+      "RetriggerOptions": {
+        "WaitForRetrigger": false,
+        "RetriggerTimeout": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        "RetriggerOnEdge": false,
+        "RetriggerOnNegativeValueOrEdge": false
+      },
+      "AnalogGroup": null,
+      "GpibGroup": null,
+      "rs232Group": null,
+      "StepDuration": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 2.5,
+          "Value": 2.5
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 2.5,
+          "Value": 2.5
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "2.5 ms",
+        "ParameterValue": 0.0025
+      },
+      "DigitalData": {
+        "3": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "4": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "5": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "6": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "7": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "8": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "9": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "10": {
+          "DigitalPulse": {
+            "startCondition": 0,
+            "endCondition": 2,
+            "startDelayed": false,
+            "startDelayEnabled": false,
+            "startDelay": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0 s",
+              "ParameterValue": 0.0
+            },
+            "endDelayed": false,
+            "endDelay": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0 s",
+              "ParameterValue": 0.0
+            },
+            "endDelayEnabled": false,
+            "pulseDuration": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.1,
+                "Value": 0.1
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.1,
+                "Value": 0.1
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0.1 ms",
+              "ParameterValue": 0.0001
+            },
+            "AutoName": false,
+            "ValueFromVariable": false,
+            "ValueVariable": null,
+            "PulseName": "DDS",
+            "PulseDescription": "",
+            "PulseValue": true
+          },
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "11": {
+          "DigitalPulse": {
+            "startCondition": 0,
+            "endCondition": 2,
+            "startDelayed": false,
+            "startDelayEnabled": false,
+            "startDelay": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0 s",
+              "ParameterValue": 0.0
+            },
+            "endDelayed": false,
+            "endDelay": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0 s",
+              "ParameterValue": 0.0
+            },
+            "endDelayEnabled": false,
+            "pulseDuration": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.1,
+                "Value": 0.1
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.1,
+                "Value": 0.1
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0.1 ms",
+              "ParameterValue": 0.0001
+            },
+            "AutoName": false,
+            "ValueFromVariable": false,
+            "ValueVariable": null,
+            "PulseName": "DDS",
+            "PulseDescription": "",
+            "PulseValue": true
+          },
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        }
+      }
+    },
+    {
+      "loopOriginalCopy": null,
+      "StepName": "Molasses Int Ramp",
+      "Description": "",
+      "MyTimestepGroup": null,
+      "UsesTimestepGroup": false,
+      "LoopCopy": false,
+      "HotKeyCharacter": "\u0000",
+      "StepEnabled": true,
+      "StepHidden": false,
+      "RetriggerOptions": {
+        "WaitForRetrigger": false,
+        "RetriggerTimeout": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        "RetriggerOnEdge": false,
+        "RetriggerOnNegativeValueOrEdge": false
+      },
+      "AnalogGroup": {
+        "TimeResolution": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "1 ms",
+          "ParameterValue": 0.001
+        },
+        "GroupName": "Molasses Ramp",
+        "GroupDescription": "",
+        "ChannelDatas": {
+          "1": "DataStructures.AnalogGroupChannelData",
+          "2": "DataStructures.AnalogGroupChannelData",
+          "3": "DataStructures.AnalogGroupChannelData",
+          "4": "DataStructures.AnalogGroupChannelData",
+          "5": "DataStructures.AnalogGroupChannelData",
+          "6": "DataStructures.AnalogGroupChannelData",
+          "7": "DataStructures.AnalogGroupChannelData",
+          "8": "DataStructures.AnalogGroupChannelData",
+          "9": "DataStructures.AnalogGroupChannelData"
+        }
+      },
+      "GpibGroup": null,
+      "rs232Group": null,
+      "StepDuration": {
+        "parameter": {
+          "var": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": false,
+            "ListNumber": 1,
+            "VariableValue": -150.0,
+            "VariableName": "Mol_freq",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "variable": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": false,
+            "ListNumber": 1,
+            "VariableValue": -150.0,
+            "VariableName": "Mol_freq",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "ManualValue": 1.25,
+          "Value": -150.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": false,
+            "ListNumber": 1,
+            "VariableValue": -150.0,
+            "VariableName": "Mol_freq",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "variable": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": false,
+            "ListNumber": 1,
+            "VariableValue": -150.0,
+            "VariableName": "Mol_freq",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "ManualValue": 1.25,
+          "Value": -150.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "-150 ms",
+        "ParameterValue": -0.15
+      },
+      "DigitalData": {
+        "3": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "4": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "5": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "6": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "7": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "8": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "9": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "10": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "11": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        }
+      }
+    },
+    {
+      "loopOriginalCopy": null,
+      "StepName": "Expand",
+      "Description": "",
+      "MyTimestepGroup": null,
+      "UsesTimestepGroup": false,
+      "LoopCopy": false,
+      "HotKeyCharacter": "\u0000",
+      "StepEnabled": true,
+      "StepHidden": false,
+      "RetriggerOptions": {
+        "WaitForRetrigger": false,
+        "RetriggerTimeout": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        "RetriggerOnEdge": false,
+        "RetriggerOnNegativeValueOrEdge": false
+      },
+      "AnalogGroup": {
+        "TimeResolution": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "1 us",
+          "ParameterValue": 1E-06
+        },
+        "GroupName": "Imaging",
+        "GroupDescription": "",
+        "ChannelDatas": {
+          "0": "DataStructures.AnalogGroupChannelData",
+          "1": "DataStructures.AnalogGroupChannelData",
+          "2": "DataStructures.AnalogGroupChannelData",
+          "3": "DataStructures.AnalogGroupChannelData",
+          "4": "DataStructures.AnalogGroupChannelData",
+          "5": "DataStructures.AnalogGroupChannelData",
+          "6": "DataStructures.AnalogGroupChannelData",
+          "7": "DataStructures.AnalogGroupChannelData",
+          "8": "DataStructures.AnalogGroupChannelData",
+          "9": "DataStructures.AnalogGroupChannelData"
+        }
+      },
+      "GpibGroup": null,
+      "rs232Group": {
+        "GroupName": "Image",
+        "GroupDescription": "",
+        "ChannelDatas": {
+          "0": {
+            "DataType": 1,
+            "RawString": "",
+            "Enabled": true,
+            "StringParameterStrings": [
+              {
+                "Prefix": "set_freq mphi ",
+                "Postfix": "e6; ext_update\\n",
+                "Parameter": {
+                  "parameter": {
+                    "var": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "429.475 - 4*Img_dds",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 107.97500000000002,
+                      "VariableName": "MPhi_Img",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "variable": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "429.475 - 4*Img_dds",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 107.97500000000002,
+                      "VariableName": "MPhi_Img",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "ManualValue": 108.0,
+                    "Value": 107.97500000000002
+                  },
+                  "units": {
+                    "dimension": {
+                      "commonlyUsedMultipliers": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                      ]
+                    },
+                    "multiplier": {}
+                  },
+                  "myParameter": {
+                    "var": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "429.475 - 4*Img_dds",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 107.97500000000002,
+                      "VariableName": "MPhi_Img",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "variable": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "429.475 - 4*Img_dds",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 107.97500000000002,
+                      "VariableName": "MPhi_Img",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "ManualValue": 108.0,
+                    "Value": 107.97500000000002
+                  },
+                  "ParameterUnits": {
+                    "dimension": {
+                      "commonlyUsedMultipliers": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                      ]
+                    },
+                    "multiplier": {}
+                  },
+                  "ParameterString": "107.975 ",
+                  "ParameterValue": 107.97500000000002
+                }
+              }
+            ]
+          },
+          "1": {
+            "DataType": 1,
+            "RawString": "",
+            "Enabled": true,
+            "StringParameterStrings": [
+              {
+                "Prefix": "set_dds ddsq; set_freq slave0 ",
+                "Postfix": "e6;ext_update\\n",
+                "Parameter": {
+                  "parameter": {
+                    "var": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "-0.0625`*(-1286.` + Img_freq)",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 80.375,
+                      "VariableName": "Img_dds",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "variable": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "-0.0625`*(-1286.` + Img_freq)",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 80.375,
+                      "VariableName": "Img_dds",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "ManualValue": 1.0,
+                    "Value": 80.375
+                  },
+                  "units": {
+                    "dimension": {
+                      "commonlyUsedMultipliers": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                      ]
+                    },
+                    "multiplier": {}
+                  },
+                  "myParameter": {
+                    "var": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "-0.0625`*(-1286.` + Img_freq)",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 80.375,
+                      "VariableName": "Img_dds",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "variable": {
+                      "passThroughVariable": null,
+                      "Relevant": false,
+                      "Description": "",
+                      "PermanentVariable": false,
+                      "PermanentValue": 0.0,
+                      "VariableFormula": "-0.0625`*(-1286.` + Img_freq)",
+                      "ListDriven": false,
+                      "ListNumber": 0,
+                      "VariableValue": 80.375,
+                      "VariableName": "Img_dds",
+                      "DerivedVariable": true,
+                      "IsSpecialVariable": false,
+                      "MySpecialVariableType": 0
+                    },
+                    "ManualValue": 1.0,
+                    "Value": 80.375
+                  },
+                  "ParameterUnits": {
+                    "dimension": {
+                      "commonlyUsedMultipliers": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                      ]
+                    },
+                    "multiplier": {}
+                  },
+                  "ParameterString": "80.375 ",
+                  "ParameterValue": 80.375
+                }
+              }
+            ]
+          }
+        }
+      },
+      "StepDuration": {
+        "parameter": {
+          "var": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": true,
+            "ListNumber": 2,
+            "VariableValue": 1.0,
+            "VariableName": "TempTime",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "variable": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": true,
+            "ListNumber": 2,
+            "VariableValue": 1.0,
+            "VariableName": "TempTime",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "ManualValue": 4.0,
+          "Value": 1.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": true,
+            "ListNumber": 2,
+            "VariableValue": 1.0,
+            "VariableName": "TempTime",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "variable": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": true,
+            "ListNumber": 2,
+            "VariableValue": 1.0,
+            "VariableName": "TempTime",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "ManualValue": 4.0,
+          "Value": 1.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "1 ms",
+        "ParameterValue": 0.001
+      },
+      "DigitalData": {
+        "3": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "4": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "5": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "6": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "7": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "8": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "9": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "10": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "11": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        }
+      }
+    },
+    {
+      "loopOriginalCopy": null,
+      "StepName": "Image",
+      "Description": "",
+      "MyTimestepGroup": null,
+      "UsesTimestepGroup": false,
+      "LoopCopy": false,
+      "HotKeyCharacter": "\u0000",
+      "StepEnabled": true,
+      "StepHidden": false,
+      "RetriggerOptions": {
+        "WaitForRetrigger": false,
+        "RetriggerTimeout": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        "RetriggerOnEdge": false,
+        "RetriggerOnNegativeValueOrEdge": false
+      },
+      "AnalogGroup": null,
+      "GpibGroup": null,
+      "rs232Group": null,
+      "StepDuration": {
+        "parameter": {
+          "var": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": false,
+            "ListNumber": 0,
+            "VariableValue": 5.0,
+            "VariableName": "exp",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "variable": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": false,
+            "ListNumber": 0,
+            "VariableValue": 5.0,
+            "VariableName": "exp",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "ManualValue": 1.0,
+          "Value": 5.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": false,
+            "ListNumber": 0,
+            "VariableValue": 5.0,
+            "VariableName": "exp",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "variable": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": false,
+            "ListNumber": 0,
+            "VariableValue": 5.0,
+            "VariableName": "exp",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "ManualValue": 1.0,
+          "Value": 5.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "5 ms",
+        "ParameterValue": 0.005
+      },
+      "DigitalData": {
+        "0": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "1": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "2": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "3": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "4": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "5": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "6": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "7": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "8": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "9": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "10": {
+          "DigitalPulse": {
+            "startCondition": 0,
+            "endCondition": 2,
+            "startDelayed": false,
+            "startDelayEnabled": false,
+            "startDelay": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0 s",
+              "ParameterValue": 0.0
+            },
+            "endDelayed": false,
+            "endDelay": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0 s",
+              "ParameterValue": 0.0
+            },
+            "endDelayEnabled": false,
+            "pulseDuration": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.1,
+                "Value": 0.1
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.1,
+                "Value": 0.1
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0.1 ms",
+              "ParameterValue": 0.0001
+            },
+            "AutoName": false,
+            "ValueFromVariable": false,
+            "ValueVariable": null,
+            "PulseName": "DDS",
+            "PulseDescription": "",
+            "PulseValue": true
+          },
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "11": {
+          "DigitalPulse": {
+            "startCondition": 0,
+            "endCondition": 2,
+            "startDelayed": false,
+            "startDelayEnabled": false,
+            "startDelay": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0 s",
+              "ParameterValue": 0.0
+            },
+            "endDelayed": false,
+            "endDelay": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.0,
+                "Value": 0.0
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0 s",
+              "ParameterValue": 0.0
+            },
+            "endDelayEnabled": false,
+            "pulseDuration": {
+              "parameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.1,
+                "Value": 0.1
+              },
+              "units": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "myParameter": {
+                "var": null,
+                "variable": null,
+                "ManualValue": 0.1,
+                "Value": 0.1
+              },
+              "ParameterUnits": {
+                "dimension": {
+                  "commonlyUsedMultipliers": [
+                    {},
+                    {},
+                    {}
+                  ]
+                },
+                "multiplier": {}
+              },
+              "ParameterString": "0.1 ms",
+              "ParameterValue": 0.0001
+            },
+            "AutoName": false,
+            "ValueFromVariable": false,
+            "ValueVariable": null,
+            "PulseName": "DDS",
+            "PulseDescription": "",
+            "PulseValue": true
+          },
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        }
+      }
+    },
+    {
+      "loopOriginalCopy": null,
+      "StepName": "Dwell",
+      "Description": "",
+      "MyTimestepGroup": null,
+      "UsesTimestepGroup": false,
+      "LoopCopy": false,
+      "HotKeyCharacter": "\u0000",
+      "StepEnabled": true,
+      "StepHidden": false,
+      "RetriggerOptions": {
+        "WaitForRetrigger": false,
+        "RetriggerTimeout": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        "RetriggerOnEdge": false,
+        "RetriggerOnNegativeValueOrEdge": false
+      },
+      "AnalogGroup": null,
+      "GpibGroup": null,
+      "rs232Group": null,
+      "StepDuration": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 300.0,
+          "Value": 300.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 300.0,
+          "Value": 300.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "300 ms",
+        "ParameterValue": 0.3
+      },
+      "DigitalData": {
+        "3": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "4": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "5": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "6": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "7": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "8": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "9": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "10": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "11": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        }
+      }
+    },
+    {
+      "loopOriginalCopy": null,
+      "StepName": "Background",
+      "Description": "",
+      "MyTimestepGroup": null,
+      "UsesTimestepGroup": false,
+      "LoopCopy": false,
+      "HotKeyCharacter": "\u0000",
+      "StepEnabled": true,
+      "StepHidden": false,
+      "RetriggerOptions": {
+        "WaitForRetrigger": false,
+        "RetriggerTimeout": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        "RetriggerOnEdge": false,
+        "RetriggerOnNegativeValueOrEdge": false
+      },
+      "AnalogGroup": null,
+      "GpibGroup": null,
+      "rs232Group": null,
+      "StepDuration": {
+        "parameter": {
+          "var": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": false,
+            "ListNumber": 0,
+            "VariableValue": 5.0,
+            "VariableName": "exp",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "variable": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": false,
+            "ListNumber": 0,
+            "VariableValue": 5.0,
+            "VariableName": "exp",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "ManualValue": 5.0,
+          "Value": 5.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": false,
+            "ListNumber": 0,
+            "VariableValue": 5.0,
+            "VariableName": "exp",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "variable": {
+            "passThroughVariable": null,
+            "Relevant": false,
+            "Description": "",
+            "PermanentVariable": false,
+            "PermanentValue": 0.0,
+            "VariableFormula": "",
+            "ListDriven": false,
+            "ListNumber": 0,
+            "VariableValue": 5.0,
+            "VariableName": "exp",
+            "DerivedVariable": false,
+            "IsSpecialVariable": false,
+            "MySpecialVariableType": 0
+          },
+          "ManualValue": 5.0,
+          "Value": 5.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "5 ms",
+        "ParameterValue": 0.005
+      },
+      "DigitalData": {
+        "0": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "1": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "2": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "3": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "4": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "5": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "6": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "7": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "8": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": true,
+          "variable": null
+        },
+        "9": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "10": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "11": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        }
+      }
+    },
+    {
+      "loopOriginalCopy": null,
+      "StepName": "Dwell",
+      "Description": "",
+      "MyTimestepGroup": null,
+      "UsesTimestepGroup": false,
+      "LoopCopy": false,
+      "HotKeyCharacter": "\u0000",
+      "StepEnabled": false,
+      "StepHidden": false,
+      "RetriggerOptions": {
+        "WaitForRetrigger": false,
+        "RetriggerTimeout": {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        "RetriggerOnEdge": false,
+        "RetriggerOnNegativeValueOrEdge": false
+      },
+      "AnalogGroup": null,
+      "GpibGroup": null,
+      "rs232Group": null,
+      "StepDuration": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 0.5,
+          "Value": 0.5
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 0.5,
+          "Value": 0.5
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "0.5 s",
+        "ParameterValue": 0.5
+      },
+      "DigitalData": {
+        "0": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "1": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "2": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "3": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "4": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "5": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "6": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "7": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "8": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "9": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "10": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        },
+        "11": {
+          "DigitalPulse": null,
+          "DigitalContinue": false,
+          "ManualValue": false,
+          "variable": null
+        }
+      }
+    }
+  ],
+  "Lists": {
+    "Lists": [
+      [],
+      [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        10.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        10.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        10.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        10.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        10.0
+      ],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "ListEnabled": [
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "ListLocked": true,
+    "Cross": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "CommonWaveforms": [
+    {
+      "YUnits": {
+        "commonlyUsedMultipliers": [
+          {},
+          {},
+          {},
+          {}
+        ]
+      },
+      "interpolationType": {
+        "xyParametersEnabled": false,
+        "canReadDataFromFile": false,
+        "xyParametersFixed": true,
+        "xyParametersCount": 0,
+        "extraParametersEnabled": false,
+        "equationParameterEnabled": true,
+        "extraParametersNames": [],
+        "extraParametersCount": 0,
+        "referencesOtherWaveforms": false,
+        "extraParametersDimensions": []
+      },
+      "EquationString": "30.4503+vco1*(-0.98999)+vco1^2*(0.00994)+vco1^3*-0.0000288662",
+      "WaveformName": "VCO1 Cal",
+      "XValues": [
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "1 s",
+          "ParameterValue": 1.0
+        }
+      ],
+      "YValues": [
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "1 V",
+          "ParameterValue": 1.0
+        },
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "1 V",
+          "ParameterValue": 1.0
+        }
+      ],
+      "ExtraParameters": [
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "1 V",
+          "ParameterValue": 1.0
+        },
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "1 V",
+          "ParameterValue": 1.0
+        },
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "1 s",
+          "ParameterValue": 1.0
+        },
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "1 s",
+          "ParameterValue": 1.0
+        },
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 1.0,
+            "Value": 1.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "1 s",
+          "ParameterValue": 1.0
+        }
+      ],
+      "DataFromFile": false,
+      "DataFileName": null,
+      "ReferencedWaveforms": [
+        null
+      ],
+      "WaveformCombiners": [],
+      "WaveformDuration": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "1 s",
+        "ParameterValue": 1.0
+      }
+    },
+    {
+      "YUnits": {
+        "commonlyUsedMultipliers": [
+          {},
+          {},
+          {},
+          {}
+        ]
+      },
+      "interpolationType": {
+        "xyParametersEnabled": false,
+        "canReadDataFromFile": false,
+        "xyParametersFixed": true,
+        "xyParametersCount": 0,
+        "extraParametersEnabled": false,
+        "equationParameterEnabled": true,
+        "extraParametersNames": [],
+        "extraParametersCount": 0,
+        "referencesOtherWaveforms": false,
+        "extraParametersDimensions": []
+      },
+      "EquationString": "26.20545+vco2*-0.86945+vco2^2*0.00882+vco2^3*-2.54132*10^(-5)",
+      "WaveformName": "VCO2 Cal",
+      "XValues": [],
+      "YValues": [],
+      "ExtraParameters": [],
+      "DataFromFile": false,
+      "DataFileName": null,
+      "ReferencedWaveforms": [],
+      "WaveformCombiners": [],
+      "WaveformDuration": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "1 s",
+        "ParameterValue": 1.0
+      }
+    },
+    {
+      "YUnits": {
+        "commonlyUsedMultipliers": [
+          {},
+          {},
+          {},
+          {}
+        ]
+      },
+      "interpolationType": {
+        "xyParametersEnabled": false,
+        "canReadDataFromFile": false,
+        "xyParametersFixed": true,
+        "xyParametersCount": 0,
+        "extraParametersEnabled": false,
+        "equationParameterEnabled": true,
+        "extraParametersNames": [],
+        "extraParametersCount": 0,
+        "referencesOtherWaveforms": false,
+        "extraParametersDimensions": []
+      },
+      "EquationString": "26.61066+vco3*-0.875+vco3^2*0.00881+vco3^3*-2.51595*10^(-5)",
+      "WaveformName": "VCO3 Cal",
+      "XValues": [],
+      "YValues": [],
+      "ExtraParameters": [],
+      "DataFromFile": false,
+      "DataFileName": null,
+      "ReferencedWaveforms": [],
+      "WaveformCombiners": [],
+      "WaveformDuration": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 1.0,
+          "Value": 1.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "1 s",
+        "ParameterValue": 1.0
+      }
+    },
+    {
+      "YUnits": {
+        "commonlyUsedMultipliers": [
+          {},
+          {},
+          {},
+          {}
+        ]
+      },
+      "interpolationType": {
+        "xyParametersEnabled": true,
+        "canReadDataFromFile": true,
+        "xyParametersFixed": false,
+        "xyParametersCount": -1,
+        "extraParametersEnabled": false,
+        "equationParameterEnabled": false,
+        "extraParametersNames": [],
+        "extraParametersCount": 0,
+        "referencesOtherWaveforms": false,
+        "extraParametersDimensions": []
+      },
+      "EquationString": "",
+      "WaveformName": "Ramp",
+      "XValues": [
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 5.0,
+            "Value": 5.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 5.0,
+            "Value": 5.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "5 s",
+          "ParameterValue": 5.0
+        }
+      ],
+      "YValues": [
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 V",
+          "ParameterValue": 0.0
+        },
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 5.0,
+            "Value": 5.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 5.0,
+            "Value": 5.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "5 V",
+          "ParameterValue": 5.0
+        }
+      ],
+      "ExtraParameters": [],
+      "DataFromFile": false,
+      "DataFileName": null,
+      "ReferencedWaveforms": [],
+      "WaveformCombiners": [],
+      "WaveformDuration": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 5.0,
+          "Value": 5.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 5.0,
+          "Value": 5.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "5 s",
+        "ParameterValue": 5.0
+      }
+    },
+    {
+      "YUnits": {
+        "commonlyUsedMultipliers": [
+          {},
+          {},
+          {},
+          {}
+        ]
+      },
+      "interpolationType": {
+        "xyParametersEnabled": true,
+        "canReadDataFromFile": true,
+        "xyParametersFixed": false,
+        "xyParametersCount": -1,
+        "extraParametersEnabled": false,
+        "equationParameterEnabled": false,
+        "extraParametersNames": [],
+        "extraParametersCount": 0,
+        "referencesOtherWaveforms": false,
+        "extraParametersDimensions": []
+      },
+      "EquationString": "",
+      "WaveformName": "Coil Ramp",
+      "XValues": [
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 s",
+          "ParameterValue": 0.0
+        },
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 3.0,
+            "Value": 3.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 3.0,
+            "Value": 3.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "3 s",
+          "ParameterValue": 3.0
+        },
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 6.0,
+            "Value": 6.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 6.0,
+            "Value": 6.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "6 s",
+          "ParameterValue": 6.0
+        }
+      ],
+      "YValues": [
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 2.5,
+            "Value": 2.5
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 2.5,
+            "Value": 2.5
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "2.5 V",
+          "ParameterValue": 2.5
+        },
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 0.0,
+            "Value": 0.0
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "0 V",
+          "ParameterValue": 0.0
+        },
+        {
+          "parameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 2.5,
+            "Value": 2.5
+          },
+          "units": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "myParameter": {
+            "var": null,
+            "variable": null,
+            "ManualValue": 2.5,
+            "Value": 2.5
+          },
+          "ParameterUnits": {
+            "dimension": {
+              "commonlyUsedMultipliers": [
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "multiplier": {}
+          },
+          "ParameterString": "2.5 V",
+          "ParameterValue": 2.5
+        }
+      ],
+      "ExtraParameters": [],
+      "DataFromFile": false,
+      "DataFileName": null,
+      "ReferencedWaveforms": [],
+      "WaveformCombiners": [],
+      "WaveformDuration": {
+        "parameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 6.0,
+          "Value": 6.0
+        },
+        "units": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "myParameter": {
+          "var": null,
+          "variable": null,
+          "ManualValue": 6.0,
+          "Value": 6.0
+        },
+        "ParameterUnits": {
+          "dimension": {
+            "commonlyUsedMultipliers": [
+              {},
+              {},
+              {}
+            ]
+          },
+          "multiplier": {}
+        },
+        "ParameterString": "6 s",
+        "ParameterValue": 6.0
+      }
+    }
+  ],
+  "NTimeSteps": 11,
+  "WaitForReady": false,
+  "VersionNumberAtFirstCreation": {
+    "VersionNumber": 1.65
+  },
+  "VersionNumberAtLastSerialization": {
+    "VersionNumber": 1.65
+  }
+}

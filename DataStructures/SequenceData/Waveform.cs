@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Text;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
     /// <summary>
@@ -15,7 +15,7 @@ namespace DataStructures
     // and I am thus slightly suspicious that I may have taken it out as a workaround to some bug in .NET remoting.
     // SO if some weird bug in .NET remoting re-appears, I may have to remove above line.
 
-    ]
+   ,JsonObject ]
 	public class Waveform
 	{
 
@@ -66,7 +66,7 @@ namespace DataStructures
         /// Edit this class to create new interpolation types. Stores all the names of interpolation types,
         /// the names and dimensions of their parameters, and the code to generate interpolations.
         /// </summary>
-        [Serializable, TypeConverter(typeof (InterpolationType.InterpolationTypeConvertor))]
+        [Serializable, TypeConverter(typeof (InterpolationType.InterpolationTypeConvertor)),JsonObject]
 		public struct InterpolationType
         {
 

@@ -8,14 +8,14 @@ using System.Runtime.Remoting;
 using System.Runtime.Serialization;
 using System.Reflection;
 using System.Threading;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
     /// <summary>
     /// Stores information about what servers to connect to. Also used to communicate with servers in a multi-threaded
     /// way so as not to block UI threads, and so as to catch and handle .NET remoting exceptions should they occur.
     /// </summary>
-    [TypeConverter(typeof(ExpandableObjectConverter)), Serializable]
+    [TypeConverter(typeof(ExpandableObjectConverter)), Serializable,JsonObject]
     public class ServerManager
     {
         /// <summary>

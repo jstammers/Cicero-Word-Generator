@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using Newtonsoft.Json;
 
 namespace DataStructures
 {
@@ -13,7 +14,7 @@ namespace DataStructures
     /// different sequence programs. Examples include names of logical channels and their mappings
     /// to hardware channels, and information about what servers to connect to.
     /// </summary>
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class SettingsData
     {
         private LogicalChannelManager myLogicalChannelManager;

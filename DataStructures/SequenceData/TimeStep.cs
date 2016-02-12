@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 using DataStructures;
-
+using Newtonsoft.Json;
 // *** IMPORTANT!
 // This class uses a copy constructure TimeStep(TimeStep duplicateMe);
 // MAKE SURE TO ADD COPYING CODE FOR ANY MEMBERS THAT YOU ADD,
@@ -12,7 +12,7 @@ using DataStructures;
 
 namespace DataStructures
 {
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class TimeStep
     {
         private string stepName;

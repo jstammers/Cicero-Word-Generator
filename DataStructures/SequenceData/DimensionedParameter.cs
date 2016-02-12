@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 
 namespace DataStructures
@@ -11,7 +12,7 @@ namespace DataStructures
     /// a user specifies a number and its units / unit multiplier. (ie to set the timestep lengths, to set the interpolation
     /// values for waveforms, etc).
     /// </summary>
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class DimensionedParameter
     {
         public static bool Equivalent(DimensionedParameter a, DimensionedParameter b) {

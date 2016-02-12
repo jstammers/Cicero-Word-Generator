@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Runtime.Serialization;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Newtonsoft.Json;
 
 namespace WordGenerator
 {
@@ -63,8 +64,10 @@ namespace WordGenerator
                     return null;
 
                 try
-                {
-                    return Common.loadBinaryObjectFromFile(path);
+                { 
+                   object obj = Common.loadBinaryObjectFromFile(path);
+                   return obj;
+                    
                 }
                 catch (FileNotFoundException e)
                 {
@@ -86,10 +89,17 @@ namespace WordGenerator
                     Console.WriteLine("SaveAndLoad.Load(), IOException: " + e.Message);
                     safeMessageLog(new MessageEvent("SaveAndLoad.Load(), ArgumentNullException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
                 }
-                
+                catch (JsonException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), JsonException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), JsonException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
                 return null;
             }
-
+            private static void LoadJson(string path, object obj)
+            {
+                JsonConvert.PopulateObject(File.ReadAllText(path), obj);
+            }
 
 
             /// <summary>
@@ -112,7 +122,7 @@ namespace WordGenerator
             /// <param name="saveOldFile"></param>
             public static void Save(string path, object obj, bool saveOldFile)
             {
-                BinaryFormatter b = new BinaryFormatter();
+               
                 
                 
 
@@ -158,10 +168,23 @@ namespace WordGenerator
                     #endregion
 
                 // Since we have created a backup, it ought to be okay to clobber the old!
-                using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+                if (path.EndsWith(".json"))
                 {
-                    b.Serialize(fs, obj);
+                  JsonSerializer json = new JsonSerializer();
+                        string json_obj = JsonConvert.SerializeObject(obj, Formatting.Indented);
+                    File.WriteAllText(path, json_obj);
+                    
                 }
+                else
+                {
+                    //otherwise, it saves as a binary
+                    using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+                    {
+                        BinaryFormatter b = new BinaryFormatter();
+                        b.Serialize(fs, obj);
+                    }
+                }
+                
             }
 
 
@@ -269,14 +292,23 @@ namespace WordGenerator
 
                 if (path != null)
                 {
+                    if (path.EndsWith(".json"))
+                    {
+                        loadMe = new SequenceData();
+                        LoadJson(path, loadMe);
+                    }
+                    else
                     loadMe = Load(path) as SequenceData;
                 }
                 else
                 {
+                    loadMe = new SequenceData();
                     path =
                         SharedForms.PromptOpenFileDialog(FileNameStrings.FriendlyNames.SequenceData, FileNameStrings.Extensions.SequenceData);
-
-                    loadMe = Load(path) as SequenceData;
+                    if (path.EndsWith(".json"))
+                        LoadJson(path, loadMe);
+                    else
+                        loadMe = Load(path) as SequenceData;
                 }
 
                 if (loadMe != null)
