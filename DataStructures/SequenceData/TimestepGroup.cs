@@ -54,13 +54,12 @@ namespace DataStructures
         }
 
         private DimensionedParameter loopCount;
-
         public DimensionedParameter LoopCount
         {
             get
             {
                 if (loopCount == null)
-                    loopCount = new DimensionedParameter(Units.Dimension.unity);
+                    loopCount = new DimensionedParameter(Units.Dimension.unit);
                 return loopCount;
             }
             set { loopCount = value; }

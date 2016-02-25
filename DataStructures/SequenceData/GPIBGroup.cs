@@ -139,7 +139,7 @@ namespace DataStructures
                     if (volts == null)
                         volts = new Waveform();
                     if (frequency == null)
-                        frequency = new Waveform(Units.Dimension.Hz);
+                        frequency = new Waveform(Units.Dimension.Hertz);
                 }
             }
         }

@@ -64,9 +64,9 @@ namespace WordGenerator
                     return null;
 
                 try
-                { 
-                   object obj = Common.loadBinaryObjectFromFile(path);
-                   return obj;
+                {
+                  
+                    return Common.loadBinaryObjectFromFile(path);
                     
                 }
                 catch (FileNotFoundException e)
@@ -96,12 +96,109 @@ namespace WordGenerator
                 }
                 return null;
             }
-            private static void LoadJson(string path, object obj)
+            #region Json deserialize methods
+            private static SettingsData LoadSettingsJson(string path)
             {
-                JsonConvert.PopulateObject(File.ReadAllText(path), obj);
+                try
+                {
+                    return JsonConvert.DeserializeObject<SettingsData>(File.ReadAllText(path));
+                }
+                catch (FileNotFoundException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), FileNotFoundException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), FileNotFoundException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                catch (SerializationException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), SerializationException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), SerializationException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                catch (ArgumentNullException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), IOException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), IOException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), IOException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), ArgumentNullException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                catch (JsonException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), JsonException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), JsonException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                return null;
             }
 
+            private static SequenceData LoadSequenceJson(string path)
+            {
+                try
+                {
+                    return JsonConvert.DeserializeObject<SequenceData>(File.ReadAllText(path));
+                }
+                catch (FileNotFoundException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), FileNotFoundException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), FileNotFoundException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                catch (SerializationException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), SerializationException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), SerializationException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                catch (ArgumentNullException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), IOException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), IOException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), IOException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), ArgumentNullException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                catch (JsonException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), JsonException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), JsonException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                return null;
+            }
 
+            private static ClientStartupSettings LoadClientJson(string path)
+            {
+                try
+                {
+                    return JsonConvert.DeserializeObject<ClientStartupSettings>(File.ReadAllText(path));
+                }
+                catch (FileNotFoundException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), FileNotFoundException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), FileNotFoundException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                catch (SerializationException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), SerializationException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), SerializationException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                catch (ArgumentNullException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), IOException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), IOException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), IOException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), ArgumentNullException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                catch (JsonException e)
+                {
+                    Console.WriteLine("SaveAndLoad.Load(), JsonException: " + e.Message);
+                    safeMessageLog(new MessageEvent("SaveAndLoad.Load(), JsonException: " + e.Message, 0, MessageEvent.MessageTypes.Error));
+                }
+                return null;
+            }
+            #endregion
             /// <summary>
             /// Saves an object to the specified path using the .NET BinaryFormatter. In contrast to the Load(string path)
             /// method, Save(...) does NOT internally catch any exceptions. Furthermore, If a file already exists at the target 
@@ -171,7 +268,7 @@ namespace WordGenerator
                 if (path.EndsWith(".json"))
                 {
                   JsonSerializer json = new JsonSerializer();
-                        string json_obj = JsonConvert.SerializeObject(obj, Formatting.Indented);
+                        string json_obj = JsonConvert.SerializeObject(obj, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, ReferenceLoopHandling = ReferenceLoopHandling.Error });
                     File.WriteAllText(path, json_obj);
                     
                 }
@@ -212,6 +309,9 @@ namespace WordGenerator
             public static void LoadClientStartupSettings(string path)
             {
                 //string targetFile;
+                if (path.EndsWith(".json"))
+                clientStartupSettings = LoadClientJson(path);
+                else
                 clientStartupSettings = Load(path) as ClientStartupSettings;
                 
                 if (clientStartupSettings == null) // Failed to load ClientStartupSettings in the first pass. Probably file doesn't exist.
@@ -243,6 +343,9 @@ namespace WordGenerator
 
                 if (path != null)
                 {
+                    if (path.EndsWith(".json"))
+                        loadedSettings = LoadSettingsJson(path);
+                    else
                     loadedSettings = Load(path) as SettingsData;                    
                 }
                 else
@@ -250,7 +353,11 @@ namespace WordGenerator
                     path =
                         SharedForms.PromptOpenFileDialog(FileNameStrings.FriendlyNames.ClientSettingsData, FileNameStrings.Extensions.ClientSettingsData);
 
-                    object loadedObject = Load(path);
+                    SettingsData loadedObject;
+                    if (path.EndsWith(".json"))
+                        loadedObject = LoadSettingsJson(path);
+                    else
+                        loadedObject = Load(path) as SettingsData;
 
 #if DEBUG
                     if (!(loadedSettings is SettingsData))
@@ -261,8 +368,10 @@ namespace WordGenerator
                                  );
                     }
 #endif
-
-                    loadedSettings = Load(path) as SettingsData;
+                    if (path.EndsWith(".json"))
+                        loadedSettings = LoadSettingsJson(path);
+                    else
+                        loadedSettings = Load(path) as SettingsData;
                 }
 
                 if (loadedSettings != null)
@@ -281,7 +390,9 @@ namespace WordGenerator
             {
                     string path =
                         SharedForms.PromptOpenFileDialog(FileNameStrings.FriendlyNames.SequenceData, FileNameStrings.Extensions.SequenceData);
-
+                    if (path.EndsWith(".json"))
+                    return LoadSequenceJson(path);
+                    else
                     return  Load(path) as SequenceData;
             }
 
@@ -293,10 +404,7 @@ namespace WordGenerator
                 if (path != null)
                 {
                     if (path.EndsWith(".json"))
-                    {
-                        loadMe = new SequenceData();
-                        LoadJson(path, loadMe);
-                    }
+                        loadMe = LoadSequenceJson(path);
                     else
                     loadMe = Load(path) as SequenceData;
                 }
@@ -306,7 +414,7 @@ namespace WordGenerator
                     path =
                         SharedForms.PromptOpenFileDialog(FileNameStrings.FriendlyNames.SequenceData, FileNameStrings.Extensions.SequenceData);
                     if (path.EndsWith(".json"))
-                        LoadJson(path, loadMe);
+                        loadMe = LoadSequenceJson(path);
                     else
                         loadMe = Load(path) as SequenceData;
                 }

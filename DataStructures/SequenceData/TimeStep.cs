@@ -315,7 +315,7 @@ namespace DataStructures
         public TimeStep()
         {
             digitalData = new Dictionary<int, DigitalDataPoint>();
-            stepDuration = new DimensionedParameter(Units.Dimension.s);
+            stepDuration = new DimensionedParameter(Units.Dimension.sec);
         }
 
         public TimeStep(string timeStepName) : this()

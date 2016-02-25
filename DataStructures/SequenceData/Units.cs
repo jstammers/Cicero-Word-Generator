@@ -38,7 +38,7 @@ namespace DataStructures
                     return true;
                 return false;
             }
-
+            
             public class DimensionTypeConverter : EnumWrapperTypeConverter
             {
                 public DimensionTypeConverter() : base(Dimension.allDimensions) 
@@ -46,21 +46,28 @@ namespace DataStructures
                 }
             }
 
-            private enum DimensionID { unity, s, V, Hz, A, Degrees };
+            private enum DimensionID { unity, s, Vo, Hz, A, Degree };
+            [JsonProperty]
 			private DimensionID myDimensionID;
 
+   
 			private static readonly string[] DimensionString = {
 				"", "s", "V", "Hz", "A", "deg"};
-
+    
             private static readonly string[] DimensionFullName = {
                 "dimensionless", "seconds", "volts", "hertz", "amps", "degrees"};
 
-			public static readonly Dimension unity = new Dimension(DimensionID.unity);
-			public static readonly Dimension s = new Dimension(DimensionID.s);
-			public static readonly Dimension V = new Dimension(DimensionID.V);
-			public static readonly Dimension Hz = new Dimension(DimensionID.Hz);
-            public static readonly Dimension A = new Dimension(DimensionID.A);
-            public static readonly Dimension Degrees = new Dimension(DimensionID.Degrees);
+            public static readonly Dimension unit = new Dimension(DimensionID.unity);
+
+            public static readonly Dimension sec = new Dimension(DimensionID.s);
+
+            public static readonly Dimension Volt = new Dimension(DimensionID.Vo);
+
+            public static readonly Dimension Hertz = new Dimension(DimensionID.Hz);
+
+            public static readonly Dimension Amp = new Dimension(DimensionID.A);
+      
+            public static readonly Dimension Deg = new Dimension(DimensionID.Degree);
 
             /// <summary>
             /// This property gives a list of commonly used multipliers for this dimension type.
@@ -68,7 +75,7 @@ namespace DataStructures
             /// in a combo box, rather than presenting the user with a long list of impractical multipliers for
             /// a particular dimension type (ie Gs, or nHz)
             /// </summary>
-            /// 
+            ///
             public Multiplier[] commonlyUsedMultipliers { 
                 get 
                 {
@@ -83,6 +90,7 @@ namespace DataStructures
             /// commonlyUsedMultipliers[Dimension.v] is an array of the multipliers commonly applied to Volts.
             /// The array is used by the property above.
             /// </summary>
+
             private static readonly Multiplier[][] commonlyUsedMultipliersArray =
             {   Multiplier.allMultipliers, // unity
                 new Multiplier[] {Multiplier.u, Multiplier.m, Multiplier.unity}, // s
@@ -92,7 +100,7 @@ namespace DataStructures
                 new Multiplier [] {Multiplier.unity} // deg
             };
 
-            public static readonly Dimension[] allDimensions = {unity, s, V, Hz, A, Degrees};
+            public static readonly Dimension[] allDimensions = {unit, sec, Volt, Hertz, Amp, Deg};
 
 	        public override string  ToString()
             {
@@ -122,21 +130,32 @@ namespace DataStructures
                 }
             }
 
-            private enum MultiplierID { n, u, m, unity, k, M, G };
+            private enum MultiplierID { na, um, mi, unit, ki, Me, Gi };
+     
             private static readonly double[] MultiplierValue = { .000000001, .000001, .001, 1, 1000, 1000000, 1000000000 };
+     
             private static readonly string[] MultiplierString = { "n", "u", "m", "", "k", "M", "G" };
+
             private static readonly string[] MultiplierFullName = {"nano", "micro", "milli", "", "kilo", "mega", "giga"};
 
-            public static readonly Multiplier n = new Multiplier(MultiplierID.n);
-            public static readonly Multiplier u = new Multiplier(MultiplierID.u);
-            public static readonly Multiplier m = new Multiplier(MultiplierID.m);
-            public static readonly Multiplier unity = new Multiplier(MultiplierID.unity);
-            public static readonly Multiplier k = new Multiplier(MultiplierID.k);
-            public static readonly Multiplier M = new Multiplier(MultiplierID.M);
-            public static readonly Multiplier G = new Multiplier(MultiplierID.G);
+   
+            public static readonly Multiplier n = new Multiplier(MultiplierID.na);
+      
+            public static readonly Multiplier u = new Multiplier(MultiplierID.um);
+ 
+            public static readonly Multiplier m = new Multiplier(MultiplierID.mi);
+      
+            public static readonly Multiplier unity = new Multiplier(MultiplierID.unit);
+
+            public static readonly Multiplier k = new Multiplier(MultiplierID.ki);
+
+            public static readonly Multiplier M = new Multiplier(MultiplierID.Me);
+
+            public static readonly Multiplier G = new Multiplier(MultiplierID.Gi);
+
 
             public static readonly Multiplier[] allMultipliers = {n, u, m, unity, k, M, G};
-
+            [JsonProperty]
             private MultiplierID myMultiplierID;
 
             private Multiplier(MultiplierID multID) {
@@ -174,14 +193,14 @@ namespace DataStructures
 
 
         private Dimension myDimension;
-
+        [JsonProperty]
         public Dimension dimension
         {
             get { return myDimension; }
             set { myDimension = value; }
         }
         private Multiplier myMultiplier;
-
+        [JsonProperty]
         public Multiplier multiplier
         {
             get { return myMultiplier; }
@@ -216,23 +235,30 @@ namespace DataStructures
                     {
                         myDimension = dim;
                         myMultiplier = mul;
+
                         return;
                     }
                 }
 
             throw new Exception("Unrecognized Unit type " + unitString + " passed to Units(string unitString) constructor.");
         }
-
+        [JsonConstructor]
         public Units(Dimension dimension, Multiplier multiplier) : this()
         {
             this.dimension = dimension;
             this.multiplier = multiplier;
         }
 
-        public static readonly Units V = new Units(Dimension.V, Multiplier.unity);
-        public static readonly Units Hz = new Units(Dimension.Hz, Multiplier.unity);
-        public static readonly Units s = new Units(Dimension.s, Multiplier.unity);
-        public static readonly Units A = new Units(Dimension.A, Multiplier.unity);
-        public static readonly Units deg = new Units(Dimension.Degrees, Multiplier.unity);
+        [JsonIgnore]
+        public static readonly Units V = new Units(Dimension.Volt, Multiplier.unity);
+        [JsonIgnore]
+        public static readonly Units Hz = new Units(Dimension.Hertz, Multiplier.unity);
+        [JsonIgnore]
+        public static readonly Units s = new Units(Dimension.sec, Multiplier.unity);
+        [JsonIgnore]
+        public static readonly Units A = new Units(Dimension.Amp, Multiplier.unity);
+        [JsonIgnore]
+        public static readonly Units deg = new Units(Dimension.Deg, Multiplier.unity);
+
 	}
 }

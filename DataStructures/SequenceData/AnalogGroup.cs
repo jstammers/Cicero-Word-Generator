@@ -160,7 +160,7 @@ namespace DataStructures
     /// <summary>
     /// Contains all the channel-specific information in an analog group.
     /// </summary>
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class AnalogGroupChannelData
     {
         /// <summary>

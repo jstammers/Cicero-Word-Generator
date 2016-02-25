@@ -127,7 +127,7 @@ namespace DataStructures
             this.units = units;
             this.parameter.forceToManualValue(manualValue);
         }
-
+        [JsonConstructor]
         public DimensionedParameter(Units.Dimension dim)
         {
             this.parameter.ManualValue = 1;
@@ -135,7 +135,7 @@ namespace DataStructures
             this.units.dimension = dim;
             this.units.multiplier = Units.Multiplier.unity;
         }
-
+        
         public DimensionedParameter(DimensionedParameter parameter)
         {
             this.parameter = parameter.parameter;

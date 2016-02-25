@@ -256,8 +256,8 @@ namespace DataStructures
             private static readonly Units.Dimension[][] ExtraParameterDimensions = {
 				new Units.Dimension[] {},
 				new Units.Dimension[] {},
-				new Units.Dimension[] {Units.Dimension.V, Units.Dimension.V, Units.Dimension.s, Units.Dimension.s, Units.Dimension.s},
-				new Units.Dimension[] {Units.Dimension.V, Units.Dimension.V, Units.Dimension.Hz, Units.Dimension.Degrees},
+				new Units.Dimension[] {Units.Dimension.Volt, Units.Dimension.Volt, Units.Dimension.sec, Units.Dimension.sec, Units.Dimension.sec},
+				new Units.Dimension[] {Units.Dimension.Volt, Units.Dimension.Volt, Units.Dimension.Hertz, Units.Dimension.Deg},
 				new Units.Dimension[] {},
                 new Units.Dimension[] {}, // Combine
                 new Units.Dimension[] {} // Equation
@@ -946,7 +946,7 @@ namespace DataStructures
                 {
                     for (int i = xValues.Count; i < myInterpolationType.xyParametersCount; i++)
                     {
-                        xValues.Add(new DimensionedParameter(Units.Dimension.s));
+                        xValues.Add(new DimensionedParameter(Units.Dimension.sec));
                         yValues.Add(new DimensionedParameter(YUnits));
                         xValues[i].parameter.ManualValue = i;
                     }
@@ -1074,7 +1074,7 @@ namespace DataStructures
             set { combiners = value; }
         }
 
-        private DimensionedParameter waveformDuration = new DimensionedParameter(Units.Dimension.s);
+        private DimensionedParameter waveformDuration = new DimensionedParameter(Units.Dimension.sec);
 
         [Description("The duration of this waveform."), Category("Parameters.")]
         public DimensionedParameter WaveformDuration
@@ -1242,7 +1242,7 @@ namespace DataStructures
         }
 
 
-        public Units.Dimension YUnits = Units.Dimension.V;
+        public Units.Dimension YUnits = Units.Dimension.Volt;
 
         public Waveform(Units.Dimension nonStandardYAxisUnits)
         {

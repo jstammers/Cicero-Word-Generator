@@ -72,7 +72,7 @@ namespace WordGenerator.Controls
 
         public IParameterEditor()
         {
-            this.setParameter(new DimensionedParameter(Units.Dimension.unity));
+            this.setParameter(new DimensionedParameter(Units.Dimension.unit));
             InitializeComponent();
         }
 

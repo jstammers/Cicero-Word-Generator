@@ -34,7 +34,7 @@ namespace DataStructures
         {
             prefix = "";
             postfix = "";
-            parameter = new DimensionedParameter(Units.Dimension.unity);
+            parameter = new DimensionedParameter(Units.Dimension.unit);
         }
 
         public override string ToString()
