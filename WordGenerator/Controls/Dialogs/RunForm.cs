@@ -1077,7 +1077,7 @@ namespace WordGenerator
 
                 addMessageLogText(this, new MessageEvent("Finished run. Writing log file..."));
                 RunLog runLog = new RunLog(runStartTime, formCreationTime, sequence, Storage.settingsData, WordGenerator.MainClientForm.instance.OpenSequenceFileName, WordGenerator.MainClientForm.instance.OpenSettingsFileName);
-                string fileName = runLog.WriteLogFile();
+                string fileName = runLog.WriteLogFile(Storage.settingsData.SaveDataAsJson);
 
                 if (fileName != null)
                 {
