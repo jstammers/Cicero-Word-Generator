@@ -37,6 +37,11 @@ namespace DataStructures
 
         [NonSerialized]
         private List<string> connectedServerNames;
+        
+        public List<string> ConnectedServers
+        {
+            get { return connectedServerNames; }
+        }
 
         [Description("List of servers. Add servers to this list to connect to new servers.")]
         public List<ServerInfo> Servers
@@ -66,10 +71,10 @@ namespace DataStructures
             Disconnected_Normal, Disconnected_Error, Disabled, Not_Responding,
         Error_Name_Not_Unique};
 
-        [NonSerialized]
         private Dictionary<ServerInfo, ConnectionStatus> connections;
 
         [Description("A list, indexed by server name or server IP address, of the connection status of the servers.")]
+        [JsonIgnore] //This requires a custom TypeConverter to instuct JSON.net to convert from a string key to a ServerInfo key
         public Dictionary<ServerInfo, ConnectionStatus> ConnectionsStatuses
         {
             get { return connections; }

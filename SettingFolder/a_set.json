@@ -1,9 +1,14 @@
 {
+  "$id": "1",
   "logicalChannelManager": {
+    "$id": "2",
     "ChannelCollections": {
+      "$id": "3",
       "analog": {
+        "$id": "4",
         "Channels": {
           "1": {
+            "$id": "5",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -13,6 +18,7 @@
             "Name": "CTRL MPHI",
             "Description": "",
             "HardwareChannel": {
+              "$id": "6",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -33,6 +39,7 @@
             "OverrideColor": ""
           },
           "4": {
+            "$id": "7",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -42,6 +49,7 @@
             "Name": "AOM Freq +",
             "Description": "",
             "HardwareChannel": {
+              "$id": "8",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -62,6 +70,7 @@
             "OverrideColor": ""
           },
           "2": {
+            "$id": "9",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -71,6 +80,7 @@
             "Name": "CTRL MOT",
             "Description": "",
             "HardwareChannel": {
+              "$id": "10",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -91,6 +101,7 @@
             "OverrideColor": ""
           },
           "3": {
+            "$id": "11",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -100,6 +111,7 @@
             "Name": "AOM Freq Z",
             "Description": "",
             "HardwareChannel": {
+              "$id": "12",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -120,6 +132,7 @@
             "OverrideColor": ""
           },
           "5": {
+            "$id": "13",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -129,6 +142,7 @@
             "Name": "AOM Freq -",
             "Description": "",
             "HardwareChannel": {
+              "$id": "14",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -149,6 +163,7 @@
             "OverrideColor": ""
           },
           "6": {
+            "$id": "15",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -158,6 +173,7 @@
             "Name": "MOT Coil",
             "Description": "",
             "HardwareChannel": {
+              "$id": "16",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -178,6 +194,7 @@
             "OverrideColor": ""
           },
           "7": {
+            "$id": "17",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -187,6 +204,7 @@
             "Name": "AOM Att +",
             "Description": "",
             "HardwareChannel": {
+              "$id": "18",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -207,6 +225,7 @@
             "OverrideColor": ""
           },
           "8": {
+            "$id": "19",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -216,6 +235,7 @@
             "Name": "AOM Att -",
             "Description": "",
             "HardwareChannel": {
+              "$id": "20",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -236,6 +256,7 @@
             "OverrideColor": ""
           },
           "9": {
+            "$id": "21",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -245,6 +266,7 @@
             "Name": "test_anal",
             "Description": "",
             "HardwareChannel": {
+              "$id": "22",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -268,8 +290,10 @@
         "Count": 9
       },
       "digital": {
+        "$id": "23",
         "Channels": {
           "11": {
+            "$id": "24",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -279,6 +303,7 @@
             "Name": "AOM_DDS_Trig",
             "Description": "Triggers AOM DDS",
             "HardwareChannel": {
+              "$id": "25",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -299,6 +324,7 @@
             "OverrideColor": ""
           },
           "3": {
+            "$id": "26",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -308,6 +334,7 @@
             "Name": "TTL MOT",
             "Description": "",
             "HardwareChannel": {
+              "$id": "27",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -328,6 +355,7 @@
             "OverrideColor": ""
           },
           "4": {
+            "$id": "28",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -337,6 +365,7 @@
             "Name": "TTL MPhi",
             "Description": "",
             "HardwareChannel": {
+              "$id": "29",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -357,6 +386,7 @@
             "OverrideColor": ""
           },
           "8": {
+            "$id": "30",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -366,6 +396,7 @@
             "Name": "Camera",
             "Description": "",
             "HardwareChannel": {
+              "$id": "31",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -386,6 +417,7 @@
             "OverrideColor": ""
           },
           "10": {
+            "$id": "32",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -395,6 +427,7 @@
             "Name": "Slave_DDS_Trig",
             "Description": "Triggers Slave DDS",
             "HardwareChannel": {
+              "$id": "33",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -418,12 +451,15 @@
         "Count": 5
       },
       "gpib": {
+        "$id": "34",
         "Channels": {},
         "Count": 0
       },
       "rs232": {
+        "$id": "35",
         "Channels": {
           "0": {
+            "$id": "36",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -433,6 +469,7 @@
             "Name": "AOM_DDS",
             "Description": "",
             "HardwareChannel": {
+              "$id": "37",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -453,6 +490,7 @@
             "OverrideColor": ""
           },
           "1": {
+            "$id": "38",
             "hotkeyChar": "\u0000",
             "overrideHotkeyChar": "\u0000",
             "overridden": false,
@@ -462,6 +500,7 @@
             "Name": "Slaves_DDS",
             "Description": "",
             "HardwareChannel": {
+              "$id": "39",
               "gpibMasquerade": false,
               "myGpibMasqueradeType": 0,
               "isUnAssigned": false,
@@ -487,6 +526,7 @@
     },
     "AssignedHardwareChannels": [
       {
+        "$id": "40",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -502,6 +542,7 @@
         }
       },
       {
+        "$id": "41",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -517,6 +558,7 @@
         }
       },
       {
+        "$id": "42",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -532,6 +574,7 @@
         }
       },
       {
+        "$id": "43",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -547,6 +590,7 @@
         }
       },
       {
+        "$id": "44",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -562,6 +606,7 @@
         }
       },
       {
+        "$id": "45",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -577,6 +622,7 @@
         }
       },
       {
+        "$id": "46",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -592,6 +638,7 @@
         }
       },
       {
+        "$id": "47",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -607,6 +654,7 @@
         }
       },
       {
+        "$id": "48",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -622,6 +670,7 @@
         }
       },
       {
+        "$id": "49",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -637,6 +686,7 @@
         }
       },
       {
+        "$id": "50",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -652,6 +702,7 @@
         }
       },
       {
+        "$id": "51",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -667,6 +718,7 @@
         }
       },
       {
+        "$id": "52",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -682,6 +734,7 @@
         }
       },
       {
+        "$id": "53",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -697,6 +750,7 @@
         }
       },
       {
+        "$id": "54",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -712,6 +766,7 @@
         }
       },
       {
+        "$id": "55",
         "gpibMasquerade": false,
         "myGpibMasqueradeType": 0,
         "isUnAssigned": false,
@@ -729,477 +784,62 @@
     ],
     "Analogs": {
       "1": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "CTRL MPHI",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev2",
-          "ChannelName": "ao0",
-          "ChannelType": 0,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "5"
       },
       "4": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "AOM Freq +",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev2",
-          "ChannelName": "ao3",
-          "ChannelType": 0,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "7"
       },
       "2": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "CTRL MOT",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev2",
-          "ChannelName": "ao1",
-          "ChannelType": 0,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "9"
       },
       "3": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "AOM Freq Z",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev2",
-          "ChannelName": "ao2",
-          "ChannelType": 0,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "11"
       },
       "5": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "AOM Freq -",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev2",
-          "ChannelName": "ao4",
-          "ChannelType": 0,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "13"
       },
       "6": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "MOT Coil",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev2",
-          "ChannelName": "ao5",
-          "ChannelType": 0,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "15"
       },
       "7": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "AOM Att +",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev2",
-          "ChannelName": "ao6",
-          "ChannelType": 0,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "17"
       },
       "8": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "AOM Att -",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev2",
-          "ChannelName": "ao7",
-          "ChannelType": 0,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "19"
       },
       "9": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "test_anal",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev2",
-          "ChannelName": "ao8",
-          "ChannelType": 0,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "21"
       }
     },
     "Digitals": {
       "11": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "AOM_DDS_Trig",
-        "Description": "Triggers AOM DDS",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev1",
-          "ChannelName": "port0/line2",
-          "ChannelType": 1,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "24"
       },
       "3": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "TTL MOT",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev1",
-          "ChannelName": "port0/line1",
-          "ChannelType": 1,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "26"
       },
       "4": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "TTL MPhi",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev1",
-          "ChannelName": "port0/line0",
-          "ChannelType": 1,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "28"
       },
       "8": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "Camera",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev1",
-          "ChannelName": "port0/line5",
-          "ChannelType": 1,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "30"
       },
       "10": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "Slave_DDS_Trig",
-        "Description": "Triggers Slave DDS",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Dev1",
-          "ChannelName": "port0/line3",
-          "ChannelType": 1,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "32"
       }
     },
     "GPIBs": {},
     "RS232s": {
       "0": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "AOM_DDS",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Serial",
-          "ChannelName": "ASRL18::INSTR",
-          "ChannelType": 3,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "ASRL18  (COM18 - com0com - serial port emulator CNCA1)",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "36"
       },
       "1": {
-        "hotkeyChar": "\u0000",
-        "overrideHotkeyChar": "\u0000",
-        "overridden": false,
-        "digitalOverrideValue": false,
-        "analogOverrideValue": 0.0,
-        "Enabled": true,
-        "Name": "Slaves_DDS",
-        "Description": "",
-        "HardwareChannel": {
-          "gpibMasquerade": false,
-          "myGpibMasqueradeType": 0,
-          "isUnAssigned": false,
-          "ServerName": "NavServer",
-          "DeviceName": "Serial",
-          "ChannelName": "ASRL20::INSTR",
-          "ChannelType": 3,
-          "GpibDeviceType": 0,
-          "ChannelDescription": "ASRL20  (COM20 - com0com - serial port emulator CNCA0)",
-          "GpibAddress": {
-            "PrimaryAddress": 0,
-            "SecondaryAddress": 0
-          }
-        },
-        "TogglingChannel": false,
-        "AnalogChannelOutputNowUsesDwellWord": false,
-        "DoOverrideDigitalColor": false,
-        "OverrideColor": ""
+        "$ref": "38"
       }
     }
   },
   "PermanentVariables": {
+    "$id": "56",
     "MOT_DDS": 0.0
   },
   "DigitalGridColors": [
@@ -1218,21 +858,30 @@
   "SavePath": "C:\\Users\\Administrator\\Documents\\Cicero",
   "UseParisStyleFileTimestamps": true,
   "serverManager": {
+    "$id": "57",
+    "ConnectedServers": [],
     "Servers": [
       {
+        "$id": "58",
         "ServerEnabled": true,
         "ConnectOnStartup": true,
         "ServerAddress": "127.0.0.1",
         "ServerName": "NavServer"
       }
     ],
-    "ConnectionsStatuses": {
-      "NavServer": 3
-    },
     "ConnectedServersCount": 0
   },
   "RunlogDatabaseSettings": [
-    "DataStructures.Database.RunLogDatabaseSettings"
+    {
+      "$id": "59",
+      "Url": "127.0.0.1",
+      "Port": "3306",
+      "Username": "Control",
+      "Password": "Navigator",
+      "DatabaseName": "navigator",
+      "Enabled": false,
+      "VerboseErrorReporting": true
+    }
   ],
   "AlwaysUseNetworkClock": false,
   "VersionNumberAtFirstCreation": {

@@ -101,7 +101,7 @@ namespace WordGenerator
             {
                 try
                 {
-                    return JsonConvert.DeserializeObject<SettingsData>(File.ReadAllText(path));
+                    return JsonConvert.DeserializeObject<SettingsData>(File.ReadAllText(path), new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, ReferenceLoopHandling = ReferenceLoopHandling.Error});
                 }
                 catch (FileNotFoundException e)
                 {
@@ -135,7 +135,7 @@ namespace WordGenerator
             {
                 try
                 {
-                    return JsonConvert.DeserializeObject<SequenceData>(File.ReadAllText(path));
+                    return JsonConvert.DeserializeObject<SequenceData>(File.ReadAllText(path), new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, ReferenceLoopHandling = ReferenceLoopHandling.Error});
                 }
                 catch (FileNotFoundException e)
                 {
@@ -169,7 +169,7 @@ namespace WordGenerator
             {
                 try
                 {
-                    return JsonConvert.DeserializeObject<ClientStartupSettings>(File.ReadAllText(path));
+                    return JsonConvert.DeserializeObject<ClientStartupSettings>(File.ReadAllText(path), new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, ReferenceLoopHandling = ReferenceLoopHandling.Error});
                 }
                 catch (FileNotFoundException e)
                 {
@@ -267,8 +267,8 @@ namespace WordGenerator
                 // Since we have created a backup, it ought to be okay to clobber the old!
                 if (path.EndsWith(".json"))
                 {
-                  JsonSerializer json = new JsonSerializer();
-                        string json_obj = JsonConvert.SerializeObject(obj, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, ReferenceLoopHandling = ReferenceLoopHandling.Error });
+                    JsonSerializer json = new JsonSerializer();
+                        string json_obj = JsonConvert.SerializeObject(obj, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, ReferenceLoopHandling = ReferenceLoopHandling.Error});
                     File.WriteAllText(path, json_obj);
                     
                 }

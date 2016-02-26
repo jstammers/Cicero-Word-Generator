@@ -65,7 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnumWrapperJsonConverter.cs" />
+    <Compile Include="DictionaryAsArrayResolver.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="ConsoleOutput.cs" />
     <Compile Include="DataStructuresVersionNumber.cs" />

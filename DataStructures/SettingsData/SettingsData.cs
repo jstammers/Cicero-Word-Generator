@@ -145,7 +145,7 @@ namespace DataStructures
 
 
 
-        [TypeConverter(typeof(ExpandableObjectConverter)), Serializable]
+        [TypeConverter(typeof(ExpandableObjectConverter)), Serializable,JsonObject]
         public class IPAdresses
         {
             private string PcAddress;
