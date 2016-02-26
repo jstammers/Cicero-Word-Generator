@@ -143,7 +143,15 @@ namespace DataStructures
         }
         #endregion
 
-
+        #region Json Save Settings
+        private bool saveDataAsJson;
+        [Description("Chooses whether to save data as binary files or json objects. In general, json files are larger in size, but they are easier to read and modify."), Category("Global")]
+        public bool SaveDataAsJson
+        {
+            get { return saveDataAsJson; }
+            set { saveDataAsJson = value; }
+        }
+        #endregion
 
         [TypeConverter(typeof(ExpandableObjectConverter)), Serializable,JsonObject]
         public class IPAdresses

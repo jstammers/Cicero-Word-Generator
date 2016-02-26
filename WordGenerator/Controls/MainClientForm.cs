@@ -224,7 +224,7 @@ namespace WordGenerator
 
             if (runLog == null)
             {
-                // Identify the clientStartupSettingsFile
+                // Identify the clientStartupSettingsFile - loads from the Json if it exists
                 clientStartupSettingsFile = FileNameStrings.DefaultClientStartupSettingsFile;
 
                 // Load all necessary data into Storage

@@ -272,7 +272,7 @@ namespace WordGenerator
                     File.WriteAllText(path, json_obj);
                     
                 }
-                else
+                else if (path != null)
                 {
                     //otherwise, it saves as a binary
                     using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
@@ -311,7 +311,7 @@ namespace WordGenerator
                 //string targetFile;
                 if (path.EndsWith(".json"))
                 clientStartupSettings = LoadClientJson(path);
-                else
+                else if (path != null)
                 clientStartupSettings = Load(path) as ClientStartupSettings;
                 
                 if (clientStartupSettings == null) // Failed to load ClientStartupSettings in the first pass. Probably file doesn't exist.
@@ -324,8 +324,8 @@ namespace WordGenerator
                       MessageBox.Show("Proceeding with default ClientStartupSettings!"); */
                         clientStartupSettings = new ClientStartupSettings();
 
-                        // Also, give it the default name
-                        clientStartupSettingsFileName = FileNameStrings.DefaultClientStartupSettingsFile;
+                    // Also, give it the default name
+                    clientStartupSettingsFileName = FileNameStrings.DefaultClientStartupSettingsFile;
                     /*}
                     else
                     {
@@ -346,15 +346,20 @@ namespace WordGenerator
                     if (path.EndsWith(".json"))
                         loadedSettings = LoadSettingsJson(path);
                     else
-                    loadedSettings = Load(path) as SettingsData;                    
+                        loadedSettings = Load(path) as SettingsData;                    
                 }
                 else
                 {
+                    string ext;
+                    if (settingsData.SaveDataAsJson)
+                        ext = FileNameStrings.Extensions.JsonData;
+                    else
+                        ext = FileNameStrings.Extensions.ClientSettingsData;
                     path =
-                        SharedForms.PromptOpenFileDialog(FileNameStrings.FriendlyNames.ClientSettingsData, FileNameStrings.Extensions.ClientSettingsData);
+                        SharedForms.PromptOpenFileDialog(FileNameStrings.FriendlyNames.ClientSettingsData,ext);
 
                     SettingsData loadedObject;
-                    if (path.EndsWith(".json"))
+                    if (path.EndsWith(".json") && path != null)
                         loadedObject = LoadSettingsJson(path);
                     else
                         loadedObject = Load(path) as SettingsData;
@@ -388,9 +393,14 @@ namespace WordGenerator
 
             public static SequenceData LoadSequenceWithFileDialog()
             {
-                    string path =
-                        SharedForms.PromptOpenFileDialog(FileNameStrings.FriendlyNames.SequenceData, FileNameStrings.Extensions.SequenceData);
-                    if (path.EndsWith(".json"))
+                string ext;
+                if (settingsData.SaveDataAsJson)
+                    ext = FileNameStrings.Extensions.JsonData;
+                else
+                    ext = FileNameStrings.Extensions.SequenceData;
+                string path =
+                        SharedForms.PromptOpenFileDialog(FileNameStrings.FriendlyNames.SequenceData, ext);
+                    if (path.EndsWith(".json") && path != null)
                     return LoadSequenceJson(path);
                     else
                     return  Load(path) as SequenceData;
@@ -410,10 +420,15 @@ namespace WordGenerator
                 }
                 else
                 {
+                    string ext;
+                    if (settingsData.SaveDataAsJson)
+                        ext = FileNameStrings.Extensions.JsonData;
+                    else
+                        ext = FileNameStrings.Extensions.SequenceData;
                     loadMe = new SequenceData();
                     path =
-                        SharedForms.PromptOpenFileDialog(FileNameStrings.FriendlyNames.SequenceData, FileNameStrings.Extensions.SequenceData);
-                    if (path.EndsWith(".json"))
+                        SharedForms.PromptOpenFileDialog(FileNameStrings.FriendlyNames.SequenceData, ext);
+                    if (path != null && path.EndsWith(".json"))
                         loadMe = LoadSequenceJson(path);
                     else
                         loadMe = Load(path) as SequenceData;
@@ -444,17 +459,21 @@ namespace WordGenerator
                 Save(AppDomain.CurrentDomain.BaseDirectory + clientStartupSettingsFileName, clientStartupSettings);
             }
             public static void SaveClientStartupSettings(string path)
-            {
+            {      
                 Save(path, clientStartupSettings);
             }
 
 
             public static void SaveSettingsData(string path)
             {
-
+                string ext;
+                if (settingsData.SaveDataAsJson)
+                    ext = FileNameStrings.Extensions.JsonData;
+                else
+                    ext = FileNameStrings.Extensions.ClientSettingsData;
                 if (path == null)
                 {
-                    path = SharedForms.PromptSaveFile(FileNameStrings.FriendlyNames.ClientSettingsData, FileNameStrings.Extensions.ClientSettingsData);
+                    path = SharedForms.PromptSaveFile(FileNameStrings.FriendlyNames.ClientSettingsData, ext);
                     if (path != null)
                     {
                         Save(path, settingsData);
@@ -476,9 +495,14 @@ namespace WordGenerator
 
             public static void SaveSequenceData(string path, SequenceData sequence)
             {
+                string ext;
+                if (settingsData.SaveDataAsJson)
+                    ext = FileNameStrings.Extensions.JsonData;
+                else
+                    ext = FileNameStrings.Extensions.SequenceData;
                 if (path == null)
                 {
-                    path = SharedForms.PromptSaveFile(FileNameStrings.FriendlyNames.SequenceData, FileNameStrings.Extensions.SequenceData);
+                    path = SharedForms.PromptSaveFile(FileNameStrings.FriendlyNames.SequenceData, ext);
                 }
 
                 if (path != null)
