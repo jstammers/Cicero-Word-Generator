@@ -2607,10 +2607,11 @@ namespace AtticusServer
                     myDeviceDescriptions.Add(devices[i], device.ProductType);
                     string[] analogs = device.AOPhysicalChannels;
                     string[] digitalLines = device.DOLines;
+                    string[] analogIns = device.AIPhysicalChannels;
 
                     //analogHardWareStructure stores the number of analog outputs the card has. This is useful later when generating buffers
                     int analogHardwareStructure = analogs.Length;
-
+                    int analogInputStructure = analogIns.Length;
 
                     //digitalHardwareStructure holds information about the port/line structure on the card. It is a variable length array. The length of the
                     //array corresponds to all of the ports, while the value in each array index is the number of lines on that port (usualy 8 or 32).
@@ -2715,7 +2716,18 @@ namespace AtticusServer
                                 }
                             }
                         }
-
+                        if (serverSettings.myDevicesSettings[devices[i]].AnalogInEnabled)
+                        {
+                            for (int j = 0; j<analogIns.Length;j++)
+                            {
+                                string channelName = justTheChannelName(analogIns[j], devices[i]);
+                                HardwareChannel hc = new HardwareChannel(this.myServerSettings.ServerName, devices[i], channelName, HardwareChannel.HardwareConstants.ChannelTypes.analogIn);
+                                if (!serverSettings.ExcludedChannels.Contains(hc))
+                                {
+                                    myHardwareChannels.Add(hc);
+                                }
+                            }
+                        }
                         if (serverSettings.myDevicesSettings[devices[i]].DigitalChannelsEnabled)
                         {
                             for (int j = 0; j < digitalLines.Length; j++)
