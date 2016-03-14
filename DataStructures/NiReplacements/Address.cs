@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-
+using Newtonsoft.Json;
 namespace DataStructures.Gpib
 {
-    [Serializable, TypeConverter(typeof(ExpandableStructConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableStructConverter)),JsonObject]
     public struct Address
     {
 

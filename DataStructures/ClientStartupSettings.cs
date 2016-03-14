@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
     /// <summary>
@@ -15,7 +15,7 @@ namespace DataStructures
     ///     3) List of recently-opened sequence files
     /// </summary>
     
-    [Serializable]
+    [Serializable,JsonObject]
     public class ClientStartupSettings
     {
         public List<string> recentFiles;

@@ -8,14 +8,14 @@ using System.Runtime.Remoting;
 using System.Runtime.Serialization;
 using System.Reflection;
 using System.Threading;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
     /// <summary>
     /// Stores information about what servers to connect to. Also used to communicate with servers in a multi-threaded
     /// way so as not to block UI threads, and so as to catch and handle .NET remoting exceptions should they occur.
     /// </summary>
-    [TypeConverter(typeof(ExpandableObjectConverter)), Serializable]
+    [TypeConverter(typeof(ExpandableObjectConverter)), Serializable,JsonObject]
     public class ServerManager
     {
         /// <summary>
@@ -37,6 +37,11 @@ namespace DataStructures
 
         [NonSerialized]
         private List<string> connectedServerNames;
+        
+        public List<string> ConnectedServers
+        {
+            get { return connectedServerNames; }
+        }
 
         [Description("List of servers. Add servers to this list to connect to new servers.")]
         public List<ServerInfo> Servers
@@ -66,10 +71,10 @@ namespace DataStructures
             Disconnected_Normal, Disconnected_Error, Disabled, Not_Responding,
         Error_Name_Not_Unique};
 
-        [NonSerialized]
         private Dictionary<ServerInfo, ConnectionStatus> connections;
 
         [Description("A list, indexed by server name or server IP address, of the connection status of the servers.")]
+        [JsonIgnore] //This requires a custom TypeConverter to instuct JSON.net to convert from a string key to a ServerInfo key
         public Dictionary<ServerInfo, ConnectionStatus> ConnectionsStatuses
         {
             get { return connections; }

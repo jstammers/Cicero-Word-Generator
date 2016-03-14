@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 using DataStructures;
+using Newtonsoft.Json;
 
 namespace DataStructures
 {
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class Variable
     {
         public static readonly string EQUATION_ERROR_RECURSIVE = "Recursive variable reference detected.";

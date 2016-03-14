@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class StringParameterString
     {
         private string prefix;
@@ -34,7 +34,7 @@ namespace DataStructures
         {
             prefix = "";
             postfix = "";
-            parameter = new DimensionedParameter(Units.Dimension.unity);
+            parameter = new DimensionedParameter(Units.Dimension.unit);
         }
 
         public override string ToString()

@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class GPIBGroup : Group<GPIBGroupChannelData>
     {
         public GPIBGroup(string groupName)
@@ -65,11 +65,11 @@ namespace DataStructures
 
 
 
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class GPIBGroupChannelData
     {
 
-        [Serializable, TypeConverter(typeof(GpibChannelDataType.GpibChannelDataTypeConverter))]
+        [Serializable, TypeConverter(typeof(GpibChannelDataType.GpibChannelDataTypeConverter)),JsonObject]
         public struct GpibChannelDataType
         {
             public class GpibChannelDataTypeConverter : EnumWrapperTypeConverter
@@ -139,7 +139,7 @@ namespace DataStructures
                     if (volts == null)
                         volts = new Waveform();
                     if (frequency == null)
-                        frequency = new Waveform(Units.Dimension.Hz);
+                        frequency = new Waveform(Units.Dimension.Hertz);
                 }
             }
         }

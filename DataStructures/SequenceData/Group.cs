@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace DataStructures
 {
@@ -11,7 +12,7 @@ namespace DataStructures
     /// on one timestep.
     /// </summary>
     /// <typeparam name="?"></typeparam>
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     abstract public class Group<ChannelDataType> 
         where ChannelDataType : new()
     {
