@@ -71,7 +71,13 @@ namespace DataStructures
                 return channelCollections[HardwareChannel.HardwareConstants.ChannelTypes.digital].Channels;
             }
         }
-
+        public Dictionary<int, LogicalChannel> AnalogIns
+        {
+            get
+            {
+                return channelCollections[HardwareChannel.HardwareConstants.ChannelTypes.analogIn].Channels;
+            }
+        }
         public Dictionary<int, LogicalChannel> GPIBs
         {
             get

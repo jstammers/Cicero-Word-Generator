@@ -49,7 +49,6 @@ namespace WordGenerator.Controls
             this.analogOverridesCountLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.leftColumnPanel = new System.Windows.Forms.Panel();
-            this.runControl1 = new WordGenerator.Controls.RunControl();
             this.sequenceViewPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.upperRowPanel = new System.Windows.Forms.Panel();
@@ -59,13 +58,14 @@ namespace WordGenerator.Controls
             this.modeBox = new System.Windows.Forms.ComboBox();
             this.digitalAnalogSplitContainer = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.digitalGridPanel = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.runControl1 = new WordGenerator.Controls.RunControl();
             this.analogChannelLabelsPanel = new WordGenerator.Controls.AnalogChannelLabelsPanel();
             this.analogPreviewPane = new WordGenerator.Controls.AnalogPreviewPane();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.digitalChannelLabelsPanel = new WordGenerator.Controls.DigitalChannelLabelsPanel();
-            this.digitalGridPanel = new System.Windows.Forms.Panel();
             this.digitalGrid = new WordGenerator.Controls.DigitalGrid();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.timeStepsPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -75,6 +75,7 @@ namespace WordGenerator.Controls
             this.upperRowPanel.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.upperCornerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.digitalAnalogSplitContainer)).BeginInit();
             this.digitalAnalogSplitContainer.Panel1.SuspendLayout();
             this.digitalAnalogSplitContainer.Panel2.SuspendLayout();
             this.digitalAnalogSplitContainer.SuspendLayout();
@@ -100,12 +101,12 @@ namespace WordGenerator.Controls
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addNewTimestepToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(176, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(164, 26);
             // 
             // addNewTimestepToolStripMenuItem
             // 
             this.addNewTimestepToolStripMenuItem.Name = "addNewTimestepToolStripMenuItem";
-            this.addNewTimestepToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.addNewTimestepToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.addNewTimestepToolStripMenuItem.Text = "Add New Timestep";
             this.addNewTimestepToolStripMenuItem.Click += new System.EventHandler(this.addNewTimestepToolStripMenuItem_Click);
             // 
@@ -284,14 +285,6 @@ namespace WordGenerator.Controls
             this.leftColumnPanel.Size = new System.Drawing.Size(119, 594);
             this.leftColumnPanel.TabIndex = 0;
             // 
-            // runControl1
-            // 
-            this.runControl1.IsRunNoSaveEnabled = true;
-            this.runControl1.Location = new System.Drawing.Point(2, 3);
-            this.runControl1.Name = "runControl1";
-            this.runControl1.Size = new System.Drawing.Size(119, 351);
-            this.runControl1.TabIndex = 1;
-            // 
             // sequenceViewPanel
             // 
             this.sequenceViewPanel.Controls.Add(this.tableLayoutPanel2);
@@ -409,9 +402,51 @@ namespace WordGenerator.Controls
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 147F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 138F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(669, 147);
             this.tableLayoutPanel3.TabIndex = 7;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.digitalChannelLabelsPanel, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.digitalGridPanel, 1, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(669, 203);
+            this.tableLayoutPanel5.TabIndex = 8;
+            // 
+            // digitalGridPanel
+            // 
+            this.digitalGridPanel.AutoScroll = true;
+            this.digitalGridPanel.Controls.Add(this.digitalGrid);
+            this.digitalGridPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.digitalGridPanel.Location = new System.Drawing.Point(130, 0);
+            this.digitalGridPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.digitalGridPanel.Name = "digitalGridPanel";
+            this.digitalGridPanel.Size = new System.Drawing.Size(539, 203);
+            this.digitalGridPanel.TabIndex = 8;
+            this.digitalGridPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.digitalGridPanel_Scroll);
+            this.digitalGridPanel.SizeChanged += new System.EventHandler(this.digitalGridPanel_SizeChanged);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 250;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // runControl1
+            // 
+            this.runControl1.IsRunNoSaveEnabled = true;
+            this.runControl1.Location = new System.Drawing.Point(2, 3);
+            this.runControl1.Name = "runControl1";
+            this.runControl1.Size = new System.Drawing.Size(119, 351);
+            this.runControl1.TabIndex = 1;
             // 
             // analogChannelLabelsPanel
             // 
@@ -439,21 +474,6 @@ namespace WordGenerator.Controls
             this.analogPreviewPane.Scroll += new System.Windows.Forms.ScrollEventHandler(this.analogPreviewPane1_Scroll);
             this.analogPreviewPane.Click += new System.EventHandler(this.analogPreviewPane1_Click);
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.digitalChannelLabelsPanel, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.digitalGridPanel, 1, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(669, 203);
-            this.tableLayoutPanel5.TabIndex = 8;
-            // 
             // digitalChannelLabelsPanel
             // 
             this.digitalChannelLabelsPanel.AutoScroll = true;
@@ -467,36 +487,17 @@ namespace WordGenerator.Controls
             this.digitalChannelLabelsPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.digitalChannelLabelsPanel1_Scroll);
             this.digitalChannelLabelsPanel.Enter += new System.EventHandler(this.digitalChannelLabelsPanel1_Enter);
             // 
-            // digitalGridPanel
-            // 
-            this.digitalGridPanel.AutoScroll = true;
-            this.digitalGridPanel.Controls.Add(this.digitalGrid);
-            this.digitalGridPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.digitalGridPanel.Location = new System.Drawing.Point(130, 0);
-            this.digitalGridPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.digitalGridPanel.Name = "digitalGridPanel";
-            this.digitalGridPanel.Size = new System.Drawing.Size(539, 203);
-            this.digitalGridPanel.TabIndex = 8;
-            this.digitalGridPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.digitalGridPanel_Scroll);
-            this.digitalGridPanel.SizeChanged += new System.EventHandler(this.digitalGridPanel_SizeChanged);
-            // 
             // digitalGrid
             // 
             this.digitalGrid.AutoScroll = true;
             this.digitalGrid.ContainerSize = new System.Drawing.Size(0, 0);
-            this.digitalGrid.Location = new System.Drawing.Point(0, 0);
+            this.digitalGrid.Location = new System.Drawing.Point(3, 3);
             this.digitalGrid.Margin = new System.Windows.Forms.Padding(0);
             this.digitalGrid.Name = "digitalGrid";
             this.digitalGrid.RowHeight = 0;
             this.digitalGrid.Size = new System.Drawing.Size(539, 203);
             this.digitalGrid.TabIndex = 3;
             this.digitalGrid.TabStop = false;
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 250;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // SequencePage
             // 
@@ -522,6 +523,7 @@ namespace WordGenerator.Controls
             this.upperCornerPanel.PerformLayout();
             this.digitalAnalogSplitContainer.Panel1.ResumeLayout(false);
             this.digitalAnalogSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.digitalAnalogSplitContainer)).EndInit();
             this.digitalAnalogSplitContainer.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -544,7 +546,6 @@ namespace WordGenerator.Controls
         private System.Windows.Forms.Label sequenceDescriptionLabel;
         private System.Windows.Forms.ToolTip toolTip1;
         public System.Windows.Forms.Panel timeStepsPanel;
-        public DigitalGrid digitalGrid;
         public AnalogPreviewPane analogPreviewPane;
         public DigitalChannelLabelsPanel digitalChannelLabelsPanel;
         public AnalogChannelLabelsPanel analogChannelLabelsPanel;
@@ -569,5 +570,6 @@ namespace WordGenerator.Controls
         private System.Windows.Forms.TextBox modeTextBox;
         public System.Windows.Forms.ComboBox modeBox;
         private System.Windows.Forms.Label beginHintLabel;
+        public DigitalGrid digitalGrid;
     }
 }

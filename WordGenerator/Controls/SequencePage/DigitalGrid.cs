@@ -17,7 +17,8 @@ namespace WordGenerator.Controls
     {
         private Bitmap buffer;
 
-        
+        private static Dictionary<int, LogicalChannel> channels;
+        private static HardwareChannel.HardwareConstants.ChannelTypes channelType;
 
         private Point clickStartPoint;
         private Point clickEndPoint;
@@ -25,7 +26,6 @@ namespace WordGenerator.Controls
         /// True between the time of MouseDown and MouseUp.
         /// </summary>
         bool mouseClicking = false;
-
 
         private ComboBox pulseSelector;
         private DigitalDataPoint pulseSelectorTarget;
@@ -511,13 +511,14 @@ namespace WordGenerator.Controls
 
         public static Color ChannelColor(int i)
         {
-            if (Storage.settingsData.logicalChannelManager.Digitals.ContainsKey(i))
+          
+            if (channels.ContainsKey(i))
             {
-                if (Storage.settingsData.logicalChannelManager.Digitals[i] != null)
+                if (channels[i] != null)
                 {
-                    if (Storage.settingsData.logicalChannelManager.Digitals[i].DoOverrideDigitalColor)
+                    if (channels[i].DoOverrideDigitalColor)
                     {
-                        return Storage.settingsData.logicalChannelManager.Digitals[i].OverrideColor;
+                        return channels[i].OverrideColor;
                     }
                 }
             }
@@ -602,7 +603,7 @@ namespace WordGenerator.Controls
 
 		// returns -1 on error
 		private int cellPointToChannelID(Point p) {
-			List<int> channelIDs = Storage.settingsData.logicalChannelManager.ChannelCollections[HardwareChannel.HardwareConstants.ChannelTypes.digital].getSortedChannelIDList();
+			List<int> channelIDs = Storage.settingsData.logicalChannelManager.ChannelCollections[channelType].getSortedChannelIDList();
             if (channelIDs.Count <= p.Y)
             	return -1;
 
@@ -713,7 +714,7 @@ namespace WordGenerator.Controls
             if ((Storage.sequenceData != null) && (Storage.settingsData != null))
             {
                 return new Size(Storage.sequenceData.getNDisplayedTimeSteps() * colWidth, 
-                    rowHeight * Storage.settingsData.logicalChannelManager.ChannelCollections[HardwareChannel.HardwareConstants.ChannelTypes.digital].Count);
+                    rowHeight * Storage.settingsData.logicalChannelManager.ChannelCollections[channelType].Count);
             }
             else return new Size(1, 1);
         }
@@ -910,7 +911,7 @@ namespace WordGenerator.Controls
                 if (currentStep == null) break;
 
                 for (int row = 0;
-                    row < Storage.settingsData.logicalChannelManager.ChannelCollections[HardwareChannel.HardwareConstants.ChannelTypes.digital].Count;
+                    row < Storage.settingsData.logicalChannelManager.ChannelCollections[channelType].Count;
                     row++)
                 {
                     refreshCell(e.Graphics, new Point(currentCol, row));
@@ -920,8 +921,30 @@ namespace WordGenerator.Controls
 
         }
 
+        private  HardwareChannel.HardwareConstants.ChannelTypes ChannelType()
+        {
+            if (this.Name == "AnalogInGrid")
+            {
+                return HardwareChannel.HardwareConstants.ChannelTypes.analogIn;
+            }
+            else
+            {
+                return HardwareChannel.HardwareConstants.ChannelTypes.digital;
+            }
 
+        }
 
+        private  Dictionary<int,LogicalChannel> Channels()
+        {
+            if (this.Name=="AnalogInGrid")
+            {
+                return Storage.settingsData.logicalChannelManager.AnalogIns;
+            }
+            else
+            {
+                return Storage.settingsData.logicalChannelManager.Digitals;
+            }
+        }
 
 
         #endregion
@@ -931,10 +954,12 @@ namespace WordGenerator.Controls
             this.SuspendLayout();
 
             // 
-            // DigitalGrid
+            // The Name of DigitalGrid or AnalogInGrid is used to determine if this instance of the grid is used for Digital or AnalogInput channels
             // 
-            this.Name = "DigitalGrid";
             this.ResumeLayout(false);
+            channels = Channels();
+            channelType = ChannelType();
+            
 
         }
 
