@@ -11,14 +11,26 @@ namespace WordGenerator.Controls
     public partial class DigitalChannelLabelsPanel : UserControl
     {
         public List<Label> channelLabels;
-
-        public int rowHeight; 
-
+        public int rowHeight;
+        public Dictionary<int, DataStructures.LogicalChannel> channels;
+        public DataStructures.HardwareChannel.HardwareConstants.ChannelTypes channelType;
+        public DigitalGrid grid;
         public DigitalChannelLabelsPanel()
         {
             InitializeComponent();
             this.BorderStyle = BorderStyle.FixedSingle;
             this.AutoScroll = true;
+            if (grid != null)
+            {
+                this.channelType = grid.ChannelType();
+                this.channels = grid.Channels();
+            }
+            else
+            {
+                this.channelType = DataStructures.HardwareChannel.HardwareConstants.ChannelTypes.digital;
+                this.channels = Storage.settingsData.logicalChannelManager.Digitals;
+            }
+            
         }
 
        
@@ -43,7 +55,7 @@ namespace WordGenerator.Controls
 
             this.SuspendLayout();
 
-            List<int> digitalIDs = new List<int>(Storage.settingsData.logicalChannelManager.ChannelCollections[DataStructures.HardwareChannel.HardwareConstants.ChannelTypes.digital].Channels.Keys);
+            List<int> digitalIDs = new List<int>(Storage.settingsData.logicalChannelManager.ChannelCollections[channelType].Channels.Keys);
             digitalIDs.Sort();
 
             for (int i = 0; i < digitalIDs.Count; i++)
@@ -61,7 +73,7 @@ namespace WordGenerator.Controls
 
                 int digitalID = digitalIDs[i];
                 Label lbl = new Label();
-                lbl.Text = Storage.settingsData.logicalChannelManager.ChannelCollections[DataStructures.HardwareChannel.HardwareConstants.ChannelTypes.digital].Channels[digitalID].Name;
+                lbl.Text = Storage.settingsData.logicalChannelManager.ChannelCollections[channelType].Channels[digitalID].Name;
                 lbl.Width = this.Width - 40;
                 lbl.Height = rowHeight;
                 lbl.Location = new Point(20, i * rowHeight);
@@ -69,7 +81,7 @@ namespace WordGenerator.Controls
                 lbl.AutoEllipsis = true;
                 lbl.AutoSize = false;
 
-                this.toolTip1.SetToolTip(lbl, Storage.settingsData.logicalChannelManager.Digitals[digitalID].Description);
+                this.toolTip1.SetToolTip(lbl, channels[digitalID].Description);
                 
                 
 
@@ -80,9 +92,9 @@ namespace WordGenerator.Controls
                 idLbl.Location = new Point(0, i * rowHeight);
                 idLbl.TextAlign = ContentAlignment.MiddleLeft;
 
-                this.toolTip1.SetToolTip(idLbl, Storage.settingsData.logicalChannelManager.Digitals[digitalID].Description);
+                this.toolTip1.SetToolTip(idLbl, channels[digitalID].Description);
 
-                Color bCol = DigitalGrid.ChannelColor(i);
+                Color bCol = grid.ChannelColor(i);
 
                 lbl.BackColor = bCol;
                 idLbl.BackColor = bCol;

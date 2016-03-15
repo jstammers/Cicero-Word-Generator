@@ -17,8 +17,8 @@ namespace WordGenerator.Controls
     {
         private Bitmap buffer;
 
-        private static Dictionary<int, LogicalChannel> channels;
-        private static HardwareChannel.HardwareConstants.ChannelTypes channelType;
+        private Dictionary<int, LogicalChannel> channels;
+        private HardwareChannel.HardwareConstants.ChannelTypes channelType;
 
         private Point clickStartPoint;
         private Point clickEndPoint;
@@ -489,7 +489,19 @@ namespace WordGenerator.Controls
         public DigitalGrid() : base()
         {
             InitializeComponent();
-
+            if (Storage.settingsData != null)
+            {
+                if ((string)this.Tag == "analogIn")
+                {
+                    this.channels = Storage.settingsData.logicalChannelManager.AnalogIns;
+                    this.channelType = HardwareChannel.HardwareConstants.ChannelTypes.analogIn;
+                }
+                else
+                {
+                    this.channels = Storage.settingsData.logicalChannelManager.Digitals;
+                    this.channelType = HardwareChannel.HardwareConstants.ChannelTypes.digital;
+                }
+            }
             this.DoubleBuffered = true;
 
 
@@ -509,7 +521,7 @@ namespace WordGenerator.Controls
             }
         }
 
-        public static Color ChannelColor(int i)
+        public Color ChannelColor(int i)
         {
           
             if (channels.ContainsKey(i))
@@ -615,19 +627,25 @@ namespace WordGenerator.Controls
             if (Storage.sequenceData != null)
             {
                 TimeStep step = Storage.sequenceData.getNthDisplayedTimeStep(p.X);
+                Dictionary<int, DigitalDataPoint> stepData = new Dictionary<int, DigitalDataPoint>();
                 if (step == null) return null;
+
+                if (this.channelType == HardwareChannel.HardwareConstants.ChannelTypes.digital)
+                    stepData = step.DigitalData;
+                else
+                    stepData = step.AnalogInputData;
 
 				int channelID = cellPointToChannelID(p);
 				if (channelID==-1)
 					return null;
 
 
-                if (step.DigitalData.ContainsKey(channelID))
-                    return step.DigitalData[channelID];
+                if (stepData.ContainsKey(channelID))
+                    return stepData[channelID];
                 else
                 {
                     DigitalDataPoint newPoint = new DigitalDataPoint();
-                    step.DigitalData.Add(channelID, newPoint);
+                    stepData.Add(channelID, newPoint);
                     return newPoint;
                 }
             }
@@ -921,45 +939,25 @@ namespace WordGenerator.Controls
 
         }
 
-        private  HardwareChannel.HardwareConstants.ChannelTypes ChannelType()
+        public  HardwareChannel.HardwareConstants.ChannelTypes ChannelType()
         {
-            if (this.Name == "AnalogInGrid")
-            {
-                return HardwareChannel.HardwareConstants.ChannelTypes.analogIn;
-            }
-            else
-            {
-                return HardwareChannel.HardwareConstants.ChannelTypes.digital;
-            }
-
+            return this.channelType;
         }
-
-        private  Dictionary<int,LogicalChannel> Channels()
+        public Dictionary<int,LogicalChannel> Channels()
         {
-            if (this.Name=="AnalogInGrid")
-            {
-                return Storage.settingsData.logicalChannelManager.AnalogIns;
-            }
-            else
-            {
-                return Storage.settingsData.logicalChannelManager.Digitals;
-            }
+            return this.channels;
         }
-
 
         #endregion
 
         private void InitializeComponent()
         {
             this.SuspendLayout();
-
             // 
-            // The Name of DigitalGrid or AnalogInGrid is used to determine if this instance of the grid is used for Digital or AnalogInput channels
+            // DigitalGrid
             // 
+            this.Name = "DigitalGrid";
             this.ResumeLayout(false);
-            channels = Channels();
-            channelType = ChannelType();
-            
 
         }
 

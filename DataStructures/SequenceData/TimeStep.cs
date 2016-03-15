@@ -265,6 +265,22 @@ namespace DataStructures
                 return DigitalData[digitalChannelID].getValue();
             }
         }
+        /// <summary>
+        /// Gets the read state of the specified analog input channel for this timestep.
+        /// </summary>
+        /// <param name="analogInID"></param>
+        /// <param name="allSteps"></param>
+        /// <param name="myIndex"></param>
+        /// <returns></returns>
+        public bool getAnalogInputValue(int analogInID, List<TimeStep> allSteps,int myIndex)
+        {
+            if (AnalogInputData == null)
+                return false;
+            if (!AnalogInputData.ContainsKey(analogInID))
+                return false;
+            else
+                return AnalogInputData[analogInID].getValue();
+        }
 
         private bool calculateDigitalContinueValue(int digitalChannelID, List<TimeStep> allSteps, int myIndex)
         {
@@ -311,10 +327,18 @@ namespace DataStructures
             get { return digitalData; }
             set { digitalData = value; }
         }
-
+        private Dictionary<int, DigitalDataPoint> analogInputData;
+        
+        [Category("AnalogIn"),Description("A list, indexed by analog input ID, of the analog read state for this timestep")]
+        public Dictionary<int,DigitalDataPoint> AnalogInputData
+        {
+            get { return analogInputData; }
+            set { analogInputData = value; }
+        }
         public TimeStep()
         {
             digitalData = new Dictionary<int, DigitalDataPoint>();
+            analogInputData = new Dictionary<int, DigitalDataPoint>();
             stepDuration = new DimensionedParameter(Units.Dimension.sec);
         }
 
@@ -333,6 +357,10 @@ namespace DataStructures
             foreach (int id in duplicateMe.DigitalData.Keys)
             {
                 this.DigitalData.Add(id, new DigitalDataPoint(duplicateMe.DigitalData[id]));
+            }
+            foreach (int id in duplicateMe.AnalogInputData.Keys)
+            {
+                this.AnalogInputData.Add(id, new DigitalDataPoint(duplicateMe.AnalogInputData[id]));
             }
             this.GpibGroup = duplicateMe.GpibGroup;
             this.rs232Group = duplicateMe.rs232Group;

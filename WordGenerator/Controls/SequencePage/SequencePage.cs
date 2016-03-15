@@ -84,6 +84,7 @@ namespace WordGenerator.Controls
             timeStepsPanel.MouseWheel += new MouseEventHandler(timeStepsPanel_MouseWheel);
 
             this.digitalChannelLabelsPanel.rowHeight = 18;
+            this.digitalChannelLabelsPanel.grid = digitalGrid;
 
             analogPreviewPane.colWidth = TimestepEditor.TimestepEditorWidth;
             analogPreviewPane.rowHeight = 50;
@@ -92,7 +93,10 @@ namespace WordGenerator.Controls
 
             digitalGrid.ContainerSize = digitalGridPanel.Size;
 
-          
+            analogInGrid.ColWidth = TimestepEditor.TimestepEditorWidth;
+            analogInGrid.RowHeight = 18;
+            this.analogInChannelLabels.rowHeight = 18;
+            this.analogInChannelLabels.grid = analogInGrid;
 
             this.analogChannelLabelsPanel.rowHeight = 50;
 
@@ -213,6 +217,7 @@ namespace WordGenerator.Controls
         {
             this.digitalChannelLabelsPanel.layout();
             this.analogChannelLabelsPanel.layout();
+            this.analogInChannelLabels.layout();
         }
 
         private bool modeBoxBeingChanged = false;
@@ -242,6 +247,7 @@ namespace WordGenerator.Controls
             try
             {
                 digitalGrid.updateSize();
+                analogInGrid.updateSize();
             }
             finally
             {
@@ -492,7 +498,12 @@ namespace WordGenerator.Controls
                 handleAnalogVerticalScroll(frac);
 
             }
-
+            if (analogInChannelLabels != null)
+            {
+                ScrollProperties prop = analogInChannelLabels.VerticalScroll;
+                double frac = ((double)(prop.Value - prop.Minimum)) / ((double)(prop.Maximum - prop.Minimum - prop.LargeChange));
+                handleAnalogInVerticalScroll(frac);
+            }
 
         }
 
@@ -656,7 +667,7 @@ namespace WordGenerator.Controls
 
         private void repairRightMargin()
         {
-            if (digitalGridPanel.VerticalScroll.Visible || analogChannelLabelsPanel.VerticalScroll.Visible)
+            if (digitalGridPanel.VerticalScroll.Visible || analogChannelLabelsPanel.VerticalScroll.Visible || analogInChannelLabels.VerticalScroll.Visible)
             {
                 if (timeStepsPanel.Margin.Right != scrollbarSize)
                 {
@@ -697,6 +708,7 @@ namespace WordGenerator.Controls
                         analogPreviewPane.Refresh();
                     }
                 }
+
             }
             else
             {
@@ -811,7 +823,22 @@ namespace WordGenerator.Controls
             }
 
         }
-
+        private void handleAnalogInVerticalScroll(double frac)
+        {
+            if (!verticalScrollingEventsCalled)
+            {
+                verticalScrollingEventsCalled = true;
+                try
+                {
+                    scrollToFrac(frac, analogInChannelLabels.VerticalScroll);
+                    scrollToFrac(frac, analogInGridPanel.VerticalScroll);
+                }
+                catch (Exception)
+                {
+                }
+                verticalScrollingEventsCalled = false;
+            }
+        }
         private void digitalChannelLabelsPanel1_Scroll(object sender, ScrollEventArgs e)
         {
             if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
@@ -990,15 +1017,14 @@ namespace WordGenerator.Controls
             }
         }
 
+        private void analogPreviewPane_Load(object sender, EventArgs e)
+        {
 
+        }
 
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
 
-
-
-
-
-
-
-
+        }
     }
 }

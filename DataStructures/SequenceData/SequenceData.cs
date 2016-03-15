@@ -835,6 +835,18 @@ namespace DataStructures
                         step.DigitalData.Add(digitalID, new DigitalDataPoint());
                     }
                 }
+                // Add analog input read states to each timestep
+                if (step.AnalogInputData == null)
+                    step.AnalogInputData = new Dictionary<int, DigitalDataPoint>();
+                foreach (int analogInID in settings.logicalChannelManager.ChannelCollections[HardwareChannel.HardwareConstants.ChannelTypes.analogIn].getSortedChannelIDList())
+                {
+                    //This should allow InputData to be created in old sequece files
+        
+                    if (!step.AnalogInputData.ContainsKey(analogInID))
+                    {
+                        step.AnalogInputData.Add(analogInID, new DigitalDataPoint());
+                    }
+                }
             }
 
             foreach (AnalogGroup ag in AnalogGroups)
@@ -847,6 +859,7 @@ namespace DataStructures
                     }
                 }
             }
+
         }
 
         #endregion
