@@ -128,7 +128,7 @@ namespace DataStructures
                     return null;
                 }
                 JsonSerializer json = new JsonSerializer();
-                string json_obj = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, ReferenceLoopHandling = ReferenceLoopHandling.Error });
+                string json_obj = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, ReferenceLoopHandling = ReferenceLoopHandling.Error, NullValueHandling = NullValueHandling.Ignore });
                 File.WriteAllText(fullFileName, json_obj);
             }
             else

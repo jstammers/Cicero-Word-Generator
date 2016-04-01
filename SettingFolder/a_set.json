@@ -853,6 +853,7 @@
   "WriteVariableOutputTextFile": false,
   "VariableOutputFilename": "Variables",
   "VariableOutputFilenameDirectory": "",
+  "SaveDataAsJson": false,
   "CameraPCs": [],
   "FreezeTimeVariableUnit": false,
   "SavePath": "C:\\Users\\Administrator\\Documents\\Cicero",

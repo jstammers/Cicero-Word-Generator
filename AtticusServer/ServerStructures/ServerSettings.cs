@@ -4,13 +4,14 @@ using System.Text;
 using DataStructures;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace AtticusServer
 {
     /// <summary>
     /// Intended to store informaiton that the server needs on start up.
     /// </summary>
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class ServerSettings : ServerSettingsInterface
     {
         private string serverName = "Unnamed Server";

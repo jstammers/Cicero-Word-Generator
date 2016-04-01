@@ -268,7 +268,7 @@ namespace WordGenerator
                 if (path.EndsWith(".json"))
                 {
                     JsonSerializer json = new JsonSerializer();
-                        string json_obj = JsonConvert.SerializeObject(obj, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, ReferenceLoopHandling = ReferenceLoopHandling.Error});
+                        string json_obj = JsonConvert.SerializeObject(obj, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, ReferenceLoopHandling = ReferenceLoopHandling.Error, NullValueHandling = NullValueHandling.Ignore});
                     File.WriteAllText(path, json_obj);
                     
                 }

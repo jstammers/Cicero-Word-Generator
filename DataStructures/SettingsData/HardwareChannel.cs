@@ -177,7 +177,7 @@ namespace DataStructures
         {
             
         }
-
+        [JsonConstructor]
         public HardwareChannel(string serverName, string deviceName, string channelName, string channelDescription, HardwareChannel.HardwareConstants.ChannelTypes ct)
         {
             gpibMasquerade = false;
