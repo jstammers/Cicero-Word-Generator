@@ -399,6 +399,14 @@ Category("Error Checking")]
             get { return digitalHardwareStructure; }
             set { digitalHardwareStructure = value; }
         }
+        public enum VoltageLevel  { _5V, _33V, _18V};
+        VoltageLevel digitalVoltage;
 
+        [Description("Configures the Voltage level for the data channels, trigger and clock for NI-HSDIO cards. This has no effect for NI-DAQmx cards"), Category("Digital")]
+        public VoltageLevel DigitalVoltage
+        {
+            get { return digitalVoltage; }
+            set { digitalVoltage = value; }
+        }
     }
 }

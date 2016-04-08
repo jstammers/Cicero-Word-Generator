@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace DataStructures
 {
@@ -10,7 +11,7 @@ namespace DataStructures
     /// This object describes a "parameter", which is a number that can be either specified manually or bound to a variable.
     /// Most of the numbers that a user specifies will actually be parameters.
     /// </summary>
-    [Serializable, TypeConverter(typeof(ExpandableStructConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableStructConverter)),JsonObject]
     public struct Parameter
     {
         /// <summary>

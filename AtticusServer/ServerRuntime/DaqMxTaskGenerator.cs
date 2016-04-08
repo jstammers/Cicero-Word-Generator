@@ -546,7 +546,7 @@ namespace AtticusServer
                 }
                 else
                 {
-                    task.Timing.ConfigureSampleClock(deviceSettings.SampleClockExternalSource, deviceSettings.SampleClockRate, deviceSettings.ClockEdge, SampleQuantityMode.FiniteSamples, nSamples);
+                        task.Timing.ConfigureSampleClock(deviceSettings.SampleClockExternalSource, deviceSettings.SampleClockRate, deviceSettings.ClockEdge, SampleQuantityMode.FiniteSamples, nSamples);  
                 }
                 if (deviceSettings.MasterTimebaseSource != "" && deviceSettings.MasterTimebaseSource != null)
                 {
@@ -606,7 +606,6 @@ namespace AtticusServer
 
 
                     AnalogMultiChannelWriter writer = new AnalogMultiChannelWriter(task.Stream);
-
                     writer.WriteMultiSample(false, analogBuffer);
                     // analog cards report the exact number of generated samples. for non-variable timebase this is nSamples
                     expectedSamplesGenerated = nSamples;
@@ -999,7 +998,104 @@ namespace AtticusServer
 
             return task;
         }
+        /// <summary>
+        /// This method creates a buffer for the analog input buffers for daqMX cards and is functionally similar to the one used to create ouput tasks. This configures the channel to read for the whole length of the sequence and the useful data is selected after acquisition.
+        /// </summary>
+        /// <returns></returns>
+        public static Task createDaqMxInputTask(AtticusServerCommunicator sender, string deviceName, DeviceSettings deviceSettings, SequenceData sequence, SettingsData settings, Dictionary<int,HardwareChannel> usedAnalogInputChannels, ServerSettings serverSettings, out long expectedSamplesAcquired)
+        {
+            expectedSamplesAcquired = 0;
+            Task task = new Task(deviceName + " input task");
+            List<int> analogInIDs;
+            List<HardwareChannel> analogIns;
 
+            parseAndCreateChannels(sender, deviceName, deviceSettings, usedAnalogInputChannels, task, out analogInIDs, out analogIns);
+            if (analogInIDs.Count !=0)
+            {
+                if (deviceSettings.UseCustomAnalogTransferSettings)
+                { 
+                    task.AIChannels.All.DataTransferMechanism = (AIDataTransferMechanism)deviceSettings.AnalogDataTransferMechanism;
+                    task.AIChannels.All.DataTransferRequestCondition = (AIDataTransferRequestCondition)deviceSettings.AnalogDataTransferCondition;
+                }
+            }
+            #region NON variable timebase buffer
+            if (deviceSettings.UsingVariableTimebase == false)
+            {
+                double timeStepSize = Common.getPeriodFromFrequency(deviceSettings.SampleClockRate);
+                int nBaseSamples = sequence.nSamples(timeStepSize);
+
+                int nFillerSamples = 4 - nBaseSamples % 4;
+                if (nFillerSamples == 4)
+                    nFillerSamples = 0;
+
+                int nSamples = nBaseSamples + nFillerSamples;
+
+                if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.DerivedFromMaster)
+                {
+                    task.Timing.ConfigureSampleClock("", deviceSettings.SampleClockRate, deviceSettings.ClockEdge, SampleQuantityMode.FiniteSamples, nSamples);
+                    //"" empty string defaults to analog input sample clock.
+                }
+                else
+                {
+                    task.Timing.ConfigureSampleClock(deviceSettings.SampleClockExternalSource, deviceSettings.SampleClockRate, deviceSettings.ClockEdge, SampleQuantityMode.FiniteSamples, nSamples);
+                }
+                if (deviceSettings.MasterTimebaseSource != "" && deviceSettings.MasterTimebaseSource != null)
+                {
+                    task.Timing.MasterTimebaseSource = deviceSettings.MasterTimebaseSource.ToString();
+                }
+                AnalogMultiChannelReader reader = new AnalogMultiChannelReader(task.Stream);
+                double[,] readData = new double[analogInIDs.Count, nSamples];
+                readData = reader.ReadMultiSample(nSamples);
+                expectedSamplesAcquired = nSamples;
+            }
+           
+            #endregion
+            #region Variable timebase buffer creation
+            else{
+                double timeStepSize = Common.getPeriodFromFrequency(deviceSettings.SampleClockRate);
+
+                TimestepTimebaseSegmentCollection timebaseSegments =
+                    sequence.generateVariableTimebaseSegments(serverSettings.VariableTimebaseType,
+                                            timeStepSize);
+
+                int nBaseSamples = timebaseSegments.nSegmentSamples();
+
+                nBaseSamples++;
+
+
+                int nFillerSamples = 4 - nBaseSamples % 4;
+                if (nFillerSamples == 4)
+                    nFillerSamples = 0;
+
+                int nSamples = nBaseSamples + nFillerSamples;
+
+                if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.DerivedFromMaster)
+                {
+                    throw new Exception("Attempt to use a uniform sample clock with a variable timebase enabled device. This will not work. To use a variable timebase for this device, you must specify an external sample clock source.");
+                }
+                else
+                {
+                    task.Timing.ConfigureSampleClock(deviceSettings.SampleClockExternalSource, deviceSettings.SampleClockRate, deviceSettings.ClockEdge, SampleQuantityMode.FiniteSamples, nSamples);
+                }
+                System.GC.Collect();
+
+                AnalogMultiChannelReader reader = new AnalogMultiChannelReader(task.Stream);
+                double[,] readData = new double[analogInIDs.Count, nSamples];
+                readData = reader.ReadMultiSample(nSamples);
+                expectedSamplesAcquired = nSamples;
+            }
+            #endregion
+
+            if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
+            {
+                task.Triggers.StartTrigger.ConfigureDigitalEdgeTrigger(deviceSettings.TriggerInPort, DigitalEdgeStartTriggerEdge.Rising);
+            }
+            task.Control(TaskAction.Verify);
+            task.Control(TaskAction.Commit);
+            task.Control(TaskAction.Reserve);
+
+            return task;
+        }
         /// <summary>
         /// This function creates channels in the given task, for the named device.
         /// </summary>
@@ -1086,7 +1182,30 @@ namespace AtticusServer
                 }
             }
         }
+        /// <summary>
+        /// This function creates the channels for all the input tasks on the device
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="deviceName"> The name of the device which the channels will will be created for. Eg Dev1</param>
+        /// <param name="deviceSettings"></param>
+        /// <param name="usedAnalogInputChannels"> A dictionary, indexed by logical ID#, of all of the analog input hardware channels parsed rom settings data which
+        /// reside on this server.</param>
+        /// <param name="task">The task for which channels will be created</param>
+        /// <param name="analogInIDs">An out parameter, which will store a list of the analog IDs that were created, in the order created.</param>
+        /// <param name="analogIns">An out parameter, which will store a list of the analog hardware channels corresponding to the channels created, in the order created.</param>
+        private static void parseAndCreateChannels(AtticusServerCommunicator sender, string deviceName, DeviceSettings deviceSettings, Dictionary<int, HardwareChannel> usedAnalogInputChannels, Task task, out List<int> analogInIDs, out List<HardwareChannel> analogIns)
+        {
+            Dictionary<int, HardwareChannel> analogInUnsorteed = getChannelsOnDevice(usedAnalogInputChannels, deviceName);
+            //sorts the analogIns by ID
+            analogInIDs = new List<int>();
+            analogIns = new List<HardwareChannel>();
+            sortDicionaryByID(analogInIDs, analogIns, analogInUnsorteed);
 
+            for (int i = 0; i<analogIns.Count;i++)
+            {
+                task.AIChannels.CreateVoltageChannel(analogIns[i].physicalChannelName(), "", AITerminalConfiguration.Differential, analogIns[i].MinimumValue, analogIns[i].MaximumValue, AIVoltageUnits.Volts);
+            }
+        }
 
         /// <summary>
         /// given a list of digitalIDs and hardware channels, constructs a list of all the used port numbers,

@@ -19,6 +19,7 @@ using DataStructures.UtilityClasses;
 
 
 
+
 namespace AtticusServer
 {
 
@@ -1074,7 +1075,21 @@ namespace AtticusServer
                         messageLog(this, new MessageEvent("Unable to give buffer status of task " + str + ": " + e.Message));
                     }
                 }
+                foreach (string str in hsdioTasks.Keys)
+                {
+                    HSDIOTask hsdio = hsdioTasks[str];
 
+                    try
+                    {
+                        long samplesGenerated = hsdio.TotalSamplesGeneratedPerChannel;
+                        messageLog(this, new MessageEvent(str + " " + samplesGenerated + "/" + "Cannot Calculate Buffer Size"));
+                     
+                    }
+                    catch(Exception e)
+                    {
+                        messageLog(this, new MessageEvent("Unable to give buffer status of task " + str + ": " + e.Message));
+                    }
+                }
                 bool earlyFinishDetected = false;
 
                 lock (taskFinishTimeClicks)
@@ -1237,7 +1252,6 @@ namespace AtticusServer
                         usedAnalogChannels,
                         serverSettings,
                         out expectedGenerated);
-
                     task.Done += new TaskDoneEventHandler(aTaskFinished);
 
                     daqMxTasks.Add(dev, task);
@@ -1269,7 +1283,6 @@ namespace AtticusServer
         {
             string dev = devObj.ToString();
             DeviceSettings deviceSettings = myServerSettings.myDevicesSettings[dev];
-
             if (deviceSettings.DeviceEnabled)
             {
                 if (deviceHasUsedChannels(dev))
@@ -1278,18 +1291,25 @@ namespace AtticusServer
 
                     messageLog(this, new MessageEvent("Generating buffer for HSDIO " + dev));
                     //For now, assume that all the channels are enabled for dynamic generation
-                    HSDIOTask hsdio = new HSDIOTask(dev, "0-31");
-                        hsdio.createHSDIOWaveForm(this, dev,
-                        deviceSettings,
-                        sequence,
-                        settings,
-                        usedDigitalChannels,
-                        serverSettings,
-                        out expectedGenerated);
+                    HSDIOTask hsdio = new HSDIOTask(dev, "0-31",deviceSettings);
+                    hsdio.createHSDIOWaveForm(this, dev,
+                    deviceSettings,
+                    sequence,
+                    settings,
+                    usedDigitalChannels,
+                    serverSettings,
+                    out expectedGenerated);
                     hsdioTasks.Add(dev, hsdio);
-                    messageLog(this, new MessageEvent("Buffer for " + dev + " generated." + niHSDIOProperties.TotalGenerationMemorySize + "samples per channel. Expected generated buffer size " + expectedGenerated));
+               
+                    messageLog(this, new MessageEvent("Buffer for " + dev + " generated. Expected generated buffer size " + expectedGenerated + "samples."));
+                    if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
+                    {
+                        //Initiates the card here.
+                        hsdio.Initiate();
+                    }
                 }
             }
+            
         }
 
         private void makeTerminalConnections()
@@ -1492,13 +1512,14 @@ namespace AtticusServer
         {
             lock (remoteLockObj)
             {
+                DataStructures.Timing.SoftwareClockProvider softwareClockProvider;
                 try
                 {
                     messageLog(this, new MessageEvent("Arming tasks"));
                     int armedTasks = 0;
 
 
-                    DataStructures.Timing.SoftwareClockProvider softwareClockProvider;
+                   
                     
                     // chose local software clock provider...
                     if (serverSettings.ReceiveNetworkClock)
@@ -1642,16 +1663,11 @@ namespace AtticusServer
                                         return false;
                                     }
                                 }
-                               int init = hsdio.Initiate();
-                                if (init == 0)
+                                if (ds.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
                                 {
-                                    messageLog(this, new MessageEvent("Successfully started the HSDIO Sequence"));
+                                    //Initiates the card if it is hardware triggered. If software triggered, it is initiated later
+                                    //hsdio.Initiate();
                                 }
-                                else
-                                {
-                                    messageLog(this, new MessageEvent("Error starting the HSDIO sequence. Error Code:" + init));
-                                }
-
                                 if (dev == serverSettings.DeviceToSyncSoftwareTimedTasksTo)
                                 {
                                     if (serverSettings.SoftwareTaskTriggerMethod == ServerSettings.SoftwareTaskTriggerType.PollBufferPosition)
@@ -1702,6 +1718,8 @@ namespace AtticusServer
                 {
                     messageLog(this, new MessageEvent("Unable to arm tasks due to exception: " + e.Message + e.StackTrace));
                     displayError();
+                    softwareClockProvider = null;
+                    softwareTaskTriggerPollingThread = null;
                     return false;
                 }
             }
@@ -1816,6 +1834,8 @@ namespace AtticusServer
                     List<GpibTask> gpibTasksToTrigger = new List<GpibTask>();
                     List<RS232Task> rs232TasksToTrigger = new List<RS232Task>();
                     List<RfsgTask> rfsgTasksToTrigger = new List<RfsgTask>();
+                    List<HSDIOTask> hsdioToSoftTrigger = new List<HSDIOTask>();
+                    List<HSDIOTask> hsdioToSoftTriggerLast = new List<HSDIOTask>();
 
                     // This loop adds the NIDAQ analog and digital tasks that require soft trigger to the appropriate list.
                     // These are software triggered tasks which do NOT use an external sample clock (those that do are started in armTasks)
@@ -1841,6 +1861,21 @@ namespace AtticusServer
                                     }
                                 }
                             }
+                            else if (hsdioTasks.ContainsKey(dev))
+                            {
+                                if (hsdioTasks[dev] != null)
+                                {
+                                    if (devicesSettings[dev].SoftTriggerLast)
+                                    {
+                                        hsdioToSoftTriggerLast.Add(hsdioTasks[dev]);
+                                    }
+                                    else
+                                    {
+                                        hsdioToSoftTrigger.Add(hsdioTasks[dev]);
+                                    }
+                                }
+                            }
+                            
                         }
 
                     }
@@ -1951,7 +1986,11 @@ namespace AtticusServer
                     {
                         task.Start();
                     }
-
+                    foreach( HSDIOTask hsdio in hsdioToSoftTrigger)
+                    {                       
+                        hsdio.Initiate();
+                        hsdio.SendStartTrigger();
+                    }
 
 
                     if (!myServerSettings.TriggerSoftwareTasksAfterTimebaseTask)
@@ -1966,9 +2005,6 @@ namespace AtticusServer
                                 computerClockProvider.StartClockProvider();
                                 messageLog(this, new MessageEvent("Triggered computer-software-clock (without sync to a hardware timed task)."));
                             }
-                            
-
-                           
                         }
                     }
 
@@ -1977,7 +2013,11 @@ namespace AtticusServer
                     {
                         task.Start();
                     }
-
+                    foreach(HSDIOTask hsdio in hsdioToSoftTriggerLast)
+                    {
+                        hsdio.Initiate();
+                        hsdio.SendStartTrigger();                       
+                    }
 
                     // finally, if there is a variable timebase output task, we start it.
 
@@ -2225,17 +2265,8 @@ namespace AtticusServer
                     {
                         try
                         {
-                            hsdioTasks[dev].Abort();
-                        }
-                        catch (Exception e)
-                        {
-                            messageLog(this, new MessageEvent("Caught exception when trying to abort a task on HSDIO device " + dev + ". This may indicate that the previous run suffered from a buffer underrun. Exception follows: " + e.Message + e.StackTrace));
-                            displayError();
-                            ans = false;
-                        }
-                        try
-                        {
-                            hsdioTasks[dev].Dispose();
+
+                            hsdioTasks[dev].Reset();
                         }
                         catch (Exception e)
                         {
@@ -2317,6 +2348,15 @@ namespace AtticusServer
                 Device device = DaqSystem.Local.LoadDevice(dev);
                 device.Reset();
                 messageLog(this, new MessageEvent("Reset of " + dev + " finished."));
+            }
+            if (detectedDevices.Contains("Dev3") && myServerSettings.myDevicesSettings["Dev3"].DeviceDescription == "PXI-6541" && hsdioTasks.ContainsKey("Dev3"))
+            {
+                string dev = "Dev3";
+                messageLog(this, new MessageEvent("Resetting " + dev));
+                HSDIOTask hsdio = hsdioTasks[dev];
+                hsdio.Abort();
+                messageLog(this, new MessageEvent("Reset of " + dev + " finished"));
+
             }
             if (this.madeConnections != null)
                 this.madeConnections.Clear();
@@ -2567,10 +2607,11 @@ namespace AtticusServer
                     myDeviceDescriptions.Add(devices[i], device.ProductType);
                     string[] analogs = device.AOPhysicalChannels;
                     string[] digitalLines = device.DOLines;
+                    string[] analogIns = device.AIPhysicalChannels;
 
                     //analogHardWareStructure stores the number of analog outputs the card has. This is useful later when generating buffers
                     int analogHardwareStructure = analogs.Length;
-
+                    int analogInputStructure = analogIns.Length;
 
                     //digitalHardwareStructure holds information about the port/line structure on the card. It is a variable length array. The length of the
                     //array corresponds to all of the ports, while the value in each array index is the number of lines on that port (usualy 8 or 32).
@@ -2675,7 +2716,18 @@ namespace AtticusServer
                                 }
                             }
                         }
-
+                        if (serverSettings.myDevicesSettings[devices[i]].AnalogInEnabled)
+                        {
+                            for (int j = 0; j<analogIns.Length;j++)
+                            {
+                                string channelName = justTheChannelName(analogIns[j], devices[i]);
+                                HardwareChannel hc = new HardwareChannel(this.myServerSettings.ServerName, devices[i], channelName, HardwareChannel.HardwareConstants.ChannelTypes.analogIn);
+                                if (!serverSettings.ExcludedChannels.Contains(hc))
+                                {
+                                    myHardwareChannels.Add(hc);
+                                }
+                            }
+                        }
                         if (serverSettings.myDevicesSettings[devices[i]].DigitalChannelsEnabled)
                         {
                             for (int j = 0; j < digitalLines.Length; j++)
@@ -2846,7 +2898,7 @@ namespace AtticusServer
                     myServerSettings.myDevicesSettings[my_hsdio].deviceConnected = true;
                 }
                 //Configure the Server to add the digital channels if the device is enabled
-                if(serverSettings.myDevicesSettings[my_hsdio].DigitalChannelsEnabled)
+                if(serverSettings.myDevicesSettings[my_hsdio].DigitalChannelsEnabled && serverSettings.myDevicesSettings[my_hsdio].DeviceEnabled)
                 {
               
                     for (int j = 0; j < 32; j++)

@@ -25,10 +25,11 @@ using System.Collections.ObjectModel;
 using System.Text;
 using DataStructures;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace DataStructures
 {
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class SequenceData
     {
         #region Members and Properties
@@ -101,7 +102,7 @@ namespace DataStructures
             set { sequenceDescription = value; }
         }
 
-        [Serializable, TypeConverter(typeof(ExpandableStructConverter))]
+        [Serializable, TypeConverter(typeof(ExpandableStructConverter)),JsonObject]
         public struct CalibrationShots
         {
             private bool calibrationShotsEnabled;
@@ -834,6 +835,18 @@ namespace DataStructures
                         step.DigitalData.Add(digitalID, new DigitalDataPoint());
                     }
                 }
+                // Add analog input read states to each timestep
+                if (step.AnalogInputData == null)
+                    step.AnalogInputData = new Dictionary<int, DigitalDataPoint>();
+                foreach (int analogInID in settings.logicalChannelManager.ChannelCollections[HardwareChannel.HardwareConstants.ChannelTypes.analogIn].getSortedChannelIDList())
+                {
+                    //This should allow InputData to be created in old sequece files
+        
+                    if (!step.AnalogInputData.ContainsKey(analogInID))
+                    {
+                        step.AnalogInputData.Add(analogInID, new DigitalDataPoint());
+                    }
+                }
             }
 
             foreach (AnalogGroup ag in AnalogGroups)
@@ -846,6 +859,7 @@ namespace DataStructures
                     }
                 }
             }
+
         }
 
         #endregion
@@ -2026,6 +2040,7 @@ namespace DataStructures
 
             for (int stepID = 0; stepID < TimeSteps.Count; stepID++)
             {
+
                 if (TimeSteps[stepID].StepEnabled)
                 {
                     TimeStep currentStep = TimeSteps[stepID];

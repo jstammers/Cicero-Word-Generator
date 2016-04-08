@@ -15,13 +15,14 @@ namespace AtticusServer
         public long TotalSamplesGeneratedPerChannel;
 
 
-        public HSDIOTask (string deviceName, string channelList)
+        public HSDIOTask (string deviceName, string channelList, DeviceSettings deviceSettings)
         {
             //initialises an instance of HSDIOTask
             hsdio = niHSDIO.InitGenerationSession(deviceName, true, false, "");
             this.deviceName = deviceName;
             this.channelList = channelList;
             this.TotalSamplesGeneratedPerChannel = 0;
+            ConfigureVoltageLevels(deviceSettings);
             hsdio.AssignDynamicChannels(channelList);
         }
         /// <summary>
@@ -30,6 +31,8 @@ namespace AtticusServer
         /// 
         public void createHSDIOWaveForm(AtticusServerCommunicator sender, string deviceName, DeviceSettings deviceSettings, SequenceData sequence, SettingsData settings, Dictionary<int, HardwareChannel> usedDigitalChannels, ServerSettings serverSettings, out long expectedSamplesGenerated)
         {
+
+            int sampleShift = 0;
             expectedSamplesGenerated = 0;
             #region NON variable timebase buffer
             if (deviceSettings.UsingVariableTimebase == false)
@@ -40,27 +43,42 @@ namespace AtticusServer
                 {
                     //The HSDIO card expects data as a list of bytes.
                     int remainder = nSamples % 8;
-                    nSamples += (8-remainder);
+                    nSamples += (8 - remainder);
                 }
-                if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.DerivedFromMaster)
-                {
-                    //Uses the onboard clock
-                    hsdio.ConfigureSampleClock(niHSDIOConstants.OnBoardClockStr, deviceSettings.SampleClockRate);
-                    
-                }
-                else if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.External && deviceSettings.SampleClockExternalSource == "ClkIn")
+
+                if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.External)
                 {
                     //If set to ClkIn, the clock is configured to use the ClkIn input on the HSDIO card
-                    hsdio.ConfigureSampleClock(niHSDIOConstants.ClkInStr, deviceSettings.SampleClockRate);
+                    hsdio.ConfigureSampleClock(deviceSettings.SampleClockExternalSource, deviceSettings.SampleClockRate);
+                    hsdio.ExportSignal(niHSDIOConstants.SampleClock, "", niHSDIOConstants.DdcClkOutStr);
                 }
-                hsdio.ExportSignal(niHSDIOConstants.SampleClock, "", niHSDIOConstants.ClkOutStr);
-                hsdio.ExportSignal(niHSDIOConstants.SampleClock, "", niHSDIOConstants.DdcClkOutStr);
+                else if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.DerivedFromMaster)
+                {
+                    //Uses the onboard clock and exports the start trigger to the PXI back plane.
+                    hsdio.ConfigureSampleClock(niHSDIOConstants.OnBoardClockStr, deviceSettings.SampleClockRate);
+                    hsdio.ConfigureRefClock(niHSDIOConstants.PxiClk10Str, 10000000);
+                    hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.PxiTrig1Str);
+                }
+                if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
+                {
+                    sampleShift = 0;
+                    string trigger = deviceSettings.TriggerInPort;
+                    hsdio.ConfigureDigitalEdgeStartTrigger(trigger, niHSDIOConstants.RisingEdge);
+                }
+                else if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.SoftwareTrigger)
+                {
+                    sampleShift = 29;
+                    hsdio.ConfigureSoftwareStartTrigger();
+                }
+
+                //hsdio.ExportSignal(niHSDIOConstants.StartTrigger, "", niHSDIOConstants.Pfi1Str);
+
 
                 Dictionary<int, string> hsChannels = countHSChannels(usedDigitalChannels);
                 if (hsChannels.Count != 0)
                 {
                     //HSDIO cards typically have 32 channels, but we may want to reserve some for defining clock signals (in which case it may be slightly trickier to generate a digital sequence)
-                    //This code goes through every enabled channel and parses the sequence data into a list of booleans for each value
+                    ////This code goes through everyhsd enabled channel and parses the sequence data into a list of booleans for each value
                     if (deviceSettings.DigitalHardwareStructure[0] == 32)
                     {
                         bool[] singleChannelBuffer;
@@ -87,13 +105,15 @@ namespace AtticusServer
                             {
                                 int digitalID = hsChannels.FirstOrDefault(x => x.Value == hsChannel).Key;
                                 sequence.computeDigitalBuffer(digitalID, timeStepSize, singleChannelBuffer);
-                               hsdioBuffer = addBooltoUint(hsdioBuffer,singleChannelBuffer,channel);
+                                hsdioBuffer = addBooltoUint(hsdioBuffer, singleChannelBuffer, channel, sampleShift);
                             }
                         }
                         try
                         {
                             hsdio.AllocateNamedWaveform("waveform", nSamples);
                             hsdio.WriteNamedWaveformU32("waveform", nSamples, hsdioBuffer);
+
+                            hsdio.CommitDynamic();
                         }
                         catch (System.AccessViolationException e)
                         {
@@ -105,12 +125,87 @@ namespace AtticusServer
                     }
                 }
             }
-            if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
-            {
-                hsdio.ConfigureDigitalEdgeStartTrigger(deviceSettings.TriggerInPort, niHSDIOConstants.RisingEdge);
-            }
+            //if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.TriggerIn)
+            //{
+            //    hsdio.ConfigureDigitalEdgeStartTrigger(deviceSettings.TriggerInPort, niHSDIOConstants.RisingEdge);
+            //}
             #endregion
+            #region Variable timebase buffer creation
+            else //cariable timebase buffer creation
+            {
+
+                double timeStepSize = Common.getPeriodFromFrequency(deviceSettings.SampleClockRate);
+                TimestepTimebaseSegmentCollection timebaseSegments = sequence.generateVariableTimebaseSegments(serverSettings.VariableTimebaseType, timeStepSize);
+                 
+
+
+                int nBaseSamples = timebaseSegments.nSegmentSamples();
+                //I'm not entirely sure why an extra base sample is added, but this is needed to make the length the same as the others
+                //nBaseSamples++;
+                //The HSDIO cards require samples to be written in bytes
+                int nFillerSamples = 4 - nBaseSamples % 4;
+                if (nFillerSamples == 4)
+                {
+                    nFillerSamples = 0;
+                }
+                int nSamples = nBaseSamples + nFillerSamples;
+
+                if (deviceSettings.MySampleClockSource == DeviceSettings.SampleClockSource.DerivedFromMaster)
+                {
+                    throw new Exception("Attempt to use a uniform sample clock with a variable timebase enabled device. This will not work. To use a variable timebase for this device, you must specify an external sample clock source.");
+                }
+                else
+                {
+                    hsdio.ConfigureSampleClock(deviceSettings.SampleClockExternalSource, deviceSettings.SampleClockRate);
+                }
+                if (deviceSettings.DigitalHardwareStructure[0] == 32)
+                {
+                    Dictionary<int, string> hsChannels = countHSChannels(usedDigitalChannels);
+                    bool[] singleChannelBuffer;
+                    uint[] hsdioBuffer;
+                    List<byte> hsdioChannelData = new List<byte>();
+                    List<string> channelNames = new List<string>();
+                    foreach (string hc in hsChannels.Values)
+                    {
+                        channelNames.Add(hc);
+                    }
+                    try
+                    {
+                        singleChannelBuffer = new bool[nSamples];
+                        hsdioBuffer = new uint[nSamples];
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception("Unable to allocate digital buffer for HSDIO device " + deviceName + ". Reason: " + e.Message + "\n" + e.StackTrace);
+                    }
+                    for (int channel = 0; channel < deviceSettings.DigitalHardwareStructure[0]; channel++)
+                    {
+                        string hsChannel = "hs" + channel.ToString();
+                        if (channelNames.Contains(hsChannel))
+                        {
+                            int digitalID = hsChannels.FirstOrDefault(x => x.Value == hsChannel).Key;
+                            sequence.computeDigitalBuffer(digitalID, timeStepSize, singleChannelBuffer, timebaseSegments);
+                            hsdioBuffer = addBooltoUint(hsdioBuffer, singleChannelBuffer, channel, 29);
+                        }
+                    }
+                        try
+                        {
+                            hsdio.AllocateNamedWaveform("waveformvariable", nSamples);
+                            hsdio.WriteNamedWaveformU32("waveformvariable", nSamples, hsdioBuffer);
+
+                            hsdio.CommitDynamic();
+                        }
+                        catch (System.AccessViolationException e)
+                        {
+                            throw new Exception("Couldn't access memory on HSDIO card.");
+                        }
+                        expectedSamplesGenerated = nSamples;
+                        TotalSamplesGeneratedPerChannel = expectedSamplesGenerated;
+                }
+            }
         }
+            #endregion
+        
 
         private static Dictionary<int, string> countHSChannels(Dictionary<int, HardwareChannel> digitalChannels)
         {
@@ -124,29 +219,79 @@ namespace AtticusServer
             }
             return hcIDs;
         }
-        private static uint[] addBooltoUint(uint[]uintList,bool[] boolList,int Channel)
+        private static uint[] addBooltoUint(uint[]uintList,bool[] boolList,int Channel, int sampleShift)
         {
             //Adds each element of a bool list to the corresponding element in a 32-bit integer list
+            //The HSDIO card starts outputting it's sequence 32 samples after the start trigger is sent. The simplest work-around is to remove the first 32 samples if Atticus is configured to trigger using the HSDIO card.
             int boolLength = boolList.Length;
             int uintLength = uintList.Length;
             if (boolLength != uintLength)
                 throw new Exception("Number of samples across channels is not equal to the number of samples on hs" + Channel.ToString());
-            int uintIndex = 0;
-            for (int i = 0; i < uintLength; i++)
+            for (int i = 0; i < uintLength-sampleShift; i++)
             {
-                if (boolList[i])
+                if (boolList[i+sampleShift])
                    uintList[i] |= (uint)(((uint)1) << Channel);
             }
-            uintIndex++;
+
             return uintList;
         }
-        public void Dispose()
+        private void ConfigureVoltageLevels(DeviceSettings deviceSettings)
         {
-            hsdio.Dispose();
+            int voltageLevel = new int();
+            //A bit messy, and would probably be better with a dictionary, but this does the job
+           DeviceSettings.VoltageLevel voltageFamily = deviceSettings.DigitalVoltage;
+            if (voltageFamily == DeviceSettings.VoltageLevel._5V)
+            {
+                voltageLevel = niHSDIOConstants._50vLogic;
+            }
+            else if (voltageFamily == DeviceSettings.VoltageLevel._33V)
+            {
+                voltageLevel = niHSDIOConstants._33vLogic;
+
+            }
+            else if (voltageFamily == DeviceSettings.VoltageLevel._18V)
+            {
+                voltageLevel = niHSDIOConstants._18vLogic;
+            }
+            hsdio.ConfigureEventVoltageLogicFamily(voltageLevel);
+            hsdio.ConfigureDataVoltageLogicFamily("0-31",voltageLevel);
+            hsdio.ConfigureTriggerVoltageLogicFamily(voltageLevel);
         }
-        public void Abort()
+        public void Reset()
         {
-            hsdio.Abort();
+            bool done = false;
+            hsdio.IsDone(out done);
+            if (!done)
+            {
+                System.Console.WriteLine("Sequence not finished");
+            }
+            else
+            {
+                System.Console.WriteLine("Sequence finished");
+            }
+            //hsdio.Abort();
+            try
+            {
+                hsdio.DeleteNamedWaveform("waveformvariable");
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Could not delete waveform");
+            }
+            hsdio.reset();
+        }
+        public bool Abort()
+        {
+            bool error = false;
+            try {
+                hsdio.Abort();
+                hsdio.reset();
+                }
+           catch (Exception e)
+            {
+                error = true;
+            }
+            return error;
         }
 
         public int Initiate()
@@ -154,5 +299,14 @@ namespace AtticusServer
             int initiate = hsdio.Initiate();
             return initiate;
         }
+        public void SendStartTrigger()
+        {
+            hsdio.SendSoftwareEdgeTrigger(niHSDIOConstants.StartTrigger, "");
+        }
+        public void ExportSignal(int signal, string signal_identifier,string output_terminal)
+        {
+            hsdio.ExportSignal(signal, signal_identifier, output_terminal);
+        }
+
     }
 }

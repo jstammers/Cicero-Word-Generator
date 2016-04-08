@@ -132,6 +132,7 @@ namespace AtticusServer
                             {
                                 commandBuffer.Add(new RS232Command(
                                     AddNewlineCharacters(srs.ToString()), currentTime + postTime));
+                                System.Console.WriteLine("Adding command:\"" + srs.ToString() + "\" to RS232 channel " + logicalChannelID);
                             }
                         }
                     }

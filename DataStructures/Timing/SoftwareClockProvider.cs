@@ -134,10 +134,19 @@ namespace DataStructures.Timing
         {
             lock (lockObj)
             {
-                Thread thread = new Thread(new ParameterizedThreadStart(subscriberThreadProc));
-                subscriberThreads.Add(sub, thread);
-                runningSubscriberThreads++;
-                thread.Start(new SubscriberThreadParameters(sub, subscriberPollingPeriods_ms[sub], subscriberPritorities[sub]));
+                try
+                {
+                    Thread thread = new Thread(new ParameterizedThreadStart(subscriberThreadProc));
+
+                    subscriberThreads.Add(sub, thread);
+                    runningSubscriberThreads++;
+                    thread.Start(new SubscriberThreadParameters(sub, subscriberPollingPeriods_ms[sub], subscriberPritorities[sub]));
+                }
+                catch(SoftwareClockProviderException e)
+                {
+                    throw new Exception("Error creating subscriber thread");
+                }
+              
             }
         }
 
@@ -273,7 +282,7 @@ namespace DataStructures.Timing
                     catch (Exception e)
                     {
                         if (!subscriber.handleExceptionOnClockThread(e))
-                            throw;
+                            throw new SoftwareClockProviderException("Something timed out. Not all timing events completed");
                     }
 
 

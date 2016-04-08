@@ -62,9 +62,12 @@ namespace WordGenerator.Controls
             this.analogChannelLabelsPanel = new WordGenerator.Controls.AnalogChannelLabelsPanel();
             this.analogPreviewPane = new WordGenerator.Controls.AnalogPreviewPane();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.digitalChannelLabelsPanel = new WordGenerator.Controls.DigitalChannelLabelsPanel();
             this.digitalGridPanel = new System.Windows.Forms.Panel();
+            this.digitalChannelLabelsPanel = new WordGenerator.Controls.DigitalChannelLabelsPanel();
             this.digitalGrid = new WordGenerator.Controls.DigitalGrid();
+            this.analogInGridPanel = new System.Windows.Forms.Panel();
+            this.analogInGrid = new WordGenerator.Controls.DigitalGrid();
+            this.analogInChannelLabels = new WordGenerator.Controls.DigitalChannelLabelsPanel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.timeStepsPanel.SuspendLayout();
@@ -75,12 +78,14 @@ namespace WordGenerator.Controls
             this.upperRowPanel.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.upperCornerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.digitalAnalogSplitContainer)).BeginInit();
             this.digitalAnalogSplitContainer.Panel1.SuspendLayout();
             this.digitalAnalogSplitContainer.Panel2.SuspendLayout();
             this.digitalAnalogSplitContainer.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.digitalGridPanel.SuspendLayout();
+            this.analogInGridPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // hideHiddenTimestepsCheckbox
@@ -100,12 +105,12 @@ namespace WordGenerator.Controls
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addNewTimestepToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(176, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(164, 26);
             // 
             // addNewTimestepToolStripMenuItem
             // 
             this.addNewTimestepToolStripMenuItem.Name = "addNewTimestepToolStripMenuItem";
-            this.addNewTimestepToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.addNewTimestepToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.addNewTimestepToolStripMenuItem.Text = "Add New Timestep";
             this.addNewTimestepToolStripMenuItem.Click += new System.EventHandler(this.addNewTimestepToolStripMenuItem_Click);
             // 
@@ -308,14 +313,17 @@ namespace WordGenerator.Controls
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.upperRowPanel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.digitalAnalogSplitContainer, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.analogInGridPanel, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 240F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 84F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(675, 600);
             this.tableLayoutPanel2.TabIndex = 17;
+            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // upperRowPanel
             // 
@@ -392,8 +400,8 @@ namespace WordGenerator.Controls
             // digitalAnalogSplitContainer.Panel2
             // 
             this.digitalAnalogSplitContainer.Panel2.Controls.Add(this.tableLayoutPanel5);
-            this.digitalAnalogSplitContainer.Size = new System.Drawing.Size(669, 354);
-            this.digitalAnalogSplitContainer.SplitterDistance = 147;
+            this.digitalAnalogSplitContainer.Size = new System.Drawing.Size(669, 270);
+            this.digitalAnalogSplitContainer.SplitterDistance = 111;
             this.digitalAnalogSplitContainer.TabIndex = 1;
             this.digitalAnalogSplitContainer.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
@@ -409,8 +417,8 @@ namespace WordGenerator.Controls
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 147F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(669, 147);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 111F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(669, 111);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
             // analogChannelLabelsPanel
@@ -421,7 +429,7 @@ namespace WordGenerator.Controls
             this.analogChannelLabelsPanel.Location = new System.Drawing.Point(0, 0);
             this.analogChannelLabelsPanel.Margin = new System.Windows.Forms.Padding(0);
             this.analogChannelLabelsPanel.Name = "analogChannelLabelsPanel";
-            this.analogChannelLabelsPanel.Size = new System.Drawing.Size(130, 147);
+            this.analogChannelLabelsPanel.Size = new System.Drawing.Size(130, 111);
             this.analogChannelLabelsPanel.TabIndex = 6;
             this.analogChannelLabelsPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.analogChannelLabelsPanel1_Scroll);
             this.analogChannelLabelsPanel.Enter += new System.EventHandler(this.analogChannelLabelsPanel1_Enter);
@@ -433,9 +441,10 @@ namespace WordGenerator.Controls
             this.analogPreviewPane.Location = new System.Drawing.Point(130, 0);
             this.analogPreviewPane.Margin = new System.Windows.Forms.Padding(0);
             this.analogPreviewPane.Name = "analogPreviewPane";
-            this.analogPreviewPane.Size = new System.Drawing.Size(539, 147);
+            this.analogPreviewPane.Size = new System.Drawing.Size(539, 111);
             this.analogPreviewPane.TabIndex = 6;
             this.analogPreviewPane.TabStop = false;
+            this.analogPreviewPane.Load += new System.EventHandler(this.analogPreviewPane_Load);
             this.analogPreviewPane.Scroll += new System.Windows.Forms.ScrollEventHandler(this.analogPreviewPane1_Scroll);
             this.analogPreviewPane.Click += new System.EventHandler(this.analogPreviewPane1_Click);
             // 
@@ -451,7 +460,7 @@ namespace WordGenerator.Controls
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(669, 203);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(669, 155);
             this.tableLayoutPanel5.TabIndex = 8;
             // 
             // digitalChannelLabelsPanel
@@ -462,7 +471,7 @@ namespace WordGenerator.Controls
             this.digitalChannelLabelsPanel.Location = new System.Drawing.Point(0, 0);
             this.digitalChannelLabelsPanel.Margin = new System.Windows.Forms.Padding(0);
             this.digitalChannelLabelsPanel.Name = "digitalChannelLabelsPanel";
-            this.digitalChannelLabelsPanel.Size = new System.Drawing.Size(130, 203);
+            this.digitalChannelLabelsPanel.Size = new System.Drawing.Size(130, 155);
             this.digitalChannelLabelsPanel.TabIndex = 7;
             this.digitalChannelLabelsPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.digitalChannelLabelsPanel1_Scroll);
             this.digitalChannelLabelsPanel.Enter += new System.EventHandler(this.digitalChannelLabelsPanel1_Enter);
@@ -475,7 +484,7 @@ namespace WordGenerator.Controls
             this.digitalGridPanel.Location = new System.Drawing.Point(130, 0);
             this.digitalGridPanel.Margin = new System.Windows.Forms.Padding(0);
             this.digitalGridPanel.Name = "digitalGridPanel";
-            this.digitalGridPanel.Size = new System.Drawing.Size(539, 203);
+            this.digitalGridPanel.Size = new System.Drawing.Size(539, 155);
             this.digitalGridPanel.TabIndex = 8;
             this.digitalGridPanel.Scroll += new System.Windows.Forms.ScrollEventHandler(this.digitalGridPanel_Scroll);
             this.digitalGridPanel.SizeChanged += new System.EventHandler(this.digitalGridPanel_SizeChanged);
@@ -483,14 +492,46 @@ namespace WordGenerator.Controls
             // digitalGrid
             // 
             this.digitalGrid.AutoScroll = true;
+            this.digitalGrid.AutoSize = true;
             this.digitalGrid.ContainerSize = new System.Drawing.Size(0, 0);
-            this.digitalGrid.Location = new System.Drawing.Point(0, 0);
+            this.digitalGrid.Location = new System.Drawing.Point(3, 3);
             this.digitalGrid.Margin = new System.Windows.Forms.Padding(0);
             this.digitalGrid.Name = "digitalGrid";
             this.digitalGrid.RowHeight = 0;
-            this.digitalGrid.Size = new System.Drawing.Size(539, 203);
+            this.digitalGrid.Size = new System.Drawing.Size(539, 155);
             this.digitalGrid.TabIndex = 3;
             this.digitalGrid.TabStop = false;
+            // 
+            // analogInGridPanel
+            // 
+            this.analogInGridPanel.Controls.Add(this.analogInGrid);
+            this.analogInGridPanel.Controls.Add(this.analogInChannelLabels);
+            this.analogInGridPanel.Location = new System.Drawing.Point(3, 519);
+            this.analogInGridPanel.Name = "analogInGridPanel";
+            this.analogInGridPanel.Size = new System.Drawing.Size(669, 78);
+            this.analogInGridPanel.TabIndex = 2;
+            // 
+            // analogInGrid
+            // 
+            this.analogInGrid.AutoSize = true;
+            this.analogInGrid.ContainerSize = new System.Drawing.Size(0, 0);
+            this.analogInGrid.Location = new System.Drawing.Point(127, -3);
+            this.analogInGrid.Name = "analogInGrid";
+            this.analogInGrid.RowHeight = 0;
+            this.analogInGrid.Size = new System.Drawing.Size(542, 81);
+            this.analogInGrid.TabIndex = 1;
+            this.analogInGrid.TabStop = false;
+            this.analogInGrid.Tag = "analogIn";
+            // 
+            // analogInChannelLabels
+            // 
+            this.analogInChannelLabels.AutoScroll = true;
+            this.analogInChannelLabels.AutoSize = true;
+            this.analogInChannelLabels.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.analogInChannelLabels.Location = new System.Drawing.Point(3, -3);
+            this.analogInChannelLabels.Name = "analogInChannelLabels";
+            this.analogInChannelLabels.Size = new System.Drawing.Size(127, 78);
+            this.analogInChannelLabels.TabIndex = 0;
             // 
             // timer1
             // 
@@ -522,10 +563,14 @@ namespace WordGenerator.Controls
             this.upperCornerPanel.PerformLayout();
             this.digitalAnalogSplitContainer.Panel1.ResumeLayout(false);
             this.digitalAnalogSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.digitalAnalogSplitContainer)).EndInit();
             this.digitalAnalogSplitContainer.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.digitalGridPanel.ResumeLayout(false);
+            this.digitalGridPanel.PerformLayout();
+            this.analogInGridPanel.ResumeLayout(false);
+            this.analogInGridPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -544,7 +589,6 @@ namespace WordGenerator.Controls
         private System.Windows.Forms.Label sequenceDescriptionLabel;
         private System.Windows.Forms.ToolTip toolTip1;
         public System.Windows.Forms.Panel timeStepsPanel;
-        public DigitalGrid digitalGrid;
         public AnalogPreviewPane analogPreviewPane;
         public DigitalChannelLabelsPanel digitalChannelLabelsPanel;
         public AnalogChannelLabelsPanel analogChannelLabelsPanel;
@@ -569,5 +613,9 @@ namespace WordGenerator.Controls
         private System.Windows.Forms.TextBox modeTextBox;
         public System.Windows.Forms.ComboBox modeBox;
         private System.Windows.Forms.Label beginHintLabel;
+        public DigitalGrid digitalGrid;
+        private System.Windows.Forms.Panel analogInGridPanel;
+        public DigitalChannelLabelsPanel analogInChannelLabels;
+        public DigitalGrid analogInGrid;
     }
 }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
-    [Serializable]
+    [Serializable,JsonObject]
     public struct DataStructuresVersionNumber
     {
 

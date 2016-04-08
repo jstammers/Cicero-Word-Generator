@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.Serialization;
 using System.ComponentModel;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class TimestepGroup
     {
         private string timestepGroupName;
@@ -54,13 +54,12 @@ namespace DataStructures
         }
 
         private DimensionedParameter loopCount;
-
         public DimensionedParameter LoopCount
         {
             get
             {
                 if (loopCount == null)
-                    loopCount = new DimensionedParameter(Units.Dimension.unity);
+                    loopCount = new DimensionedParameter(Units.Dimension.unit);
                 return loopCount;
             }
             set { loopCount = value; }

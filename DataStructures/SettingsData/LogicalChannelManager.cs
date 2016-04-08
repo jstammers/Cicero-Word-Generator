@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.ComponentModel;
-
+using Newtonsoft.Json;
 
 namespace DataStructures
 {
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class LogicalChannelManager
     {
         private Dictionary<HardwareChannel.HardwareConstants.ChannelTypes, ChannelCollection> channelCollections;
@@ -71,7 +71,13 @@ namespace DataStructures
                 return channelCollections[HardwareChannel.HardwareConstants.ChannelTypes.digital].Channels;
             }
         }
-
+        public Dictionary<int, LogicalChannel> AnalogIns
+        {
+            get
+            {
+                return channelCollections[HardwareChannel.HardwareConstants.ChannelTypes.analogIn].Channels;
+            }
+        }
         public Dictionary<int, LogicalChannel> GPIBs
         {
             get

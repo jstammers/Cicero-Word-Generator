@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 using DataStructures;
-
+using Newtonsoft.Json;
 
 
 namespace DataStructures
@@ -12,7 +12,7 @@ namespace DataStructures
     /// The HardwareChannel class encapsulates the information regarding a specific
     /// physical device.
     /// </summary>
-    [Serializable, TypeConverter(typeof(ExpandableStructConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableStructConverter)),JsonObject]
     public struct HardwareChannel
     {
 
@@ -123,7 +123,19 @@ namespace DataStructures
         {
             get { return channelName; }
         }
+        private double maximumValue;
+        private double minimumValue;
 
+        [Description("Minimum voltage for analog input channel"),Category("AnalogIn")]
+        public double MinimumValue
+        {
+            get { return minimumValue; }
+        }
+        [Description("Maximum voltage for analog input channel"), Category("AnalogIn")]
+        public double MaximumValue
+        {
+            get { return maximumValue; }
+        }
 
         private HardwareChannel.HardwareConstants.ChannelTypes channelType;
 
@@ -186,6 +198,8 @@ namespace DataStructures
             this.deviceName = deviceName;
             this.channelName = channelName;
             this.channelDescription = channelDescription;
+            this.minimumValue = -10.0;
+            this.maximumValue = 10.0;
             this.channelType = ct;
             this.isUnAssigned = false;
             this.gpibAddress = new DataStructures.Gpib.Address();
@@ -318,7 +332,7 @@ namespace DataStructures
 
         public class HardwareConstants
         {
-            public enum ChannelTypes { analog = 0, digital, gpib, rs232 };
+            public enum ChannelTypes { analog = 0, digital, analogIn, gpib, rs232 };
 
             /// <summary>
             /// Enumerates the various gpib devices which the software knows how to drive. Unknown devices can only be driven

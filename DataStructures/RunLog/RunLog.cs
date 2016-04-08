@@ -8,10 +8,10 @@ using System.IO;
 using System.Globalization;
 using System.Threading;
 using DataStructures.UtilityClasses;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class RunLog
     {
 
@@ -100,7 +100,7 @@ namespace DataStructures
         /// no log was written (for instance, if one already exists with the same stamp).
         /// </summary>
         /// <returns></returns>
-        public string WriteLogFile()
+        public string WriteLogFile(bool writeToJson)
         {
             BinaryFormatter b = new BinaryFormatter();
             
@@ -117,17 +117,31 @@ namespace DataStructures
             }
             catch { }
 
-            string fullFileName = fileDirectory + fileStamp + fileExt;
+            string fullFileName;
 
-            if (File.Exists(fullFileName))
+            
+            if (writeToJson)
             {
-                return null;
+                fullFileName = fileDirectory + fileStamp + ".json";
+                if (File.Exists(fullFileName))
+                {
+                    return null;
+                }
+                JsonSerializer json = new JsonSerializer();
+                string json_obj = JsonConvert.SerializeObject(this, Formatting.None, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, ReferenceLoopHandling = ReferenceLoopHandling.Error });
+                File.WriteAllText(fullFileName, json_obj);
             }
-
-            using (FileStream fs = new FileStream(fullFileName, FileMode.Create))
+            else
             {
-                b.Serialize(fs, this);
+                fullFileName = fileDirectory + fileStamp + fileExt;
+                if (File.Exists(fullFileName))
+                    return null;
+                using (FileStream fs = new FileStream(fullFileName, FileMode.Create))
+                {
+                    b.Serialize(fs, this);
+                }
             }
+           
 
             return fullFileName;
         }

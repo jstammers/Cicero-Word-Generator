@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
-    [TypeConverter(typeof(ExpandableObjectConverter)), Serializable]
+    [TypeConverter(typeof(ExpandableObjectConverter)), Serializable, JsonObject]
     public class ServerInfo
     {
         private bool serverEnabled;
@@ -61,6 +61,13 @@ namespace DataStructures
             connectOnStartup = false;
             ServerAddress = "localhost";
             serverName = "";
+        }
+
+        public ServerInfo(string name)
+        {
+            connectOnStartup = false;
+            ServerAddress = "localhost";
+            serverName = name;
         }
     }
 }

@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
-
+using Newtonsoft.Json;
 namespace DataStructures
 {
     /// <summary>
     /// This object contains user annotations, which are made after the user sees the image and are then subsequently added to the image file.
     /// </summary>
     /// 
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class RunLogAnnotation
     {
         public enum ImageQuality { NA, None, Bad, Good };

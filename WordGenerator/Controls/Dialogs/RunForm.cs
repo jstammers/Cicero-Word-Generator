@@ -965,6 +965,7 @@ namespace WordGenerator
                 if (softwareClockProvider != null || networkClockProvider!=null)
                 {
                     addMessageLogText(this, new MessageEvent("A software clock provider already exists, unexpectedly. Aborting."));
+                    softwareClockProvider = null;
                     return false;
                 }
 
@@ -1077,7 +1078,7 @@ namespace WordGenerator
 
                 addMessageLogText(this, new MessageEvent("Finished run. Writing log file..."));
                 RunLog runLog = new RunLog(runStartTime, formCreationTime, sequence, Storage.settingsData, WordGenerator.MainClientForm.instance.OpenSequenceFileName, WordGenerator.MainClientForm.instance.OpenSettingsFileName);
-                string fileName = runLog.WriteLogFile();
+                string fileName = runLog.WriteLogFile(Storage.settingsData.SaveDataAsJson);
 
                 if (fileName != null)
                 {

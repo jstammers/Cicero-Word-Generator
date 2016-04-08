@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using Newtonsoft.Json;
 
 namespace DataStructures
 {
@@ -13,7 +14,7 @@ namespace DataStructures
     /// different sequence programs. Examples include names of logical channels and their mappings
     /// to hardware channels, and information about what servers to connect to.
     /// </summary>
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class SettingsData
     {
         private LogicalChannelManager myLogicalChannelManager;
@@ -142,9 +143,17 @@ namespace DataStructures
         }
         #endregion
 
+        #region Json Save Settings
+        private bool saveDataAsJson;
+        [Description("Chooses whether to save data as binary files or json objects. In general, json files are larger in size, but they are easier to read and modify."), Category("Global")]
+        public bool SaveDataAsJson
+        {
+            get { return saveDataAsJson; }
+            set { saveDataAsJson = value; }
+        }
+        #endregion
 
-
-        [TypeConverter(typeof(ExpandableObjectConverter)), Serializable]
+        [TypeConverter(typeof(ExpandableObjectConverter)), Serializable,JsonObject]
         public class IPAdresses
         {
             private string PcAddress;

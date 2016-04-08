@@ -37,7 +37,7 @@ namespace DataStructures
         /// <param name="fileExtension">File extension including period, for instance ".seq". This matches the form in DetaultNames.Extensions</param>
         /// <returns></returns>
         public static string PromptSaveFile(string fileKind, string fileExtension)
-        {
+        {;
             SaveFileDialog sf = new SaveFileDialog();
             sf.DefaultExt = fileExtension;
             sf.Filter = FileNameStrings.fileDialogFilterString(fileKind, fileExtension);
