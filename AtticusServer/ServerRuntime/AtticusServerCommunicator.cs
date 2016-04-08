@@ -2385,7 +2385,7 @@ namespace AtticusServer
             foreach (int digitalID in usedDigitalChannels.Keys)
             {
                 HardwareChannel hc = settings.logicalChannelManager.ChannelCollections[HardwareChannel.HardwareConstants.ChannelTypes.digital].Channels[digitalID].HardwareChannel;
-                if (!usedDaqMxDevices.Contains(hc.DeviceName))
+                if (!usedDaqMxDevices.Contains(hc.DeviceName)&&!usedHSDIODevices.Contains(hc.DeviceName))
                 {
                     //Hardcoded adding the HSDIO card to the correct list.
                  
