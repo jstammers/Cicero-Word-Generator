@@ -15,7 +15,7 @@ namespace AtticusServer
         public long TotalSamplesGeneratedPerChannel;
 
 
-        public HSDIOTask (string deviceName, string channelList, DeviceSettings deviceSettings)
+        public HSDIOTask(string deviceName, string channelList, DeviceSettings deviceSettings)
         {
             //initialises an instance of HSDIOTask
             hsdio = niHSDIO.InitGenerationSession(deviceName, true, false, "");
@@ -67,7 +67,9 @@ namespace AtticusServer
                 }
                 else if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.SoftwareTrigger)
                 {
+                    //For some reason, there is a fixed number of samples between when the HSDIO card is triggered and when it starts outputting.
                     sampleShift = 29;
+
                     hsdio.ConfigureSoftwareStartTrigger();
                 }
 
@@ -92,6 +94,7 @@ namespace AtticusServer
                         try
                         {
                             singleChannelBuffer = new bool[nSamples];
+                            //This buffer needs to be shorter to take account of the delay between the start trigger and the start of the output.
                             hsdioBuffer = new uint[nSamples];
                         }
                         catch (Exception e)
@@ -136,7 +139,7 @@ namespace AtticusServer
 
                 double timeStepSize = Common.getPeriodFromFrequency(deviceSettings.SampleClockRate);
                 TimestepTimebaseSegmentCollection timebaseSegments = sequence.generateVariableTimebaseSegments(serverSettings.VariableTimebaseType, timeStepSize);
-                 
+
 
 
                 int nBaseSamples = timebaseSegments.nSegmentSamples();
@@ -188,24 +191,24 @@ namespace AtticusServer
                             hsdioBuffer = addBooltoUint(hsdioBuffer, singleChannelBuffer, channel, 29);
                         }
                     }
-                        try
-                        {
-                            hsdio.AllocateNamedWaveform("waveformvariable", nSamples);
-                            hsdio.WriteNamedWaveformU32("waveformvariable", nSamples, hsdioBuffer);
+                    try
+                    {
+                        hsdio.AllocateNamedWaveform("waveformvariable", nSamples);
+                        hsdio.WriteNamedWaveformU32("waveformvariable", nSamples, hsdioBuffer);
 
-                            hsdio.CommitDynamic();
-                        }
-                        catch (System.AccessViolationException e)
-                        {
-                            throw new Exception("Couldn't access memory on HSDIO card.");
-                        }
-                        expectedSamplesGenerated = nSamples;
-                        TotalSamplesGeneratedPerChannel = expectedSamplesGenerated;
+                        hsdio.CommitDynamic();
+                    }
+                    catch (System.AccessViolationException e)
+                    {
+                        throw new Exception("Couldn't access memory on HSDIO card.");
+                    }
+                    expectedSamplesGenerated = nSamples;
+                    TotalSamplesGeneratedPerChannel = expectedSamplesGenerated;
                 }
             }
         }
-            #endregion
-        
+        #endregion
+
 
         private static Dictionary<int, string> countHSChannels(Dictionary<int, HardwareChannel> digitalChannels)
         {
@@ -219,18 +222,19 @@ namespace AtticusServer
             }
             return hcIDs;
         }
-        private static uint[] addBooltoUint(uint[]uintList,bool[] boolList,int Channel, int sampleShift)
+        private static uint[] addBooltoUint(uint[] uintList, bool[] boolList, int Channel, int sampleShift)
         {
             //Adds each element of a bool list to the corresponding element in a 32-bit integer list
             //The HSDIO card starts outputting it's sequence 32 samples after the start trigger is sent. The simplest work-around is to remove the first 32 samples if Atticus is configured to trigger using the HSDIO card.
             int boolLength = boolList.Length;
             int uintLength = uintList.Length;
-            if (boolLength != uintLength)
-                throw new Exception("Number of samples across channels is not equal to the number of samples on hs" + Channel.ToString());
-            for (int i = 0; i < uintLength-sampleShift; i++)
+
+            //if (boolLength-sampleShift != uintLength)
+            //    throw new Exception("Number of samples across channels is not equal to the number of samples on hs" + Channel.ToString());
+            for (int i = 0; i < uintLength - sampleShift; i++)
             {
-                if (boolList[i+sampleShift])
-                   uintList[i] |= (uint)(((uint)1) << Channel);
+                if (boolList[i + sampleShift])
+                    uintList[i] |= (uint)(((uint)1) << Channel);
             }
 
             return uintList;
@@ -239,7 +243,7 @@ namespace AtticusServer
         {
             int voltageLevel = new int();
             //A bit messy, and would probably be better with a dictionary, but this does the job
-           DeviceSettings.VoltageLevel voltageFamily = deviceSettings.DigitalVoltage;
+            DeviceSettings.VoltageLevel voltageFamily = deviceSettings.DigitalVoltage;
             if (voltageFamily == DeviceSettings.VoltageLevel._5V)
             {
                 voltageLevel = niHSDIOConstants._50vLogic;
@@ -254,7 +258,7 @@ namespace AtticusServer
                 voltageLevel = niHSDIOConstants._18vLogic;
             }
             hsdio.ConfigureEventVoltageLogicFamily(voltageLevel);
-            hsdio.ConfigureDataVoltageLogicFamily("0-31",voltageLevel);
+            hsdio.ConfigureDataVoltageLogicFamily("0-31", voltageLevel);
             hsdio.ConfigureTriggerVoltageLogicFamily(voltageLevel);
         }
         public void Reset()
@@ -264,30 +268,34 @@ namespace AtticusServer
             if (!done)
             {
                 System.Console.WriteLine("Sequence not finished");
+                try
+                {
+                    hsdio.DeleteNamedWaveform("waveformvariable");
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+                hsdio.Abort();
             }
             else
             {
                 System.Console.WriteLine("Sequence finished");
             }
-            //hsdio.Abort();
-            try
-            {
-                hsdio.DeleteNamedWaveform("waveformvariable");
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Could not delete waveform");
-            }
+
             hsdio.reset();
+
+
         }
         public bool Abort()
         {
             bool error = false;
-            try {
+            try
+            {
                 hsdio.Abort();
                 hsdio.reset();
-                }
-           catch (Exception e)
+            }
+            catch (Exception e)
             {
                 error = true;
             }
@@ -303,7 +311,7 @@ namespace AtticusServer
         {
             hsdio.SendSoftwareEdgeTrigger(niHSDIOConstants.StartTrigger, "");
         }
-        public void ExportSignal(int signal, string signal_identifier,string output_terminal)
+        public void ExportSignal(int signal, string signal_identifier, string output_terminal)
         {
             hsdio.ExportSignal(signal, signal_identifier, output_terminal);
         }
