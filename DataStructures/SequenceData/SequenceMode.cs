@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace DataStructures
 {
@@ -10,7 +11,7 @@ namespace DataStructures
     /// visible/invisible states of all of the timesteps. 
     /// A given sequence can have many such modes, allowing it to quickly transform between different closely related sequence.
     /// </summary>
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class SequenceMode
     {
         private string modeName;
@@ -43,7 +44,7 @@ namespace DataStructures
         }
 
 
-        [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+        [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
         public class ModeEntry {
             private bool stepEnabled;
 

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace DataStructures
 {
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class AnalogGroup : Group<AnalogGroupChannelData>
     {
 
@@ -159,7 +160,7 @@ namespace DataStructures
     /// <summary>
     /// Contains all the channel-specific information in an analog group.
     /// </summary>
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class AnalogGroupChannelData
     {
         /// <summary>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 using DataStructures;
-
+using Newtonsoft.Json;
 
 
 namespace DataStructures
@@ -12,7 +12,7 @@ namespace DataStructures
     /// The HardwareChannel class encapsulates the information regarding a specific
     /// physical device.
     /// </summary>
-    [Serializable, TypeConverter(typeof(ExpandableStructConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableStructConverter)),JsonObject]
     public struct HardwareChannel
     {
 
@@ -177,7 +177,7 @@ namespace DataStructures
         {
             
         }
-
+        [JsonConstructor]
         public HardwareChannel(string serverName, string deviceName, string channelName, string channelDescription, HardwareChannel.HardwareConstants.ChannelTypes ct)
         {
             gpibMasquerade = false;

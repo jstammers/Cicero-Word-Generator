@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Security.Permissions;
 using DataStructures;
+using Newtonsoft.Json;
 
 namespace AtticusServer
 {
@@ -109,19 +110,35 @@ namespace AtticusServer
         /// <returns>loaded server settings object</returns>
         private static ServerSettings loadServerSettings(string filename)
         {
-            ServerSettings serverSettings = Common.loadBinaryObjectFromFile(filename) as ServerSettings;
-            return serverSettings;
+            if (filename.EndsWith(".json"))
+            {
+                return JsonConvert.DeserializeObject<ServerSettings>(File.ReadAllText(filename), new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, ReferenceLoopHandling = ReferenceLoopHandling.Error,NullValueHandling = NullValueHandling.Ignore
+                    });
+            }
+            else
+            {
+                ServerSettings serverSettings = Common.loadBinaryObjectFromFile(filename) as ServerSettings;
+                return serverSettings;
+            }
         }
 
         public static void saveServerSettings(string fileName, ServerSettings serverSettings)
         {
 
-            // Save server settings
-
-            BinaryFormatter bf = new BinaryFormatter();
-            using (FileStream fst = new FileStream(fileName, FileMode.Create))
+            // Save server settings as json
+            if (fileName.EndsWith(".json"))
             {
-                bf.Serialize(fst, serverSettings);
+                JsonSerializer json = new JsonSerializer();
+                string json_obj = JsonConvert.SerializeObject(serverSettings, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects, ReferenceLoopHandling = ReferenceLoopHandling.Error });
+                File.WriteAllText(fileName, json_obj);
+            }
+            else
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                using (FileStream fst = new FileStream(fileName, FileMode.Create))
+                {
+                    bf.Serialize(fst, serverSettings);
+                }
             }
         }
 

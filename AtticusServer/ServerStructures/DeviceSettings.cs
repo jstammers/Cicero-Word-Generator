@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 using NationalInstruments.DAQmx;
+using Newtonsoft.Json;
 
 namespace AtticusServer
 {
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class DeviceSettings
     {
 

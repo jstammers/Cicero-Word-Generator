@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace DataStructures
 {
     /// <summary>
     /// This class stores and handles the lists which can be used to 
     /// </summary>
-    [Serializable, TypeConverter(typeof(ExpandableObjectConverter))]
+    [Serializable, TypeConverter(typeof(ExpandableObjectConverter)),JsonObject]
     public class ListData
     {
         public static readonly int NLists = 10;

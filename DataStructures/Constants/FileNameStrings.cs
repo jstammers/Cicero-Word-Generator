@@ -12,6 +12,7 @@ namespace DataStructures
             public const string ClientSettingsData = ".set";
             public const string SequenceData = ".seq";
             public const string ServerSettingsData = ".set";
+            public const string JsonData = ".json";
         }
 
         private class DefaultFileNames
@@ -31,9 +32,9 @@ namespace DataStructures
         }
 
         // Default save locations and file names
-        public const string DefaultClientStartupSettingsFile = DefaultFileNames.ClientStartupSettings +Extensions.ClientStartupSettings;
-        public const string DefaultClientSettingsDataFile = DefaultFileNames.ClientSettingsData + Extensions.ClientSettingsData;
-        public const string DefaultSequenceDataFile = DefaultFileNames.SequenceData +Extensions.SequenceData;
+        public const string DefaultClientStartupSettingsFile = DefaultFileNames.ClientStartupSettings +Extensions.JsonData;
+        public const string DefaultClientSettingsDataFile = DefaultFileNames.ClientSettingsData + Extensions.JsonData;
+        public const string DefaultSequenceDataFile = DefaultFileNames.SequenceData +Extensions.JsonData;
         public const string DefaultServerSettingsDataFile = DefaultFileNames.ServerSettingsData + Extensions.ServerSettingsData;
 
         public const string BackupFolder = "backup/";
