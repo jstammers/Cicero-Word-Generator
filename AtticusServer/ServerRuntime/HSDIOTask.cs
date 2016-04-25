@@ -67,7 +67,9 @@ namespace AtticusServer
                 }
                 else if (deviceSettings.StartTriggerType == DeviceSettings.TriggerType.SoftwareTrigger)
                 {
+                    //For some reason, there is a fixed number of samples between when the HSDIO card is triggered and when it starts outputting.
                     sampleShift = 29;
+
                     hsdio.ConfigureSoftwareStartTrigger();
                 }
 
@@ -92,6 +94,7 @@ namespace AtticusServer
                         try
                         {
                             singleChannelBuffer = new bool[nSamples];
+                            //This buffer needs to be shorter to take account of the delay between the start trigger and the start of the output.
                             hsdioBuffer = new uint[nSamples];
                         }
                         catch (Exception e)
@@ -225,8 +228,9 @@ namespace AtticusServer
             //The HSDIO card starts outputting it's sequence 32 samples after the start trigger is sent. The simplest work-around is to remove the first 32 samples if Atticus is configured to trigger using the HSDIO card.
             int boolLength = boolList.Length;
             int uintLength = uintList.Length;
-            if (boolLength != uintLength)
-                throw new Exception("Number of samples across channels is not equal to the number of samples on hs" + Channel.ToString());
+           
+            //if (boolLength-sampleShift != uintLength)
+            //    throw new Exception("Number of samples across channels is not equal to the number of samples on hs" + Channel.ToString());
             for (int i = 0; i < uintLength-sampleShift; i++)
             {
                 if (boolList[i+sampleShift])
@@ -264,21 +268,24 @@ namespace AtticusServer
             if (!done)
             {
                 System.Console.WriteLine("Sequence not finished");
+                try
+                {
+                    hsdio.DeleteNamedWaveform("waveformvariable");
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+                hsdio.Abort();
             }
             else
             {
                 System.Console.WriteLine("Sequence finished");
             }
-            //hsdio.Abort();
-            try
-            {
-                hsdio.DeleteNamedWaveform("waveformvariable");
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Could not delete waveform");
-            }
+            
             hsdio.reset();
+         
+            
         }
         public bool Abort()
         {
